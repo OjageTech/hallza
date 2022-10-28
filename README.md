@@ -1,8 +1,8 @@
-# Getting Started with Create React App
+# TTDIA-MLM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## The Style Dependency used
+### <p>Chakra Ui</p>
+<strong>https://www.chakrauiforbeginners.com/play<strong>
 
 In the project directory, you can run:
 
