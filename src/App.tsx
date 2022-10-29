@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import routes from './routing/routes';
+import routes from './routes/routes';
 
 function App() {
   return (
@@ -12,10 +12,8 @@ function App() {
             element={<route.element />}
           />
         ))}
-
       </Routes>
     </BrowserRouter>
-
   );
 }
 

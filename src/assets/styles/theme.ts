@@ -10,8 +10,8 @@ const venetianRed = '#C90612ff';
 
 export const myNewTheme = extendTheme({
   fonts: {
-    heading: `'Open Sans', sans-serif`,
-    body: `'montserrat', sans-serif`,
+    heading: '\'Open Sans\', sans-serif',
+    body: '\'montserrat\', sans-serif',
   },
   colors: {
     primary: navyBlue,

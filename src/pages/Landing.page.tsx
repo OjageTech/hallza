@@ -57,8 +57,20 @@ const Landing = () => {
           >
             Admin Dashboard
           </Button>
-          <Button variant="primaryOutline">Login</Button>
-          <Button variant="primaryOutline">Signup</Button>
+          <Button
+            as={RouteLink}
+            to="/login"
+            variant="primaryOutline"
+          >
+            Login
+          </Button>
+          <Button
+            as={RouteLink}
+            to="/signup"
+            variant="primaryOutline"
+          >
+            Signup
+          </Button>
         </Stack>
       </Center>
     </div>

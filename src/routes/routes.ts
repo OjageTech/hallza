@@ -1,5 +1,5 @@
 import IRoute from '../interfaces/route';
-import Userdashboard from '../pages/Userdashboard.page';
+import Userdashboard from '../pages/Userdashboard/Userdashboard.page';
 import Login from '../pages/auth/Login.page';
 import SignUp from '../pages/auth/Signup.page';
 import Landing from '../pages/Landing.page';
