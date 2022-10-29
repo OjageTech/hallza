@@ -1,11 +1,21 @@
+import { Link as RouteLink } from 'react-router-dom';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
   Button,
   Center,
   IconButton,
   Stack,
+  Link,
+  Text,
   useColorMode,
 } from '@chakra-ui/react';
+
+// type NavLinkProps = { text: string };
+// const NavLink = ({ text }: NavLinkProps) => (
+//   <Link>
+//     <Text>{text}</Text>
+//   </Link>
+// );
 
 const Landing = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -27,29 +37,28 @@ const Landing = () => {
             Switch Mode
           </IconButton>
           <Button
+            as={RouteLink}
+            to="/"
             variant="outline"
             colorScheme="blue"
           >
             TeksTedia MLM [TTDIA-MLM]
           </Button>
           <Button
-            variant="solid"
-            bg="primary"
+            as={RouteLink}
+            to="/userDashboard"
+            variant="primary"
           >
-            Primary
+            User Dashboard
           </Button>
           <Button
-            variant="solid"
-            bg="secondary"
+            disabled
+            variant="secondary"
           >
-            Secondary
+            Admin Dashboard
           </Button>
-          <Button
-            variant="solid"
-            bg="danger"
-          >
-            Danger!
-          </Button>
+          <Button variant="primaryOutline">Login</Button>
+          <Button variant="primaryOutline">Signup</Button>
         </Stack>
       </Center>
     </div>
