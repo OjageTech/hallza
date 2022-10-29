@@ -1,5 +1,5 @@
 export const config = {
-    defaults:  {
-        namespace: 'Application',
-    }
-}
+  defaults: {
+    namespace: 'Application',
+  },
+};

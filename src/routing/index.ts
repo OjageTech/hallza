@@ -1,15 +1,15 @@
 export enum ROUTE {
-  LANDING = "/",
-  USERS = "/users/",
-  USER_PROFILE = "/users/:userId/",
-  USER_ACTIVITY = `/users/:userId/activities/:activityId/`,
-  USER_DASHBOARD = "/userDashboard",
-  LOGIN = "/login",
-  SIGNUP = "/signup",
+  LANDING = '/',
+  USERS = '/users/',
+  USER_PROFILE = '/users/:userId/',
+  USER_ACTIVITY = '/users/:userId/activities/:activityId/',
+  USER_DASHBOARD = '/userDashboard',
+  LOGIN = '/login',
+  SIGNUP = '/signup',
 }
 
 export enum USER_PROFILE_ROUTE {
-  USER_ACTIVITY = "activities/:activityId/",
+  USER_ACTIVITY = 'activities/:activityId/',
 }
 
 type TArgs =
@@ -28,12 +28,11 @@ type TArgsWithParams = Extract<TArgs, { path: any; params: any }>;
 
 export function createPath(args: TArgs) {
   // Save some CPU power for routes without params
-  if (args.hasOwnProperty("params") === false) return args.path;
+  if (args.hasOwnProperty('params') === false) return args.path;
 
   // Create a path by replacing params in the route definition
   return Object.entries((args as TArgsWithParams).params).reduce(
-    (previousValue: string, [param, value]) =>
-      previousValue.replace(`:${param}`, "" + value),
-    args.path
+    (previousValue: string, [param, value]) => previousValue.replace(`:${param}`, `${value}`),
+    args.path,
   );
 }
