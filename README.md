@@ -41,10 +41,10 @@ This folder consists of all routes of the application. It consists of private, p
 This folder consists of a configuration file where we store environment variables in config.js. We will use this file to set up multi-environment configurations in your application.
 
 ### Services Folder
-This folder will be added if we use redux in your project. Inside it, there are 3 folders named actions, reducers, and constant subfolders to manage states. The actions and reducers will be called in almost all the pages, so create actions, reducers & constants according to pages name.
+This folder is added because we use Redux. Inside it, there are 3 folders named actions, reducers, and constant subfolders to manage states. The actions and reducers will be called in almost all the pages, so create actions, reducers & constants according to pages name.
 
 ### Utils Folder
-Utils folder consists of some repeatedly used functions that are commonly used in the project. It should contain only common js functions & objects like dropdown options, regex condition, data formatting, etc.
+Utils folder consists of some repeatedly used functions that are commonly used in the project. It contains only common ts functions & objects like dropdown options, regex condition, data formatting, etc.
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
