@@ -1,5 +1,8 @@
-import { Box, Center } from '@chakra-ui/react';
+import { Route, Routes } from 'react-router-dom';
+import { Box, Container, Flex } from '@chakra-ui/react';
 import DashboardHeader from '../../layouts/headers/Userdashboard/Userdashboard.header';
+import DashboardSidebar from '../../layouts/sidebars/UserDashboard/UserDashboard.sidebar';
+import { nestRoutes } from '../../routes/routes';
 
 const Userdashboard = () => (
   <div className="userDashboard">
@@ -10,6 +13,22 @@ const Userdashboard = () => (
 
     */}
     <DashboardHeader />
+
+    <Flex
+      justify="start"
+      alignItems="flex-start"
+    >
+      <DashboardSidebar />
+      <Routes>
+        {nestRoutes.map((routes) => (
+          <Route
+            key={routes.path}
+            path={routes.path}
+            element={<routes.element />}
+          />
+        ))}
+      </Routes>
+    </Flex>
   </div>
 );
 

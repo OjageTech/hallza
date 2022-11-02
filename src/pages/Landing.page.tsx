@@ -9,6 +9,7 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
+import { ROUTE } from '../routes';
 
 // type NavLinkProps = { text: string };
 // const NavLink = ({ text }: NavLinkProps) => (
@@ -38,7 +39,7 @@ const Landing = () => {
           </IconButton>
           <Button
             as={RouteLink}
-            to="/"
+            to={ROUTE.LANDING}
             variant="outline"
             colorScheme="blue"
           >
@@ -46,7 +47,7 @@ const Landing = () => {
           </Button>
           <Button
             as={RouteLink}
-            to="/userDashboard"
+            to={ROUTE.USER_DASHBOARD}
             variant="primary"
           >
             User Dashboard
@@ -59,14 +60,14 @@ const Landing = () => {
           </Button>
           <Button
             as={RouteLink}
-            to="/login"
+            to={ROUTE.LOGIN}
             variant="primaryOutline"
           >
             Login
           </Button>
           <Button
             as={RouteLink}
-            to="/signup"
+            to={ROUTE.SIGNUP}
             variant="primaryOutline"
           >
             Signup

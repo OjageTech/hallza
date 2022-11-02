@@ -3,13 +3,28 @@ export enum ROUTE {
   USERS = '/users/',
   USER_PROFILE = '/users/:userId/',
   USER_ACTIVITY = '/users/:userId/activities/:activityId/',
-  USER_DASHBOARD = '/userDashboard',
   LOGIN = '/login',
   SIGNUP = '/signup',
+  USER_DASHBOARD = '/userDashboard/*',
+ 
 }
 
 export enum USER_PROFILE_ROUTE {
   USER_ACTIVITY = 'activities/:activityId/',
+}
+
+/**
+ * All the Routes inside dashboard
+ */
+export enum USER_DASHBOARD_ROUTE {
+  USER_DEPOSIT = '*/deposit',
+  USER_ECOMMERCE = '*/ecommerce',
+  USER_EWALLET = '*/ewallet',
+  USER_GENEALOGY = '*/genealogy',
+  USER_REFERRAL = '*/referral',
+  USER_SUPPORT = '*/support',
+  USER_PAYOUT = '*/payout',
+  DEFAULT = '*',
 }
 
 type TArgs =
@@ -23,6 +38,12 @@ type TArgs =
       params: { userId: string; activityId: string };
     }
   | { path: USER_PROFILE_ROUTE.USER_ACTIVITY; params: { activityId: string } };
+  // | { path: USER_DASHBOARD_ROUTE.USER_DEPOSIT};
+  // | { path: USER_DASHBOARD_ROUTE.USER_ECOMMERCE }
+  // | { path: USER_DASHBOARD_ROUTE.USER_EWALLET }
+  // | { path: USER_DASHBOARD_ROUTE.USER_GENEALOGY }
+  // | { path: USER_DASHBOARD_ROUTE.USER_REFERRAL }
+  // | { path: USER_DASHBOARD_ROUTE.USER_SUPPORT }
 
 type TArgsWithParams = Extract<TArgs, { path: any; params: any }>;
 

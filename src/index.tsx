@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import App from './App';
+import { store } from './store';
 import reportWebVitals from './reportWebVitals';
 import { myNewTheme } from './assets/styles/theme';
 
@@ -12,12 +14,14 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <ChakraProvider
-      resetCSS
-      theme={myNewTheme}
-    >
-      <App />
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider
+        resetCSS
+        theme={myNewTheme}
+      >
+        <App />
+      </ChakraProvider>
+    </Provider>
   </React.StrictMode>,
 );
 

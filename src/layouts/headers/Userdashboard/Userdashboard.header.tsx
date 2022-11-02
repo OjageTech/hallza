@@ -42,10 +42,10 @@ const UserMix = ({ id, imgsrc }: UserMixProps) => (
 const DashboardHeader = () => (
   <div className="DashboardHeader">
     <Box
+      mt="4"
       w="100%"
-      pt="3.5"
       pl="3.5"
-      maxH="sm"
+      maxH="58px"
       overflow="hidden"
     >
       <Flex
