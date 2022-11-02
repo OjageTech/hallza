@@ -6,7 +6,7 @@ export enum ROUTE {
   LOGIN = '/login',
   SIGNUP = '/signup',
   USER_DASHBOARD = '/userDashboard/*',
- 
+
 }
 
 export enum USER_PROFILE_ROUTE {
