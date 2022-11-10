@@ -7,8 +7,10 @@ import { BodyStyles as Styles } from './components/bodyStyles';
 const lilacLuster = '#005FFF';
 const black = '#000000';
 const lightDark = '#121318';
-const navyBlue = '#61DAFB';
-const darkSlateBlue = '#373976ff';
+const raisonBlack = '#202124'
+const CharlestonGreen = '#282c2f';
+const onyx = '#323639';
+const lightSilver = '#d6d6d7';
 const venetianRed = '#C90612ff';
 
 export const myNewTheme = extendTheme({
@@ -26,10 +28,11 @@ export const myNewTheme = extendTheme({
     body: "'montserrat', sans-serif",
   },
   colors: {
-    primary: navyBlue,
+    primary: lightSilver,
     secondary: lilacLuster,
     tertiary: lightDark,
-    highlight: darkSlateBlue,
+    navy: CharlestonGreen,
+    // highlight: darkSlateBlue,
     warning: venetianRed,
     danger: venetianRed,
     darken: black,

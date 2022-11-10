@@ -7,9 +7,12 @@ import {
 } from '@chakra-ui/react';
 import Search from '../../../assets/images/Search.svg';
 
+
+
+
 const Searchbar = () => (
   <div className="Searchbar">
-    <InputGroup h="58px">
+    <InputGroup h="40px" w='10rem'>
       <InputLeftElement
         pl="5"
         h="50px"
@@ -22,7 +25,7 @@ const Searchbar = () => (
       </InputLeftElement>
       <Input
         pl="4rem"
-        h="50px"
+        h="40px"
         fontSize="16px"
         variant="flushed"
         bg="tertiary"
