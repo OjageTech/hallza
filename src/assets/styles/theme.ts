@@ -7,7 +7,7 @@ import { BodyStyles as Styles } from './components/bodyStyles';
 const lilacLuster = '#005FFF';
 const black = '#000000';
 const lightDark = '#121318';
-const navyBlue = '#1E13DB';
+const navyBlue = '#61DAFB';
 const darkSlateBlue = '#373976ff';
 const venetianRed = '#C90612ff';
 
