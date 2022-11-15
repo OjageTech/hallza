@@ -34,6 +34,7 @@ const UserMix = ({ id, imgsrc }: UserMixProps) => (
 	</HStack>
 );
 const DashboardHeader = () => (
+
 	<div className="DashboardHeader">
 		<Box mt="4" w="100%" pl="3.5" maxH="58px" overflow="hidden">
 			<Flex alignItems="center" justifyContent="space-between">
