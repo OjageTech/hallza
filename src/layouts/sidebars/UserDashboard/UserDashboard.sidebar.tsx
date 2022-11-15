@@ -63,7 +63,8 @@ type SidebarItemProps = {
 
 const SideBarItem = ({ to, name, selected, icon }: SidebarItemProps) => {
 	
-
+	// Get the current url
+	
   
 	const [badgeVisibility, setBadgeVisibility] = useState('none');
 	const [badgeContent, setBadgeContent] = useState(0);

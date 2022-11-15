@@ -33,6 +33,18 @@ export const ButtonStyles = {
         boxShadow: 'md',
       },
     }),
+    tertiary: (props: any) => ({
+      bg: 'transparent',
+      border: '1px solid #FFFFFF',
+      color: '#FFFFFF',
+      textTransform: 'uppercase',
+      _hover: {
+        transform: 'scale(1.02)',
+        padding: '3px',
+        border: '1px solid',
+        boxShadow: 'md',
+      },
+    }),
   },
 
   //  default values for `size` and `variant`
