@@ -66,7 +66,7 @@ const DashboardHeader = () => (
           spacing="13rem"
         >
           <WelcomeText text="Hi, Nneka Obi" />
-          <Searchbar />
+          {/* <Searchbar /> */}
         </HStack>
         <Flex
           alignItems="center"

@@ -12,7 +12,7 @@ import Search from '../../../assets/images/Search.svg';
 
 const Searchbar = () => (
   <div className="Searchbar">
-    <InputGroup h="40px" w='10rem'>
+    <InputGroup h="40px" w='15rem'>
       <InputLeftElement
         pl="5"
         h="50px"
