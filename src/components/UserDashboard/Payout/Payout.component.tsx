@@ -198,7 +198,7 @@ const Numbers=[10,20,30,40,50,60,70];
           {<div>this number per page is {numberofrows}</div>}
 
         </Box>
-          <Flex  justifyContent='space-between' >
+          <Flex  justifyContent='end' >
            <HStack >
            <Select
             

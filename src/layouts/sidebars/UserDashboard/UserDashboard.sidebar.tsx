@@ -136,7 +136,7 @@ const SideBarItem = ({ to, name }: SidebarItemProps) => {
   );
 };
 const SidebarItems = () => {
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("Dashboard");
   const activeBtn = (value: any) => {
     setActive(value);
   };
@@ -146,10 +146,16 @@ const SidebarItems = () => {
       gap="2.4rem"
     >
       {nestRoutes.map((item) => (
-        <SideBarItem
+       <Box 
+       onClick={()=>setActive(item.name)}
+       bg={active==item.name? "blue":""}
+       >
+           <SideBarItem
           to={item.path}
           name={item.name}
         />
+
+       </Box>
       ))}
     </VStack>
   );
