@@ -6,4 +6,6 @@ export default interface IRoute {
   exact: boolean;
   element: any;
   props?: any;
+  selected: boolean,
+  icon?: any;
 }

@@ -1,0 +1,8 @@
+{
+    "cSpell.words": [
+        "imgsrc"
+    ],
+    "search.exclude": {
+        "**/node_modules": false
+    }
+}
