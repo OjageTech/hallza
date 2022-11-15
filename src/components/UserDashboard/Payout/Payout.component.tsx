@@ -1,6 +1,6 @@
 import { ArrowBackIcon, ArrowForwardIcon, ArrowLeftIcon, ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon, PhoneIcon, WarningIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Flex, HStack, Icon, Select, Text, VStack,
+  Box, Button, Flex, HStack, Icon, Image, Select, Text, VStack,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import Searchbar from '../../common/searchbar/Searchbar';
@@ -8,6 +8,12 @@ import { Approved } from './Approved';
 import { Paid } from './Paid';
 import { Pending } from './Pending';
 import { Rejected } from './Rejected';
+
+import pendingIcon from '../../../assets/images/pending.svg';
+import paidIcon from '../../../assets/images/paid.svg';
+import approvedIcon from '../../../assets/images/approved.svg';
+import rejectedIcon from '../../../assets/images/denied.svg';
+import payoutIcon from '../../../assets/images/payout.svg';
 
 function Payout() {
   const [selectedPage, setSelectedPage]= useState('Pending');
@@ -20,11 +26,14 @@ function Payout() {
     'Approved',
     'Rejected',
   ];
-const Numbers=[10,20,30,40,50,60,70];
 
-//  const handleDropdownChanges=(value)=>{
-//   setSelectedPage=value
+const Numbers=[10,20,30,40,50,60,70];
+//  type event ={
+//   event:React.ChangeEvent<HTMLBodyElement>():void
 //  }
+//  const handleDropdownChanges=()=>{
+    
+//                 }
   
 
   return (
@@ -33,10 +42,7 @@ const Numbers=[10,20,30,40,50,60,70];
     <Box
       margin="20px 0"
       w="100vw"
-      h="70
-    "
-
-    >
+      h="70">
 
       {/*
 
@@ -46,9 +52,7 @@ const Numbers=[10,20,30,40,50,60,70];
       */}
       <Flex
       h='20vh'
-        justifyContent="space-evenly"
-       
-      >
+        justifyContent="space-evenly">
         <Box
           // border="1px solid highlight"
           w="10vw"
@@ -56,12 +60,10 @@ const Numbers=[10,20,30,40,50,60,70];
 
           borderRadius="15"
           onClick={()=>setSelectedPage("Pending")}
-           bg={selectedPage==="Pending"?'blue':"navy"}
-          // bg='navy'
-        >
+           bg={selectedPage==="Pending"?'blue':"navy"}>
            
           <VStack >
-          <Icon name="phone" mt='20px'/>
+          <Image src={pendingIcon} alt='image' boxSize='40px' mt='10px' objectFit='cover'/>
             <Text>Pending</Text>
             <HStack>
               <Text>0</Text>
@@ -81,7 +83,7 @@ const Numbers=[10,20,30,40,50,60,70];
         >
           
           <VStack>
-          <Icon name="phone" mt='20px'/>
+          <Image src={approvedIcon} alt='image' boxSize='40px' mt='10px' objectFit='cover'/>
             <Text>Approved</Text>
             <HStack>
               <Text>0</Text>
@@ -102,7 +104,7 @@ const Numbers=[10,20,30,40,50,60,70];
         >
           
           <VStack >
-          <Icon name="phone" mt='20px'/>
+          <Image src={paidIcon} alt='image' boxSize='40px' mt='10px' objectFit='cover'/>
             <Text>Paid</Text>
             <HStack>
               <Text>0</Text>
@@ -121,7 +123,7 @@ const Numbers=[10,20,30,40,50,60,70];
           bg ={selectedPage==="Rejected"?'blue':'navy'}
         >
           <VStack >
-          <Icon name="phone" mt='20px'/>
+          <Image src={rejectedIcon} alt='image' boxSize='40px' mt='10px' objectFit='cover'/>
             <Text>Rejected</Text>
             <HStack>
               <Text>0</Text>
@@ -133,23 +135,11 @@ const Numbers=[10,20,30,40,50,60,70];
         <Box
           marginTop="1rem"
         >
-          <Button>Payment Request</Button>
+          <Button> <Image boxSize='20px' src={payoutIcon}mr='10px' />Payment Request</Button>
         </Box>
-        {/* THIS IS THE SIDDE DROPDOWN BUTTON 
-            FOR THE USER TO SELECT WHAT THEY INTENT TO SEE
-        */}
-       
-
-          {/* 
-            THIS IT THE END OF THE DROPDWON BUTTON
-          */}
+      
       </Flex>
-      {/* THIS IS THE EDN OF CODE THAT DISPLAY THE FIRST FIVE ELEMENT IN A HORIZONTAL FORMAT */}
-
-      {/*
-        THIS IS WERE THE CONTENT OF THE INDIVIDUAL ICONS WILL BE DISPLAYDED
-        WHDN THEY ARE CLICKED.
-        */}
+      
 
       <Box
         h="94vh"
@@ -158,8 +148,7 @@ const Numbers=[10,20,30,40,50,60,70];
 
         m="2rem 2rem"
         borderRadius="15px"
-        padding="2rem"
-      >
+        padding="2rem" >
         <Text mb="1rem">Payout Summary</Text>
         <Flex>
 
@@ -220,7 +209,7 @@ const Numbers=[10,20,30,40,50,60,70];
             // value={}
           >
            {Numbers.map(item=>(
-            <option value={numberofrows} onClick={()=>setNumberOfRows(item)} onChange={()=>setNumberOfRows(item)}>{item}</option>
+            <option value={numberofrows} >{item}</option>
            ))}
             {/* <option value="5" onChange={()=>setNumberOfRows(5)}>5</option>
             <option value="10"onChange={()=>setNumberOfRows(10)}>10</option>
