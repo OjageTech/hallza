@@ -60,38 +60,41 @@ type SidebarItemProps = {
 	icon: any;
 };
 
-const SideBarItem = ({
-  to,
+
+const SideBarItem = ({ to,
   name,
   selected,
-  icon,
-}: SidebarItemProps) => {
-  // Get the current url
+  icon, }: SidebarItemProps) => {
+  const [active, setActive] = useState('');
+  const [activate, setActivate] = useState(false);
+  const [bg, setBg] = useState('darken');
+  
 
   const [badgeVisibility, setBadgeVisibility] = useState('none');
   const [badgeContent, setBadgeContent] = useState(0);
+  
+  const nomba = 1;
+  
 
-  const nomba = 0;
+  const activeBgGradient = 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)';
   useEffect(() => {
-    if (nomba !== 0) {
+    if (nomba > 0) {
       setBadgeContent(nomba);
       setBadgeVisibility('block');
     }
+    
   }, []);
 
   return (
     <Box
+      className={active === name ? 'mlm' : ''}
       as={RouteLink}
       to={to}
-      onClick={() => console.log(name)}
+      onClick={() => setActive(name)}
       _hover={{
-			  cursor: 'pointer',
+        cursor: 'pointer',
       }}
-      bgGradient={
-				selected
-				  ? 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)'
-				  : 'transparent'
-			}
+      
       borderRadius="12.42px"
     >
       <SidebarItemContent
@@ -104,19 +107,29 @@ const SideBarItem = ({
   );
 };
 const SidebarItems = () => {
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("Dashboard");
   const activeBtn = (value: any) => {
     setActive(value);
   };
   return (
-    <VStack height="100vh" padding="0px 20px 0px 0px" gap="20px" alignItems="flex-start">
+    <VStack
+      height="100vh"
+      padding="0px 20px 0px 0px" gap="20px" alignItems="flex-start"
+    >
       {nestRoutes.map((item) => (
-        <SideBarItem
+       <Box 
+       onClick={()=>setActive(item.name)}
+       bgGradient= {active==item.name? 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)': ''}
+       bg="transparent"
+       >
+           <SideBarItem
           icon={item.icon}
           selected={item.selected}
           to={item.path}
           name={item.name}
         />
+
+       </Box>
       ))}
     </VStack>
   );
