@@ -27,6 +27,15 @@ export enum USER_DASHBOARD_ROUTE {
   DEFAULT = '*',
 }
 
+/**
+ * All the Routes inside dashboard IN DASHBOARD
+ */
+export enum IN_DASHBOARD_ROUTE {
+  USER_ACTIVITY = '*/activity',
+  USER_EXTERNAL = '*/external',
+  USER_NEWS = '*/news',
+  DEFAULT = '*',
+}
 type TArgs =
   | { path: ROUTE.LANDING }
   | { path: ROUTE.USERS }

@@ -1,7 +1,7 @@
-import { ROUTE, USER_DASHBOARD_ROUTE } from '../routes';
+import { ROUTE, USER_DASHBOARD_ROUTE, IN_DASHBOARD_ROUTE } from '../routes';
 
 export default interface IRoute {
-  path: ROUTE | USER_DASHBOARD_ROUTE;
+  path: ROUTE | USER_DASHBOARD_ROUTE | IN_DASHBOARD_ROUTE;
   name: string;
   exact: boolean;
   element: any;

@@ -15,29 +15,29 @@ const venetianRed = '#C90612ff';
 const background = { _light: white, _dark: black };
 
 export const myNewTheme = extendTheme({
-	styles: {
-		global: {
-			body: {
-				bg: background._dark,
-			},
-		},
-	},
-	fonts: {
-		heading: "'Open Sans', sans-serif",
-		body: "'montserrat', sans-serif",
-	},
-	colors: {
-		primary: dodgerBlue,
-		secondary: manatee,
-		tertiary: silver,
-		highlight: platinum,
-		warning: mangoTango,
-		danger: venetianRed,
-		darken: black,
-	},
+  styles: {
+    global: {
+      body: {
+        bg: background._dark,
+      },
+    },
+  },
+  fonts: {
+    heading: "'Open Sans', sans-serif",
+    body: "'montserrat', sans-serif",
+  },
+  colors: {
+    primary: dodgerBlue,
+    secondary: manatee,
+    tertiary: silver,
+    highlight: platinum,
+    warning: mangoTango,
+    danger: venetianRed,
+    darken: black,
+  },
 
-	components: {
-		Button,
-		Styles,
-	},
+  components: {
+    Button,
+    Styles,
+  },
 });
