@@ -19,7 +19,6 @@ import { RightSide } from '../../../pages/Userdashboard/RightSide';
 function Dashboard() {
   return (
 
-  // {/* Portfolio */}
     <VStack
       marginTop="4.2rem"
       marginLeft="14rem"

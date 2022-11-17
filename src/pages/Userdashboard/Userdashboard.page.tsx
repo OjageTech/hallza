@@ -3,8 +3,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import DashboardHeader from '../../layouts/headers/Userdashboard/Userdashboard.header';
 import DashboardSidebar from '../../layouts/sidebars/UserDashboard/UserDashboard.sidebar';
 import { nestRoutes } from '../../routes/routes';
-import { RightSidebar } from '../../layouts/sidebars/UserDashboard/RightSidebar';
-import { RightSide } from './RightSide';
+
 
 const Userdashboard = () => (
   <div className="userDashboard">
@@ -27,8 +26,6 @@ const Userdashboard = () => (
           />
         ))}
       </Routes>
-      {RightSide()}
-      <RightSidebar />
     </Flex>
   </div>
 );

@@ -66,8 +66,7 @@ const SideBarItem = ({ to,
   selected,
   icon, }: SidebarItemProps) => {
   const [active, setActive] = useState('');
-  const [activate, setActivate] = useState(false);
-  const [bg, setBg] = useState('darken');
+  
   
 
   const [badgeVisibility, setBadgeVisibility] = useState('none');
@@ -118,9 +117,9 @@ const SidebarItems = () => {
     >
       {nestRoutes.map((item) => (
        <Box 
+       borderRadius="12.54px"
        onClick={()=>setActive(item.name)}
        bgGradient= {active==item.name? 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)': ''}
-       bg="transparent"
        >
            <SideBarItem
           icon={item.icon}

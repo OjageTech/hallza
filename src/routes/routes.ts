@@ -20,7 +20,7 @@ import News from '../components/UserDashboard/Dashboard/News/News.component';
 
 // Icons import
 import dashboardIcon from '../assets/images/dashboard.svg';
-import payoutIcon from '../assets/images/payout.svg';
+import payoutIcon from '../assets/images/paySideIcon.svg';
 import genealogyIcon from '../assets/images/genealogy.svg';
 
 const routes: IRoute[] = [
