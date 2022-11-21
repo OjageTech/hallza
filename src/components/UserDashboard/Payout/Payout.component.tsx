@@ -64,7 +64,7 @@ function Payout() {
 					h="20vh"
 					borderRadius="15"
 					onClick={() => setSelectedPage('Pending')}
-					bg={selectedPage === 'Pending' ? 'blue' : 'navy'}>
+					bg={selectedPage === 'Pending' ? 'primary' : 'cardColor'}>
 					<VStack>
 						<Image
 							src={pendingIcon}
@@ -87,7 +87,7 @@ function Payout() {
 					h="20vh"
 					borderRadius="15"
 					onClick={() => setSelectedPage('Approved')}
-					bg={selectedPage === 'Approved' ? 'blue' : 'navy'}>
+					bg={selectedPage === 'Approved' ? 'primary' : 'cardColor'}>
 					<VStack>
 						<Image
 							src={approvedIcon}
@@ -110,7 +110,7 @@ function Payout() {
 					h="20vh"
 					borderRadius="15"
 					onClick={() => setSelectedPage('Paid')}
-					bg={selectedPage === 'Paid' ? 'blue' : 'navy'}>
+					bg={selectedPage === 'Paid' ? 'primary' : 'cardColor'}>
 					<VStack>
 						<Image
 							src={paidIcon}
@@ -132,7 +132,7 @@ function Payout() {
 					h="20vh"
 					borderRadius="15"
 					onClick={() => setSelectedPage('Rejected')}
-					bg={selectedPage === 'Rejected' ? 'blue' : 'navy'}>
+					bg={selectedPage === 'Rejected' ? 'primary' : 'cardColor'}>
 					<VStack>
 						<Image
 							src={rejectedIcon}
@@ -160,7 +160,7 @@ function Payout() {
 
 			<Box
 				h="94vh"
-				bg="navy"
+				bg="cardColor"
 				m="2rem 2rem"
 				borderRadius="15px"
 				padding="2rem">

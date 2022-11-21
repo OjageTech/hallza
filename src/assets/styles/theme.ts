@@ -34,6 +34,7 @@ export const myNewTheme = extendTheme({
     primary: dodgerBlue,
     secondary: manatee,
     tertiary: silver,
+    cardColor: lightDark,
     highlight: platinum,
     warning: mangoTango,
     danger: venetianRed,
