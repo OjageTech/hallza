@@ -1,4 +1,4 @@
-import 'animate.css';
+// import 'animate.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routes from './routes/routes';
 

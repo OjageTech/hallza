@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Line } from 'react-chartjs-2';
+// import { Line } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/react';
 
 const Chart = () => {
@@ -21,12 +21,12 @@ const Chart = () => {
 	return (
 		<Box position="relative" w={600} height={550} bg="secondary" >
 			<h3>Chart Samples</h3>
-			<Line
+			{/* <Line
 				options={{
 					responsive: true,
 				}}
 				data={data}
-			/>
+			/> */}
 		</Box>
 	);
 };
