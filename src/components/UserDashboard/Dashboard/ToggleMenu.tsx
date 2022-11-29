@@ -29,9 +29,10 @@ function ToggleItem({ to, name }: ToggleItemProps) {
 }
 export function ToggleMenu() {
 	const [active, setActive] = useState('Portfolio');
-	
+
 	return (
 		<HStack
+			
 			boxShadow="dark-lg"
 			w="404px"
 			h="57px"
