@@ -25,18 +25,21 @@ function Dashboard() {
 			justifyContent="center">
 			{/* 1 */}
 			<HStack
+				bg="darken"
 				position="fixed"
-				pt="2rem"
-        top={10}
+				zIndex={3}
+				pt="6rem"
+				top={20}
 				pb=".5rem"
-				justifyContent="space-between"
-				w="744px"
+				alignItems="center"
+				justifyContent="center"
+				w="55%"
 				padding="2rem"
-				h="auto">
+				h="20vh">
 				<WalletBalance />
 				<ToggleMenu />
 			</HStack>
-			<Flex mt="2rem" justify="start" alignItems="flex-start">
+			<Flex pt="13rem" justify="start" alignItems="flex-start">
 				<Routes>
 					{inDashboardRoutes.map((routes) => (
 						<Route

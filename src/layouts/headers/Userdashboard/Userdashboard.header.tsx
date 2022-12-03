@@ -38,6 +38,7 @@ const DashboardHeader = () => (
 		bg="darken"
 		className="DashboardHeader"
 		position="fixed"
+		zIndex={4}
 		pt="2rem"
 		pb=".5rem"
 		top={0}

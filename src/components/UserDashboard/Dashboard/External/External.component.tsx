@@ -1,7 +1,22 @@
 import { useState } from 'react';
-import { Box, VStack, HStack, Text, Select } from '@chakra-ui/react';
+import {
+	Box,
+	VStack,
+	HStack,
+	Text,
+	Select,
+	Image,
+} from '@chakra-ui/react';
 import cardStyle from '../../../../interfaces/cardStyle';
 import Card from '../../../common/Card';
+// Images import
+import ticketIllus from '../../../../assets/images/ticketIllus.svg';
+import blueBack from '../../../../assets/images/blueBack.svg';
+import yellowBack from '../../../../assets/images/yellowBack.svg';
+import pinkBack from '../../../../assets/images/pinkBack.svg';
+import blueBackLogo from '../../../../assets/images/blueBackLogo.svg';
+import yellowBackLogo from '../../../../assets/images/yellowBackLogo.svg';
+import pinkBackLogo from '../../../../assets/images/pinkBackLogo.svg';
 
 const PayoutsIllustration = (props: any) => {
 	return (
@@ -68,14 +83,79 @@ const TicketHead = () => {
 		<Box
 			margin="1rem"
 			boxShadow="dark-lg"
-			bg="#121319"
-			h="7rem"
-			w="13rem"
+			h="5.55rem"
+			w="270px"
 			borderRadius="20px">
-			{''}
+			<HStack isInline spacing="1rem" alignItems="center">
+				<Text
+					pl="1.2rem"
+					textAlign="center"
+					w="50%"
+					letterSpacing="0.11em"
+					fontWeight={700}
+					lineHeight="28px">
+					Open Tickets
+				</Text>
+				<Image
+					w="100%"
+					h="7rem"
+					src={ticketIllus}
+					alt="ticketIllus"
+				/>
+			</HStack>
 		</Box>
 	);
 };
+
+type EachTicketProp = {
+	text: string;
+	backgroundImg: any;
+	Icon: any;
+};
+
+const Tickets = [
+	{
+		text: 'I need a custom Job',
+		backgroundImg: yellowBack,
+		Icon: yellowBackLogo,
+	},
+	{
+		text: "I can't deposit, Help!",
+		backgroundImg: blueBack,
+		Icon: blueBackLogo,
+	},
+	{
+		text: 'I just found a Bug here',
+		backgroundImg: pinkBack,
+		Icon: pinkBackLogo,
+	},
+];
+const EachTicket = ({
+	backgroundImg,
+	Icon,
+	text,
+}: EachTicketProp) => {
+	return (
+		<Box
+			margin="1rem"
+			boxShadow="dark-lg"
+			backgroundImage={backgroundImg}
+			h="71px"
+			w="270px"
+			borderRadius="20px">
+			<HStack
+				justifyContent="center"
+				alignItems="center"
+				margin="1rem"
+				isInline
+				spacing=".2rem">
+				<Image pr=".5rem" w="37px" h="37px" src={Icon} alt="ticketIllus" />
+				<Text color="darken">{text}</Text>
+			</HStack>
+		</Box>
+	);
+};
+
 const stylesForTicketsBox = {
 	w: 358,
 	h: 561,
@@ -85,10 +165,15 @@ const TicketsBox = () => {
 		<Card styles={stylesForPayoutBox} mode="dark">
 			<VStack spacing={4}>
 				<TicketHead />
-				<HStack isInline spacing="4rem">
-					<Text>Payouts</Text>
-					<Box>Week</Box>
-				</HStack>
+				<VStack spacing="3rem">
+					{Tickets.map((ticket) => (
+						<EachTicket
+							backgroundImg={ticket.backgroundImg}
+							Icon={ticket.Icon}
+							text={ticket.text}
+						/>
+					))}
+				</VStack>
 				<PayoutsIllustration />
 			</VStack>
 		</Card>
