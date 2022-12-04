@@ -9,4 +9,4 @@ export default interface cardStyle {
 	pl?: number;
 	pr?: number;
 	pt?: number;
-};
+}

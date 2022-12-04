@@ -9,7 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { makeId } from '../../components/UserDashboard/Dashboard/RecentTransactions';
+import { makeId } from '../../app/functions';
 import avatarChinedu from '../../assets/images/avatarChinedu.svg';
 import avatarMale from '../../assets/images/avatarMale.svg';
 import avatarMann from '../../assets/images/avatarMann.svg';

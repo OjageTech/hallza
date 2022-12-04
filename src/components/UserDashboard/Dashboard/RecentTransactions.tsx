@@ -1,45 +1,36 @@
+import { useEffect } from 'react';
 import { Box, Text } from '@chakra-ui/react';
-import payoutrequestIcon from '../../../assets/images/moneyDesign.svg';
-import commissionsIcon from '../../../assets/images/holdingHandsIcon.svg';
+
 import { Transaction } from './Portfolio/Portfolio.component';
 
-export function makeId() {
-  let text = '';
-  const possible =		'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (let i = 0; i < 5; i++) {
-    text += possible.charAt(
-      Math.floor(Math.random() * possible.length),
-    );
-  }
-  return text;
-}
-const RRecentTransactions = [
-  {
-    id: makeId(),
-    type: 'Payout request',
-    amount: 128943,
-    prevAmt: 100115,
-    date: '15/11/2022',
-    icon: payoutrequestIcon,
-  },
-  {
-    id: makeId(),
-    type: 'Commission',
-    amount: 3000,
-    prevAmt: 2015,
-    date: '30/11/2022',
-    icon: commissionsIcon,
-  },
-  {
-    id: makeId(),
-    type: 'Payout request',
-    amount: 8000,
-    prevAmt: 12815,
-    date: '25/11/2022',
-    icon: payoutrequestIcon,
-  },
-];
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../../app/hooks';
+import {
+  addPayoutTransaction as addPayout,
+  deleteLastPayoutTransaction as deleteLastPayout,
+  deleteAllPayoutTransactions as deleteAllPayout,
+} from '../../../features/transaction/payoutTransaction-slice';
+
+import {
+  addComissionTransaction as addComission,
+  deleteLastComissionTransaction as deleteComission,
+  deleteAllComissionTransactions as deleteAllComission,
+} from '../../../features/transaction/comissionTransaction-slice';
+
 export function RecentTransactions() {
+  const payoutTransa = useAppSelector((state: any) => state.payoutTransaction);
+  const comissionTransa = useAppSelector((state: any) => state.comissionTransaction);
+  const RRecentTransactions = [
+    payoutTransa,
+    comissionTransa,
+  ];
+  // const dispatch = useAppDispatch();
+  // useEffect(() => {
+  // 	dispatch(addTransaction(9000));
+  // }, []);
+
   return (
     <Box pt="2rem">
       <Text
@@ -57,9 +48,7 @@ export function RecentTransactions() {
           <Transaction
             key={transaction.id}
             type={transaction.type}
-            icon={transaction.icon}
-            currentAmt={transaction.amount}
-            prevAmt={transaction.prevAmt}
+            value={transaction.value}
             date={transaction.date}
           />
         ))}

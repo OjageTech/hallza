@@ -8,9 +8,15 @@ import {
 	Text,
 	VStack,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import payoutRequestIcon from '../../../../assets/images/moneyDesign.svg';
+import commissionsRequestIcon from '../../../../assets/images/holdingHandsIcon.svg';
+
 import profilePic from '../../../../assets/images/avatarWithBackdrop.svg';
 import pkgIcon from '../../../../assets/images/Emoji.svg';
 import Card from '../../../common/Card';
+import BarChart from '../../../Charts/BarChart';
+import LineChart from '../../../Charts/LineChart';
 import {
 	numberWithCommas,
 	QuickShowDetails,
@@ -113,24 +119,32 @@ function SecondHalf() {
 }
 
 type TransactionProps = {
-	currentAmt: number;
-	prevAmt: number;
+	value: number[];
 	date: string;
 	type: string;
-	icon: any;
 };
 
 export const Transaction = ({
-	currentAmt,
-	prevAmt,
+	value,
 	date,
-	icon,
 	type,
 }: TransactionProps) => {
-	const percentChange = (
-		prevAmt: number,
-		currentAmt: number
-	): number => Math.floor(((currentAmt - prevAmt) / prevAmt) * 100);
+	const last2Values = value.slice(-2); // 👉️ ['d', 'e']
+
+	const prevAmt = last2Values[0];
+	const currentAmt = last2Values[1];
+
+	const percentChange = (x: number, y: number): number =>
+		Math.floor(((y - x) / x) * 100);
+
+	// Check if type is Payout or not to choose
+	// appropriate icon
+	let color ='';
+	let pr='';
+	let icon: any;
+	icon = typeOfRequest(type, icon, color, pr).icon;
+	pr = typeOfRequest(type, icon, color, pr).pr;
+	color = typeOfRequest(type, icon, color, pr).color;
 
 	return (
 		<HStack
@@ -148,7 +162,7 @@ export const Transaction = ({
 				<VStack
 					justifyContent="left"
 					alignItems="left"
-					paddingRight={type === 'Commission' ? '1.2rem' : 0}
+					paddingRight={pr}
 					lineHeight="18px"
 					fontWeight={500}>
 					<Text fontSize="14px">{type}</Text>
@@ -172,7 +186,7 @@ export const Transaction = ({
 					textAlign="left"
 					fontWeight={600}
 					fontSize="12px"
-					color={type === 'Commission' ? '#05EFF4' : '#D79DDA'}>
+					color={color}>
 					N{numberWithCommas(currentAmt)}
 				</Box>
 			</VStack>
@@ -199,7 +213,7 @@ export const Transaction = ({
 				alignItems="left"
 				lineHeight="18px"
 				fontWeight={500}>
-				{/* <Chart /> */}
+				<LineChart borderColor={color} dataS={value} />
 			</VStack>
 		</HStack>
 	);
@@ -222,3 +236,20 @@ const Portfolio = () => (
 	</Box>
 );
 export default Portfolio;
+function typeOfRequest(
+	type: string,
+	icon: any,
+	color: string,
+	pr: string
+) {
+	if (type.indexOf('Payout') !== -1) {
+		icon = payoutRequestIcon;
+		color = '#05EFF4';
+		pr = '1.2rem';
+	} else {
+		icon = commissionsRequestIcon;
+		color = '#E987EB';
+	}
+	const checker = { icon, color, pr };
+	return checker;
+}
