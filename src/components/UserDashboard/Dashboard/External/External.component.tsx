@@ -17,29 +17,19 @@ import pinkBack from '../../../../assets/images/pinkBack.svg';
 import blueBackLogo from '../../../../assets/images/blueBackLogo.svg';
 import yellowBackLogo from '../../../../assets/images/yellowBackLogo.svg';
 import pinkBackLogo from '../../../../assets/images/pinkBackLogo.svg';
+import BarChart from '../../../Charts/BarChart';
+import { useAppSelector } from '../../../../app/hooks';
 
-const PayoutsIllustration = (props: any) => (
-  <Box
-    as="svg"
-    width="100%"
-    height="100%"
-    viewBox="0 0 400 400"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-		>
-    <path
-      d="M0 0h400v400H0V0z"
-      fill="url(#prefix__paint0_linear)"
-      fillOpacity={0.1}
-    />
-    <path
-      d="M0 0h400v400H0V0z"
-      fill="url(#prefix__paint1_linear)"
-      fillOpacity={0.1}
-    />
-  </Box>
-);
+const PayoutsIllustration = (props: any) => {
+  const payoutValues = useAppSelector(
+    (state: any) => state.payoutTransaction.value,
+  );
+  return (
+    <Box>
+      <BarChart dataS={payoutValues} color="#de0023" />
+    </Box>
+  );
+};
 const stylesForPayoutBox: cardStyle = {
   w: 358,
   h: 561,
@@ -56,7 +46,7 @@ const PayoutsBox = () => {
           <Box>
             <Select
               bg="secondary"
-              color="black"
+              color="rgb(18,18,18)"
               borderRadius="15px"
               w="8rem"
               onChange={() => setSelectedRange(selectedRange)}
@@ -86,7 +76,7 @@ const TicketHead = () => (
     h="5.55rem"
     w="270px"
     borderRadius="20px"
-		>
+  >
     <HStack isInline spacing="1rem" alignItems="center">
       <Text
         pl="1.2rem"
@@ -98,12 +88,7 @@ const TicketHead = () => (
       >
         Open Tickets
       </Text>
-      <Image
-        w="100%"
-        h="7rem"
-        src={ticketIllus}
-        alt="ticketIllus"
-      />
+      <Image w="100%" h="7rem" src={ticketIllus} alt="ticketIllus" />
     </HStack>
   </Box>
 );
@@ -137,13 +122,17 @@ const EachTicket = ({
   text,
 }: EachTicketProp) => (
   <Box
+    _hover={{
+		  transform: 'scale(1.1)',
+		  cursor: 'pointer',
+    }}
     margin="1rem"
     boxShadow="dark-lg"
     backgroundImage={backgroundImg}
     h="71px"
     w="270px"
     borderRadius="20px"
-		>
+  >
     <HStack
       justifyContent="center"
       alignItems="center"
@@ -151,8 +140,14 @@ const EachTicket = ({
       isInline
       spacing=".2rem"
     >
-      <Image pr=".5rem" w="37px" h="37px" src={Icon} alt="ticketIllus" />
-      <Text color="darken">{text}</Text>
+      <Image
+        pr=".5rem"
+        w="37px"
+        h="37px"
+        src={Icon}
+        alt="ticketIllus"
+      />
+      <Text color="rgb(18,18,18)">{text}</Text>
     </HStack>
   </Box>
 );
@@ -174,7 +169,6 @@ const TicketsBox = () => (
           />
         ))}
       </VStack>
-      <PayoutsIllustration />
     </VStack>
   </Card>
 );

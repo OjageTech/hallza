@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { ChartProps } from '../../interfaces/chartTypes';
 
 ChartJS.register(
   CategoryScale,
@@ -19,24 +20,29 @@ ChartJS.register(
   Legend,
 );
 
-const BarChart: React.FC<{}> = () => {
+const BarChart: React.FC<Record<string, unknown>> | any = ({ dataS, color }: ChartProps) => {
   const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
   const [data, setData] = useState({
     labels,
     datasets: [{
       label: 'Expenses by Month',
-      data: [65, 59, 80, 81, 56, 55, 40],
+      data: dataS,
       backgroundColor: [
-        'rgb(153, 102, 255)',
+        'yellow',
+        color,
+        'white',
+        'gainsboro',
       ],
+      height: '79vh',
       borderColor: [
         'rgb(153, 102, 255)',
+        color,
       ],
       borderWidth: 1,
     }],
   });
 
-  return <Bar data={data} />;
+  return <Bar width="500px" height="900px" data={data} />;
 };
 
 export default BarChart;

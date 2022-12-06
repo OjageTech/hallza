@@ -49,7 +49,7 @@ export function ToggleMenu() {
         <Box
           borderRadius="15px"
           onClick={() => setActive(name)}
-          bg={active == name ? 'darken' : ''}
+          bg={active == name ? 'gray.900' : ''}
         >
           <ToggleItem to={path} name={name} />
         </Box>

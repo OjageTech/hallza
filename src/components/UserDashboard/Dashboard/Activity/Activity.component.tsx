@@ -7,12 +7,30 @@ import girlImg from '../../../../assets/images/girlImg.png';
 import iconRight from '../../../../assets/images/iconRight.svg';
 import copyIcon from '../../../../assets/images/copyIcon.svg';
 import cardStyle from '../../../../interfaces/cardStyle';
+import LineChart from '../../../Charts/LineChart';
 
-const RevenueRun = () => (
-  <Box>
-    <Text>Revenue Growth</Text>
-  </Box>
-);
+import {
+  useAppSelector,
+  useAppDispatch,
+} from '../../../../app/hooks';
+
+const RevenueRun = () => {
+  const comissionTransa = useAppSelector(
+    (state: any) => state.comissionTransaction,
+  );
+
+  return (
+    <Box>
+      <Text>Revenue Growth</Text>
+      <LineChart
+        h={600}
+        w={1000}
+        borderColor="white"
+        dataS={comissionTransa.value}
+      />
+    </Box>
+  );
+};
 
 const NetworkLeader = () => (
   <Box>

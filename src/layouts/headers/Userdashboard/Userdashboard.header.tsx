@@ -35,7 +35,7 @@ const UserMix = ({ id, imgsrc }: UserMixProps) => (
 );
 const DashboardHeader = () => (
   <Box
-    bg="darken"
+    bg="rgb(18,18,18)"
     className="DashboardHeader"
     position="fixed"
     zIndex={4}

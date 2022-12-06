@@ -14,7 +14,7 @@ export function CurrencyBadge({ currency }: CurrencyBadge) {
       justifyContent="center"
       w="49px"
       h="23px"
-      color="black"
+      color="rgb(18,18,18)"
       bg="#5CF77E"
     >
       {currency}

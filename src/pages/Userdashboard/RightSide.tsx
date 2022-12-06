@@ -9,13 +9,12 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { makeId } from '../../app/functions';
+import { makeId, numberWithCommas } from '../../app/functions';
 import avatarChinedu from '../../assets/images/avatarChinedu.svg';
 import avatarMale from '../../assets/images/avatarMale.svg';
 import avatarMann from '../../assets/images/avatarMann.svg';
 import avatarWhiteshirt from '../../assets/images/avatarWhiteshirt.svg';
 import cartRed from '../../assets/images/redCartIcon.svg';
-import { numberWithCommas } from '../../components/UserDashboard/Dashboard/QuickShowDetails';
 
 const RReferrals = [
   {
@@ -167,7 +166,7 @@ const Shortcuts = () => (
     <Flex
       marginTop="1.5rem"
       h="150px"
-      color="darken"
+      color="rgb(18,18,18)"
       w="280px"
       alignContent="start"
       alignItems="flex-start"

@@ -26,7 +26,7 @@ function Dashboard() {
     >
       {/* 1 */}
       <HStack
-        bg="darken"
+        bg="rgb(18,18,18)"
         position="fixed"
         zIndex={3}
         pt="6rem"

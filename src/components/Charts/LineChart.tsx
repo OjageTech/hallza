@@ -28,6 +28,7 @@ import {
   Title,
   Tooltip,
 } from 'chart.js';
+import { ChartProps } from '../../interfaces/chartTypes';
 
 ChartJS.register(
   ArcElement,
@@ -55,11 +56,10 @@ ChartJS.register(
   Tooltip,
 );
 
-type LineChartProps = {
-  dataS: number[];
-  borderColor: string;
-}
-const LineChart: React.FC<{}> | any = ({dataS, borderColor}: LineChartProps) => {
+const LineChart: React.FC<Record<string, unknown>> | any = ({
+  dataS,
+  borderColor, w, h,
+}: ChartProps) => {
   const labels = [
     'January',
     'February',
@@ -76,8 +76,8 @@ const LineChart: React.FC<{}> | any = ({dataS, borderColor}: LineChartProps) => 
         label: 'Change in Portfolio   ',
         data: dataS,
         fill: false,
-        borderColor: borderColor,
-        tension: 0.1,
+        borderColor,
+        tension: 0.5,
       },
     ],
     options: {
@@ -85,13 +85,14 @@ const LineChart: React.FC<{}> | any = ({dataS, borderColor}: LineChartProps) => 
         legend: {
           display: false,
         },
+
       },
     },
   });
 
   return (
     <Box>
-      <Line data={data} />
+      <Line width={`${w}px`} height={`${h}px`} data={data} />
     </Box>
   );
 };
