@@ -2,6 +2,8 @@ import { extendTheme } from '@chakra-ui/react';
 import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
 import { ButtonStyles as Button } from './components/buttonStyles';
 import { BodyStyles as Styles } from './components/bodyStyles';
+import { Card } from './components/cardStyles';
+import { Box } from './components/boxStyles';
 
 /* Pallete 1 */
 const black = '#000000';
@@ -44,5 +46,7 @@ export const myNewTheme = extendTheme({
   components: {
     Button,
     Styles,
+    Card,
+    Box
   },
 });
