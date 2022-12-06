@@ -12,10 +12,10 @@ import {
   PopoverCloseButton,
   Button,
 } from '@chakra-ui/react';
+import { numberWithCommas } from '../../../app/functions';
 import moreIcon from '../../../assets/images/moreIcon.svg';
 import { CurrencyBadge } from './CurrencyBadge';
 
-export const numberWithCommas = (number: number): string => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 type quickShowDetailsProps = {
 	activityText: string;
 	amount: number;

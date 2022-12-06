@@ -18,7 +18,6 @@ import { RightSide } from '../../../pages/Userdashboard/RightSide';
 
 function Dashboard() {
   return (
-
     <VStack
       marginTop="4.2rem"
       marginLeft="14rem"
@@ -27,15 +26,22 @@ function Dashboard() {
     >
       {/* 1 */}
       <HStack
-        justifyContent="space-between"
-        w="744px"
+        bg="rgb(18,18,18)"
+        position="fixed"
+        zIndex={3}
+        pt="6rem"
+        top={20}
+        pb=".5rem"
+        alignItems="center"
+        justifyContent="center"
+        w="55%"
         padding="2rem"
-        h="auto"
+        h="20vh"
       >
         <WalletBalance />
         <ToggleMenu />
       </HStack>
-      <Flex justify="start" alignItems="flex-start">
+      <Flex pt="13rem" justify="start" alignItems="flex-start">
         <Routes>
           {inDashboardRoutes.map((routes) => (
             <Route
@@ -47,7 +53,6 @@ function Dashboard() {
         </Routes>
         {RightSide()}
       </Flex>
-
     </VStack>
   );
 }

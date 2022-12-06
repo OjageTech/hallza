@@ -34,7 +34,19 @@ const UserMix = ({ id, imgsrc }: UserMixProps) => (
   </HStack>
 );
 const DashboardHeader = () => (
-  <Box bg="darken" className="DashboardHeader" position="fixed" pt="2rem" pb=".5rem" top={0} w="100%" pl="3.5" minH="58px" overflow="hidden">
+  <Box
+    bg="rgb(18,18,18)"
+    className="DashboardHeader"
+    position="fixed"
+    zIndex={4}
+    pt="2rem"
+    pb=".5rem"
+    top={0}
+    w="100%"
+    pl="3.5"
+    minH="58px"
+    overflow="hidden"
+  >
     <Flex alignItems="center" justifyContent="space-between">
       <Image
         ml="4rem"
@@ -73,7 +85,7 @@ const DashboardHeader = () => (
 
         <Image
           _hover={{
-						  cursor: 'pointer',
+					  cursor: 'pointer',
           }}
           width="24px"
           height="24px"

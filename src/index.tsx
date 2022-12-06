@@ -4,21 +4,18 @@ import { Provider } from 'react-redux';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
 import App from './App';
-import { store } from './store';
+import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 import { myNewTheme } from './assets/styles/theme';
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
+	document.getElementById('root') as HTMLElement,
 );
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider
-        resetCSS
-        theme={myNewTheme}
-      >
+      <ChakraProvider resetCSS theme={myNewTheme}>
         <App />
       </ChakraProvider>
     </Provider>

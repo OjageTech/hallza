@@ -60,20 +60,18 @@ type SidebarItemProps = {
 	icon: any;
 };
 
-
-const SideBarItem = ({ to,
+const SideBarItem = ({
+  to,
   name,
   selected,
-  icon, }: SidebarItemProps) => {
+  icon,
+}: SidebarItemProps) => {
   const [active, setActive] = useState('');
-  
-  
 
   const [badgeVisibility, setBadgeVisibility] = useState('none');
   const [badgeContent, setBadgeContent] = useState(0);
-  
+
   const nomba = 1;
-  
 
   const activeBgGradient = 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)';
   useEffect(() => {
@@ -81,7 +79,6 @@ const SideBarItem = ({ to,
       setBadgeContent(nomba);
       setBadgeVisibility('block');
     }
-    
   }, []);
 
   return (
@@ -93,7 +90,7 @@ const SideBarItem = ({ to,
       _hover={{
         cursor: 'pointer',
       }}
-      
+
       borderRadius="12.42px"
     >
       <SidebarItemContent
@@ -106,29 +103,31 @@ const SideBarItem = ({ to,
   );
 };
 const SidebarItems = () => {
-  const [active, setActive] = useState("Dashboard");
+  const [active, setActive] = useState('Dashboard');
   const activeBtn = (value: any) => {
     setActive(value);
   };
   return (
     <VStack
       height="100vh"
-      padding="0px 20px 0px 0px" gap="20px" alignItems="flex-start"
+      padding="0px 20px 0px 0px"
+      gap="20px"
+      alignItems="flex-start"
     >
       {nestRoutes.map((item) => (
-       <Box 
-       borderRadius="12.54px"
-       onClick={()=>setActive(item.name)}
-       bgGradient= {active==item.name? 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)': ''}
-       >
-           <SideBarItem
-          icon={item.icon}
-          selected={item.selected}
-          to={item.path}
-          name={item.name}
-        />
+        <Box
+          borderRadius="12.54px"
+          onClick={() => setActive(item.name)}
+          bgGradient={active == item.name ? 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)' : ''}
+        >
+          <SideBarItem
+            icon={item.icon}
+            selected={item.selected}
+            to={item.path}
+            name={item.name}
+          />
 
-       </Box>
+        </Box>
       ))}
     </VStack>
   );

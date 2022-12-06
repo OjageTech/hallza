@@ -5,7 +5,9 @@ import {
   InputLeftElement,
   Text,
 } from '@chakra-ui/react';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 import Search from '../../../assets/images/Search.svg';
+import { updateSearchText } from '../../../features/search/search-slice';
 
 type SearchbarProps = {
 	groupHeight?: string;
@@ -33,24 +35,29 @@ const Searchbar = ({
   pl,
   paddingLeftInputLeft,
   heightInputLeft,
-}: SearchbarProps) => (
-  <div className="Searchbar">
-    <InputGroup h={groupHeight}>
-      <InputLeftElement pl={paddingLeftInputLeft} h={heightInputLeft} pointerEvents="none">
-        <Image src={Search} alt="Search Icon" />
-      </InputLeftElement>
-      <Input
-        pl={pl}
-        h={inputHeight}
-        fontSize={fontSize}
-        variant={variant}
-        bg={bg}
-        w={inputWidth}
-        borderRadius={borderRadius}
-        placeholder={placeholder}
-      />
-    </InputGroup>
-  </div>
-);
+}: SearchbarProps) => {
+  // const searchStuff = useAppSelector(selectStuffBySearchText);
+  const dispatch = useAppDispatch();
+  return (
+    <div className="Searchbar">
+      <InputGroup h={groupHeight}>
+        <InputLeftElement pl={paddingLeftInputLeft} h={heightInputLeft} pointerEvents="none">
+          <Image src={Search} alt="Search Icon" />
+        </InputLeftElement>
+        <Input
+          pl={pl}
+          h={inputHeight}
+          fontSize={fontSize}
+          variant={variant}
+          bg={bg}
+          w={inputWidth}
+          borderRadius={borderRadius}
+          placeholder={placeholder}
+          onChange={(e) => dispatch(updateSearchText(e.target.value))}
+        />
+      </InputGroup>
+    </div>
+  );
+};
 
 export default Searchbar;
