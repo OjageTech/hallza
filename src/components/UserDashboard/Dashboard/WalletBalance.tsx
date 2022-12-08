@@ -2,7 +2,7 @@ import { HStack, Text, VStack } from '@chakra-ui/react';
 import { CurrencyBadge } from './CurrencyBadge';
 
 export const WalletBalance = () => (
-  <HStack pr="6rem" gap="22px">
+  <HStack pr="6rem">
     <VStack alignItems="flex-start" gap="13px">
       <Text fontWeight={500} fontSize="14px" color="secondary">
         Wallet Balance

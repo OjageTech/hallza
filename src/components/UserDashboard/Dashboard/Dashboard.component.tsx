@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-
 import {
-  Box,
   Button,
   Divider,
   Flex,
@@ -10,6 +8,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react';
+import Box from '../../common/Box';
 
 import { ToggleMenu } from './ToggleMenu';
 import { WalletBalance } from './WalletBalance';
@@ -18,30 +17,27 @@ import { RightSide } from '../../../pages/Userdashboard/RightSide';
 
 function Dashboard() {
   return (
-    <VStack
-      marginTop="4.2rem"
-      marginLeft="14rem"
-      w="764px"
-      justifyContent="center"
-    >
-      {/* 1 */}
-      <HStack
-        bg="rgb(18,18,18)"
+    <VStack w="764px" ml="14rem" justifyContent="center">
+      <Box
+        pt="5rem"
+        pl="6rem"
         position="fixed"
-        zIndex={3}
-        pt="6rem"
-        top={20}
+        zIndex={2}
+        top={0}
+        h="30vh"
         pb=".5rem"
-        alignItems="center"
-        justifyContent="center"
-        w="55%"
-        padding="2rem"
-        h="20vh"
       >
-        <WalletBalance />
-        <ToggleMenu />
-      </HStack>
-      <Flex pt="13rem" justify="start" alignItems="flex-start">
+        <HStack
+          alignItems="center"
+          justifyContent="center"
+          w="100vw"
+          padding="2rem"
+        >
+          <WalletBalance />
+          <ToggleMenu />
+        </HStack>
+      </Box>
+      <Flex pt="16rem" pl="5rem" justify="start" alignItems="flex-start">
         <Routes>
           {inDashboardRoutes.map((routes) => (
             <Route

@@ -39,7 +39,7 @@ const PayoutsBox = () => {
   const Options: string[] = ['WEEK', 'MONTH', 'YEAR'];
   const [selectedRange, setSelectedRange] = useState('WEEK');
   return (
-    <Card styles={stylesForPayoutBox} mode="dark">
+    <Card variant="tall">
       <VStack spacing={4}>
         <HStack spacing="6rem">
           <Text fontSize="18px">Payouts</Text>
@@ -77,7 +77,7 @@ const TicketHead = () => (
     w="270px"
     borderRadius="20px"
   >
-    <HStack isInline spacing="1rem" alignItems="center">
+    <HStack isInline justifyContent="space-between" alignItems="center">
       <Text
         pl="1.2rem"
         textAlign="center"
@@ -88,7 +88,7 @@ const TicketHead = () => (
       >
         Open Tickets
       </Text>
-      <Image w="100%" h="7rem" src={ticketIllus} alt="ticketIllus" />
+      <Image w="100%" h="7.5rem" src={ticketIllus} alt="ticketIllus" />
     </HStack>
   </Box>
 );
@@ -152,12 +152,8 @@ const EachTicket = ({
   </Box>
 );
 
-const stylesForTicketsBox = {
-  w: 358,
-  h: 561,
-};
 const TicketsBox = () => (
-  <Card styles={stylesForPayoutBox} mode="dark">
+  <Card variant="tall">
     <VStack spacing={4}>
       <TicketHead />
       <VStack spacing="3rem">
@@ -172,13 +168,7 @@ const TicketsBox = () => (
     </VStack>
   </Card>
 );
-const stylesForXtraBox = {
-  w: 738,
-  h: 81,
-  pl: 24,
-  pt: 24,
-  pr: 24,
-};
+
 const Xtra = () => (
   <Box>
     <h3> </h3>
@@ -191,7 +181,7 @@ const External = () => (
         <PayoutsBox />
         <TicketsBox />
       </HStack>
-      <Card styles={stylesForXtraBox} mode="dark">
+      <Card variant="flat">
         <Xtra />
       </Card>
     </VStack>
