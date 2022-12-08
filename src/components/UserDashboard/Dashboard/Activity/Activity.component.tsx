@@ -34,10 +34,10 @@ const RevenueRun = () => {
 
 const NetworkLeader = () => (
   <Box>
-    <Text ml=".5rem" mb=".5rem">
+    <Text textAlign="center">
       Top Network Leader
     </Text>
-    <Flex width="20rem">
+    <Flex ml="2.5rem" width="20rem">
       <Image src={girlImg} alt="top Leader Image" />
       <VStack textAlign="left" alignItems="left" pl="1rem" pr="2rem">
         <Text fontSize="14px" padding="2px">
@@ -62,8 +62,8 @@ const ReferralLink = () => {
     }, []);
   };
   return (
-    <Box>
-      <Text>Referral Link</Text>
+    <>
+      <Text ml=".5rem" >Referral Link</Text>
       <Flex
         className="animate__animated animate__flash animate__faster"
         onClick={handleMouseOver}
@@ -76,16 +76,16 @@ const ReferralLink = () => {
         alignItems="center"
         padding="1rem"
         m="1rem"
-        ml={0}
         justifyContent="center"
         h="45px"
+        w="100%"
         background="linear-gradient(180deg, #3C3C3B 0%, rgba(60, 60, 59, 0) 100%)"
         borderRadius="10px"
       >
         <Text width="60%">Click to Copy</Text>
         <Image h="24px" w="24px" src={copyIcon} alt="copy link" />
       </Flex>
-    </Box>
+    </>
   );
 };
 
@@ -105,14 +105,14 @@ const styleForReferralCard: cardStyle = {
 };
 const Activity = () => (
   <Box className="animate__animated animate__backInUp">
-    <Card mode="dark">
+    <Card>
       <RevenueRun />
     </Card>
     <Flex marginTop="3rem" justifyContent="space-between">
-      <Card styles={styleForNetworkCard} mode="dark">
+      <Card variant="medium">
         <NetworkLeader />
       </Card>
-      <Card styles={styleForReferralCard} mode="dark">
+      <Card variant="medium">
         <ReferralLink />
       </Card>
     </Flex>

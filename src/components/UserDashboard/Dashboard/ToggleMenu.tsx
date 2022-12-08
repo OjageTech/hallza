@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
-import {
-  Box, HStack, Stack, Text,
-} from '@chakra-ui/react';
+import { HStack, Stack, Text } from '@chakra-ui/react';
+import Box from '../../common/Box';
 import {
   IN_DASHBOARD_ROUTE,
   USER_DASHBOARD_ROUTE,
@@ -34,26 +33,24 @@ export function ToggleMenu() {
   const [active, setActive] = useState('Portfolio');
 
   return (
-    <HStack
-
-      boxShadow="dark-lg"
-      w="404px"
-      h="57px"
-      bg="#121317"
-      gap="4px"
-      padding="6px"
-      justifyContent="center"
-      borderRadius="15px"
-    >
-      {inDashboardRoutes.map(({ path, name }) => (
-        <Box
-          borderRadius="15px"
-          onClick={() => setActive(name)}
-          bg={active == name ? 'gray.900' : ''}
-        >
-          <ToggleItem to={path} name={name} />
-        </Box>
-      ))}
-    </HStack>
+    <Box variant="nav">
+      <HStack
+        w="404px"
+        h="57px"
+        gap="4px"
+        padding="6px"
+        justifyContent="center"
+      >
+        {inDashboardRoutes.map(({ path, name }) => (
+          <Box
+            borderRadius="15px"
+            onClick={() => setActive(name)}
+            bg={active == name ? 'gray.300' : ''}
+          >
+            <ToggleItem to={path} name={name} />
+          </Box>
+        ))}
+      </HStack>
+    </Box>
   );
 }

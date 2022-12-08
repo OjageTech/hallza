@@ -1,5 +1,8 @@
-import { extendTheme } from '@chakra-ui/react';
-import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools';
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import {
+  mode, whiten, darken, StyleFunctionProps,
+} from '@chakra-ui/theme-tools';
+
 import { ButtonStyles as Button } from './components/buttonStyles';
 import { BodyStyles as Styles } from './components/bodyStyles';
 import { Card } from './components/cardStyles';
@@ -20,13 +23,19 @@ const mangoTango = '#fc814a';
 const venetianRed = '#C90612ff';
 const background = { _light: white, _dark: black };
 
+const config: ThemeConfig = {
+  initialColorMode: 'light',
+  useSystemColorMode: false,
+};
+
 export const myNewTheme = extendTheme({
   styles: {
-    global: {
+    global: (props: StyleFunctionProps) => ({
       body: {
-        bg: background,
+        color: 'default',
+        bg: mode(background._light, background._dark)(props),
       },
-    },
+    }),
   },
   fonts: {
     heading: "'Open Sans', sans-serif",
@@ -47,6 +56,6 @@ export const myNewTheme = extendTheme({
     Button,
     Styles,
     Card,
-    Box
+    Box,
   },
 });

@@ -92,7 +92,7 @@ const LineChart: React.FC<Record<string, unknown>> | any = ({
 
   return (
     <Box>
-      <Line width={`${w}px`} height={`${h}px`} data={data} />
+      <Line data={data} />
     </Box>
   );
 };

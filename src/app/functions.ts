@@ -27,3 +27,20 @@ export const percentChange = (x: number, y: number): number => Math.floor(((y - 
  * @returns The number arranged with commas in terms of [Thousands, hundreds, tens & Unit]
  */
 export const numberWithCommas = (number: number): string => number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+/**
+ *
+ * @param none
+ * @returns Greeting based on the time of the Day
+ */
+export function greeting() {
+  const today = new Date();
+  const curHr = today.getHours();
+
+  if (curHr < 12) {
+    return 'good morning';
+  } if (curHr < 18) {
+    return 'good afternoon';
+  }
+  return 'good evening';
+}
