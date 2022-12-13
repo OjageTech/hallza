@@ -4,6 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import searchSlice from '../features/search/search-slice';
 import payoutTransactionSlice from '../features/transaction/payoutTransaction-slice';
 import comissionTransactionSlice from '../features/transaction/comissionTransaction-slice';
+import mainSidebarSlice from '../features/sidebar/main-slice';
+
 
 // Create the store, adding the search slice to it
 export const store = configureStore({
@@ -11,6 +13,7 @@ export const store = configureStore({
     search: searchSlice,
     payoutTransaction: payoutTransactionSlice,
     comissionTransaction: comissionTransactionSlice,
+    mainSidebar: mainSidebarSlice,
 
   },
 });
