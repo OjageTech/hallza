@@ -8,7 +8,7 @@ import mainSidebarSlice from '../features/sidebar/main-slice';
 
 
 // Create the store, adding the search slice to it
-export const store = configureStore({
+export const store:any = configureStore({
   reducer: {
     search: searchSlice,
     payoutTransaction: payoutTransactionSlice,

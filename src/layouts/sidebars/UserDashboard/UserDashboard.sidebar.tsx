@@ -165,9 +165,6 @@ const DashboardSidebar = () => {
 	const expanded = useAppSelector(
 		(state: any) => state.mainSidebar.value
 	);
-	useEffect(() => {
-		console.log(expanded);
-	});
 	const dispatch = useAppDispatch();
 	const handleToggle = () => {
 		dispatch(toggleExpanded());
@@ -186,13 +183,15 @@ const DashboardSidebar = () => {
 			margin="0 auto"
 			w="fit-content"
 			h="90vh">
-			<Flex
+			<Box
+				variant="rounded"
 				title={expanded ? 'close' : 'expand'}
 				_hover={{
 					cursor: 'pointer',
 					'box-shadow': 'dark-lg',
 				}}
-				boxShadow="dark-lg"
+				boxShadow="md"
+				display="flex"
 				justifyContent="center"
 				textAlign="center"
 				alignItems="center"
@@ -203,11 +202,10 @@ const DashboardSidebar = () => {
 				ml={expanded ? '11rem' : '4rem'}
 				mt="4rem"
 				padding="1px"
-				bg="white"
 				borderRadius="50%"
 				onClick={handleToggle}>
 				{expanded ? <FaChevronLeft /> : <FaChevronRight />}
-			</Flex>
+			</Box>
 			<VStack gap="3rem" pt="1.5rem">
 				{/* <Container margin="0" padding="1rem" bg="white">
 					<Flex justifyContent="center" alignItems="center">

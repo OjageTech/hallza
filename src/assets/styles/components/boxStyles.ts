@@ -18,7 +18,7 @@ export const Box = defineStyleConfig({
       padding: 8,
       borderRadius: 'xl',
       boxShadow: 'xl',
-      bg: mode(darken('primary', 20), whiten('secondary', 20))(props),
+      bg: mode(darken('white', 0), whiten('black', 0))(props),
     }),
     activeItem: (props: any) => ({
       color: 'white',
