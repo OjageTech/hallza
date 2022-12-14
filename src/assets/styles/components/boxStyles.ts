@@ -18,7 +18,7 @@ export const Box = defineStyleConfig({
       padding: 8,
       borderRadius: 'xl',
       boxShadow: 'xl',
-      bg: mode(darken('primary', 20), whiten('secondary', 20))(props),
+      bg: mode(darken('white', 0), whiten('black', 0))(props),
     }),
     activeItem: (props: any) => ({
       color: 'white',
@@ -27,9 +27,13 @@ export const Box = defineStyleConfig({
       bgGradient: 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)',
     }),
     navItem: (props: any) => ({
+      color: 'white',
+      // make a transpaarent background
+      bg: mode(
+        darken('primary', 0),
+        whiten('rgb(18, 18, 18)', 0),
+      )(props),
 
-      boxShadow: 'xl',
-      bg: mode(darken('primary', 20), whiten('secondary', 20))(props),
     }),
     nav: (props: any) => ({
       color: mode(whiten('black', 10), darken('white', 0))(props),

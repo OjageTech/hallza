@@ -7,6 +7,7 @@ import {
   Link,
   useColorMode,
 } from '@chakra-ui/react';
+import { useAppSelector } from '../../../app/hooks';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import bell from '../../../assets/images/bell.svg';
 import avatarWithBackdrop from '../../../assets/images/avatarWithBackdrop.svg';
@@ -36,6 +37,10 @@ const UserMix = ({ id, imgsrc }: UserMixProps) => (
 );
 const DashboardHeader = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const expanded: boolean = useAppSelector(
+		(state: { mainSidebar: { value: boolean } }) =>
+			state.mainSidebar.value
+	);
 
   return (
     <Box
@@ -47,14 +52,14 @@ const DashboardHeader = () => {
       pb=".5rem"
       top={0}
       right={0}
-      w="75%"
+      w={expanded ? "80%" : "89%"}
       pl="3.5"
       minH="98px"
       overflow="hidden"
     >
       <Flex alignItems="center" justifyContent="space-between">
         <HStack
-          pl="3.5rem"
+          pl="1rem"
           width="auto"
           alignItems="center"
           spacing="13rem"

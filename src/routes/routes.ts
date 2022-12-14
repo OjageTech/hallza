@@ -1,4 +1,11 @@
-import { MdPayments, MdDashboard } from 'react-icons/md';
+
+// Icons import
+import { MdPayments, MdDashboard, MdSupportAgent } from 'react-icons/md';
+import { RiLuggageDepositFill } from 'react-icons/ri';
+import { SiMarketo } from 'react-icons/si';
+import { TiFlowChildren } from 'react-icons/ti';
+import { FaHandHoldingUsd } from 'react-icons/fa';
+
 import IRoute from '../interfaces/route';
 import Userdashboard from '../pages/Userdashboard/Userdashboard.page';
 import Login from '../pages/auth/Login.page';
@@ -19,11 +26,7 @@ import External from '../components/UserDashboard/Dashboard/External/External.co
 import Activity from '../components/UserDashboard/Dashboard/Activity/Activity.component';
 import News from '../components/UserDashboard/Dashboard/News/News.component';
 
-// Icons import
 
-import dashboardIcon from '../assets/images/dashboard.svg';
-import payoutIcon from '../assets/images/paySideIcon.svg';
-import genealogyIcon from '../assets/images/genealogy.svg';
 
 const routes: IRoute[] = [
   {
@@ -71,7 +74,7 @@ export const nestRoutes: IRoute[] = [
     element: Deposit,
     selected: false,
     exact: true,
-    icon: MdPayments,
+    icon: RiLuggageDepositFill,
   },
   {
     path: USER_DASHBOARD_ROUTE.USER_ECOMMERCE,
@@ -79,7 +82,7 @@ export const nestRoutes: IRoute[] = [
     element: ECommerce,
     selected: false,
     exact: true,
-    icon: MdPayments,
+    icon: SiMarketo,
   },
   {
     path: USER_DASHBOARD_ROUTE.USER_Withdraw,
@@ -87,7 +90,7 @@ export const nestRoutes: IRoute[] = [
     element: Withdraw,
     selected: false,
     exact: true,
-    icon: MdPayments,
+    icon: FaHandHoldingUsd,
   },
   {
     path: USER_DASHBOARD_ROUTE.USER_GENEALOGY,
@@ -95,7 +98,7 @@ export const nestRoutes: IRoute[] = [
     element: Genealogy,
     selected: false,
     exact: true,
-    icon: MdPayments,
+    icon: TiFlowChildren,
   },
   {
     path: USER_DASHBOARD_ROUTE.USER_PAYOUT,
@@ -111,7 +114,7 @@ export const nestRoutes: IRoute[] = [
     element: Support,
     selected: false,
     exact: true,
-    icon: MdPayments,
+    icon: MdSupportAgent,
   },
 ];
 
