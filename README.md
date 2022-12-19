@@ -1,10 +1,10 @@
-# TTDIA-MLM
+# hallza
 
-TTDIA-MLM is an MLM System using the Unilevel plan or Forced Matrix plan with a re-entry option. The system comes with essential features to run and maintain a successful referral marketing program, including membership with renewal on an interval basis.
+hallza is an MLM System using the Unilevel plan or Forced Matrix plan with a re-entry option. The system comes with essential features to run and maintain a successful referral marketing program, including membership with renewal on an interval basis.
 
 ## Installation
 
-Use the package manager [npm](https://npmjs.com) to install ttdia-mlm.
+Use the package manager [npm](https://npmjs.com) to install hallza.
 
 ```bash
 npm install

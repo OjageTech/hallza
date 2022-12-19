@@ -6,7 +6,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import Search from '../../../assets/images/Search.svg';
+import { CiSearch } from 'react-icons/ci'
 import { updateSearchText } from '../../../features/search/search-slice';
 
 type SearchbarProps = {
@@ -42,7 +42,7 @@ const Searchbar = ({
     <div className="Searchbar">
       <InputGroup h={groupHeight}>
         <InputLeftElement pl={paddingLeftInputLeft} h={heightInputLeft} pointerEvents="none">
-          <Image src={Search} alt="Search Icon" />
+          <CiSearch />
         </InputLeftElement>
         <Input
           pl={pl}

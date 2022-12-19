@@ -1,12 +1,12 @@
 import { mode, whiten, darken } from '@chakra-ui/theme-tools';
 import { defineStyleConfig } from '@chakra-ui/react';
 
+
 export const Box = defineStyleConfig({
   // The styles all Boxes have in common
   baseStyle: (props: any) => ({
     borderRadius: 'xl',
-    bg: mode(whiten('white', 0), darken('black', 0))(props),
-
+    bg: mode(whiten('#F9FAFB', 0), darken('black', 0))(props),
   }),
   // Two variants: rounded and nav
   variants: {
@@ -18,16 +18,16 @@ export const Box = defineStyleConfig({
       padding: 8,
       borderRadius: 'xl',
       boxShadow: 'xl',
-      bg: mode(darken('white', 0), whiten('black', 0))(props),
+      bg: mode(darken('#F9FAFB', 0), whiten('black', 0))(props),
     }),
     activeItem: (props: any) => ({
-      color: 'white',
+      color: '#F9FAFB',
       boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
       backdropFilter: 'blur(5px)',
       bgGradient: 'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)',
     }),
     navItem: (props: any) => ({
-      color: 'white',
+      color: '#F9FAFB',
       // make a transpaarent background
       bg: mode(
         darken('primary', 0),
@@ -36,7 +36,7 @@ export const Box = defineStyleConfig({
 
     }),
     nav: (props: any) => ({
-      color: mode(whiten('black', 10), darken('white', 0))(props),
+      color: mode(whiten('black', 10), darken('#F9FAFB', 0))(props),
       boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
       backdropFilter: 'blur(5px)',
       border: '1px solid rgba(255, 255, 255, 0.3)',
@@ -47,7 +47,7 @@ export const Box = defineStyleConfig({
     }),
     sideNav: (props: any) => ({
       borderRadius: 'xl',
-      color: mode(whiten('black', 10), darken('white', 0))(props),
+      color: mode(whiten('black', 10), darken('#F9FAFB', 0))(props),
       boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
       bg: mode(
         darken('primary', 0),

@@ -1,8 +1,8 @@
 export enum ROUTE {
 	LANDING = '/',
-	USERS = '/users/',
-	USER_PROFILE = '/users/:userId/',
-	USER_ACTIVITY = '/users/:userId/activities/:activityId/',
+	BOOKING_SYSTEM = '/booking-system/',
+	PRICING = '/pricing/',
+	CONTACT = '/contact/',
 	LOGIN = '/login',
 	SIGNUP = '/signup',
 	USER_DASHBOARD = '/userDashboard/*',
@@ -10,6 +10,7 @@ export enum ROUTE {
 
 export enum USER_PROFILE_ROUTE {
 	USER_ACTIVITY = 'activities/:activityId/',
+	CONTACT = '/contact/',
 }
 
 /**
@@ -37,16 +38,16 @@ export enum IN_DASHBOARD_ROUTE {
 }
 type TArgs =
 	| { path: ROUTE.LANDING }
-	| { path: ROUTE.USERS }
+	| { path: ROUTE.BOOKING_SYSTEM }
 	| { path: ROUTE.LOGIN }
 	| { path: ROUTE.SIGNUP }
-	| { path: ROUTE.USER_PROFILE; params: { userId: string } }
+	| { path: ROUTE.PRICING; params: { userId: string } }
 	| {
-			path: ROUTE.USER_ACTIVITY;
+			path: ROUTE.CONTACT;
 			params: { userId: string; activityId: string };
 	  }
 	| {
-			path: USER_PROFILE_ROUTE.USER_ACTIVITY;
+			path: USER_PROFILE_ROUTE.CONTACT;
 			params: { activityId: string };
 	  };
 // | { path: USER_DASHBOARD_ROUTE.USER_DEPOSIT};

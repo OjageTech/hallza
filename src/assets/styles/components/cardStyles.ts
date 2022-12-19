@@ -5,9 +5,15 @@ export const Card = defineStyleConfig({
 	// The styles all Cards have in common
 	baseStyle: (props: any) => ({
 		alignItems: 'center',
-		paddingLeft: '24px',
-		paddingRight: '24px',
-		paddingTop: '24px',
+		padding: {
+			base: '1.2rem',
+			md: '1.8rem',
+			lg: '2rem',
+			xl: '2.2rem',
+		},
+		transitionProperty: "all",
+		transitionTimingFunction: "cubic-bezier(.4,0,.2,1)",
+		transitionDuration: ".15s",
 		color: mode(darken('#000', 0), whiten('white', 0))(props),
 		borderRadius: 'xl',
 		boxShadow:

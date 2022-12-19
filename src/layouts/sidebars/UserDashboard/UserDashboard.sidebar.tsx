@@ -1,7 +1,10 @@
 import { Link as RouteLink } from 'react-router-dom';
 import { SetStateAction, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { toggleExpanded } from '../../../features/sidebar/main-slice';
+import {
+	setActiveItem,
+	toggleExpanded,
+} from '../../../features/sidebar/main-slice';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import {
 	Image,
@@ -23,7 +26,7 @@ import {
 	ROUTE,
 	USER_DASHBOARD_ROUTE,
 } from '../../../routes';
-import { Badger } from './Badger';
+import Badger from './Badger';
 
 type PanelTextProps = { text: string };
 const PanelText = ({ text }: PanelTextProps) => (
@@ -36,7 +39,6 @@ const PanelText = ({ text }: PanelTextProps) => (
 	</Text>
 );
 
-const ItemBadge = Badger();
 
 type SidebarItemContentProps = {
 	text: string;
@@ -76,7 +78,7 @@ const SidebarItemContent = ({
 				<Text fontWeight={500} fontSize="16px">
 					{text}
 				</Text>
-				<ItemBadge nomba={badgeContent} disp={badgeVisibility} />
+				<Badger nomba={badgeContent} disp={badgeVisibility} />
 			</HStack>
 		);
 	}
@@ -113,10 +115,8 @@ const SideBarItem = ({
 
 	return (
 		<Box
-			className={active === name ? 'mlm' : ''}
 			as={RouteLink}
 			to={to}
-			onClick={() => setActive(name)}
 			_hover={{
 				cursor: 'pointer',
 			}}
@@ -131,10 +131,15 @@ const SideBarItem = ({
 	);
 };
 const SidebarItems = () => {
-	const [active, setActive] = useState('Dashboard');
-	const activeBtn = (value: any) => {
-		setActive(value);
+	const active = useAppSelector(
+		(state: any) => state.mainSidebar.activeItem
+	);
+	const dispatch = useAppDispatch();
+
+	const handleItemClick = (itemName: string) => {
+		dispatch(setActiveItem(itemName));
 	};
+
 	return (
 		<VStack height="100vh" gap="20px" alignItems="flex-start">
 			{nestRoutes.map((item) => {
@@ -143,7 +148,7 @@ const SidebarItems = () => {
 					<Box
 						variant={active == item.name ? 'activeItem' : 'navItem'}
 						borderRadius="12.54px"
-						onClick={() => setActive(item.name)}>
+						onClick={() => handleItemClick(item.name)}>
 						<SideBarItem
 							Icon={<Icon />}
 							selected={item.selected}
@@ -169,6 +174,10 @@ const DashboardSidebar = () => {
 	const handleToggle = () => {
 		dispatch(toggleExpanded());
 	};
+	const handleItemClick = (itemName: string) => {
+		dispatch(setActiveItem(itemName));
+	};
+
 	return (
 		<Box
 			variant="sideNav"
@@ -213,15 +222,15 @@ const DashboardSidebar = () => {
 							width="40px"
 							height="40px"
 							src={logo}
-							alt="TTDIA-MLM"
+							alt="hallza"
 						/>
 						<Text display={expanded ? 'block' : 'none'} as="h1">
-							TTDIA-MLM
+							hallza
 						</Text>
 					</Flex>
 				</Container> */}
 
-				<PanelText text="ttdia" />
+				<PanelText text="hallza" />
 
 				<SidebarItems />
 			</VStack>

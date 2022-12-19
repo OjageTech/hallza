@@ -72,7 +72,7 @@ function FirstHalf() {
 						Nneka Obi
 					</Text>
 					<Text fontWeight={500} fontSize="16px" lineHeight="18px">
-						TTDIA0XAA
+						hallza0XAA
 					</Text>
 					<ViewProfileBtn />
 				</VStack>

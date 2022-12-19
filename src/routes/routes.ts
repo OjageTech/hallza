@@ -57,8 +57,32 @@ const routes: IRoute[] = [
     exact: true,
     selected: false,
   },
+  
 ];
-
+export const navRoutes: IRoute[] = [
+  // @TODO Change the element to the correct one!
+  {
+    path: ROUTE.BOOKING_SYSTEM,
+    name: 'Booking System',
+    element: SignUp,
+    exact: true,
+    selected: false,
+  },
+  {
+    path: ROUTE.PRICING,
+    name: 'Pricing',
+    element: SignUp,
+    exact: true,
+    selected: false,
+  },
+  {
+    path: ROUTE.CONTACT,
+    name: 'Contact',
+    element: SignUp,
+    exact: true,
+    selected: false,
+  },
+]
 export const nestRoutes: IRoute[] = [
   {
     path: USER_DASHBOARD_ROUTE.DEFAULT,
