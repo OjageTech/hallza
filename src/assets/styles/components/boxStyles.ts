@@ -1,7 +1,6 @@
 import { mode, whiten, darken } from '@chakra-ui/theme-tools';
 import { defineStyleConfig } from '@chakra-ui/react';
 
-
 export const Box = defineStyleConfig({
   // The styles all Boxes have in common
   baseStyle: (props: any) => ({

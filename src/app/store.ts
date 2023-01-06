@@ -6,7 +6,6 @@ import payoutTransactionSlice from '../features/transaction/payoutTransaction-sl
 import comissionTransactionSlice from '../features/transaction/comissionTransaction-slice';
 import mainSidebarSlice from '../features/sidebar/main-slice';
 
-
 // Create the store, adding the search slice to it
 export const store:any = configureStore({
   reducer: {

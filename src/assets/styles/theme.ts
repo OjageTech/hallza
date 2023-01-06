@@ -1,7 +1,7 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 import {
   mode,
- StyleFunctionProps,
+  StyleFunctionProps,
 } from '@chakra-ui/theme-tools';
 
 import { ButtonStyles as Button } from './components/buttonStyles';
@@ -10,25 +10,25 @@ import { Card } from './components/cardStyles';
 import { Box } from './components/boxStyles';
 
 const breakpoints = {
-  sm: "320px",
-  md: "768px",
-  lg: "960px",
-  xl: "1200px",
-}
+  sm: '320px',
+  md: '768px',
+  lg: '960px',
+  xl: '1200px',
+};
 /* Pallete 1 */
 const black = '#000000';
 
 const lightDark = '#121318';
 
 const white = '#ffffff';
-const whitish = "#F9FAFB"
+const whitish = '#F9FAFB';
 const platinum = '#e66868';
 const silver = '#bfbfbf';
 const manatee = '#96939b';
 const dodgerBlue = '#1e90ff';
 const mangoTango = '#fc814a';
-const myTeal = "#14b8a6"
-const myPurple= "#8b5cf6"
+const myTeal = '#14b8a6';
+const myPurple = '#8b5cf6';
 const venetianRed = '#C90612ff';
 const background = { _light: whitish, _dark: black };
 

@@ -6,35 +6,34 @@ import DashboardSidebar from '../../layouts/sidebars/UserDashboard/UserDashboard
 import { nestRoutes } from '../../routes/routes';
 
 const Userdashboard = () => {
-	const [path, setPath] = useState<string>('');
-  
-	return (
-		<div className="userDashboard">
-			{/*
+  const [path, setPath] = useState<string>('');
+
+  return (
+    <div className="userDashboard">
+      {/*
     -SIDBAR [LEFT - RIGHT]
     -HEADER
     -CONTENT
 
     */}
-			<Flex justify="start" alignItems="flex-start">
-				<VStack justify="start" alignItems="flex-start">
-					<DashboardHeader />
-					<Container ml="40vh">
-						<Routes>
-							{nestRoutes.map((routes) =>(
-									<Route
-										key={routes.path}
-										path={routes.path}
-										element={<routes.element />}
-									/>
-								)
-							)}
-						</Routes>
-					</Container>
-				</VStack>
-				<DashboardSidebar />
-			</Flex>
-		</div>
-	);
+      <Flex justify="start" alignItems="flex-start">
+        <VStack justify="start" alignItems="flex-start">
+          <DashboardHeader />
+          <Container ml="40vh">
+            <Routes>
+              {nestRoutes.map((routes) => (
+                <Route
+                  key={routes.path}
+                  path={routes.path}
+                  element={<routes.element />}
+                />
+              ))}
+            </Routes>
+          </Container>
+        </VStack>
+        <DashboardSidebar />
+      </Flex>
+    </div>
+  );
 };
 export default Userdashboard;

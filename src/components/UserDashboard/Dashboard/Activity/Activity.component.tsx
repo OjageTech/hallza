@@ -63,7 +63,7 @@ const ReferralLink = () => {
   };
   return (
     <>
-      <Text ml=".5rem" >Referral Link</Text>
+      <Text ml=".5rem">Referral Link</Text>
       <Flex
         className="animate__animated animate__flash animate__faster"
         onClick={handleMouseOver}

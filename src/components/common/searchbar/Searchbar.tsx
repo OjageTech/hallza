@@ -1,63 +1,72 @@
-import {
-  Input,
-  InputGroup,
-  Image,
-  InputLeftElement,
-  Text,
-} from '@chakra-ui/react';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { CiSearch } from 'react-icons/ci'
-import { updateSearchText } from '../../../features/search/search-slice';
+// import the required modules
+import React, { useState } from 'react';
+import { Button, FormControl, FormLabel, Input } from '@chakra-ui/core';
 
-type SearchbarProps = {
-	groupHeight?: string;
-	inputHeight?: string;
-	bg?: string;
-	inputWidth?: string;
-	variant?: string;
-	borderRadius?: string;
-	placeholder?: string;
-	fontSize?: string;
-	pl?: string;
-  paddingLeftInputLeft?: string;
-  heightInputLeft?: string;
-};
+// define the SearchBar component
+const SearchBar: React.FC = () => {
+  // create state variables for the location, capacity, and availability inputs
+  const [location, setLocation] = useState('');
+  const [capacity, setCapacity] = useState('');
+  const [availability, setAvailability] = useState(false);
 
-const Searchbar = ({
-  groupHeight,
-  inputHeight,
-  bg,
-  inputWidth,
-  variant,
-  borderRadius,
-  placeholder,
-  fontSize,
-  pl,
-  paddingLeftInputLeft,
-  heightInputLeft,
-}: SearchbarProps) => {
-  // const searchStuff = useAppSelector(selectStuffBySearchText);
-  const dispatch = useAppDispatch();
+  // define the handleSubmit function to be called when the form is submitted
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // prevent the form from reloading the page
+
+    // use the Supabase client to search for event halls in the database
+    const query = supabase.from('halls')
+      .select('*');
+    if (location) {
+      query.where({ location });
+    }
+    if (capacity) {
+      query.where({ capacity });
+    }
+    if (availability) {
+      query.where({ availability });
+    }
+    const { data } = await query.commit();
+
+    // update the page with the search results
+    updatePageWithResults(data);
+  };
+
+  // render the search bar form
   return (
-    <div className="Searchbar">
-      <InputGroup h={groupHeight}>
-        <InputLeftElement pl={paddingLeftInputLeft} h={heightInputLeft} pointerEvents="none">
-          <CiSearch />
-        </InputLeftElement>
+    <form onSubmit={handleSubmit}>
+      <FormControl>
+        <FormLabel htmlFor="location">Location:</FormLabel>
         <Input
-          pl={pl}
-          h={inputHeight}
-          fontSize={fontSize}
-          variant={variant}
-          bg={bg}
-          w={inputWidth}
-          borderRadius={borderRadius}
-          placeholder={placeholder}
-          onChange={(e) => dispatch(updateSearchText(e.target.value))}
+          type="text"
+          id="location"
+          name="location"
+          value={location}
+          onChange={event => setLocation(event.target.value)}
         />
-      </InputGroup>
-    </div>
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="capacity">Capacity:</FormLabel>
+        <Input
+          type="number"
+          id="capacity"
+          name="capacity"
+          value={capacity}
+          onChange={event => setCapacity(event.target.value)}
+        />
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor="availability">Availability:</FormLabel>
+        <Input
+          type="checkbox"
+          id="availability"
+          name="availability"
+          value={availability}
+          onChange={event => setAvailability(event.target.checked)}
+        />
+      </FormControl>
+      <Button type="submit" variantColor="teal">Search</Button>
+    </form>
   );
 };
 
-export default Searchbar;
+export default SearchBar;

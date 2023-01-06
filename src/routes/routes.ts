@@ -1,4 +1,3 @@
-
 // Icons import
 import { MdPayments, MdDashboard, MdSupportAgent } from 'react-icons/md';
 import { RiLuggageDepositFill } from 'react-icons/ri';
@@ -25,8 +24,6 @@ import Portfolio from '../components/UserDashboard/Dashboard/Portfolio/Portfolio
 import External from '../components/UserDashboard/Dashboard/External/External.component';
 import Activity from '../components/UserDashboard/Dashboard/Activity/Activity.component';
 import News from '../components/UserDashboard/Dashboard/News/News.component';
-
-
 
 const routes: IRoute[] = [
   {
@@ -57,7 +54,7 @@ const routes: IRoute[] = [
     exact: true,
     selected: false,
   },
-  
+
 ];
 export const navRoutes: IRoute[] = [
   // @TODO Change the element to the correct one!
@@ -82,7 +79,7 @@ export const navRoutes: IRoute[] = [
     exact: true,
     selected: false,
   },
-]
+];
 export const nestRoutes: IRoute[] = [
   {
     path: USER_DASHBOARD_ROUTE.DEFAULT,
