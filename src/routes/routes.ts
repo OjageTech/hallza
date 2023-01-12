@@ -72,13 +72,6 @@ export const navRoutes: IRoute[] = [
     exact: true,
     selected: false,
   },
-  {
-    path: ROUTE.CONTACT,
-    name: 'Login',
-    element: SignUp,
-    exact: true,
-    selected: false,
-  },
 ];
 export const nestRoutes: IRoute[] = [
   {

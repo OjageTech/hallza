@@ -18,6 +18,8 @@ import {
   IconButton,
   VStack,
   Flex,
+  Grid,
+  GridItem,
   Link,
   Text,
   Container,
@@ -40,20 +42,16 @@ const PopItem = ({ name }: PopItemProps) => {
       as={RouteLink}
       to='/Login'
     >
-      <Flex width='200px' alignItems='center' gap='5rem' justifyContent='space-between'>
-        <Text as='div' w='100px'>
-          {name}
-        </Text>
-        <Container
-          // pl="2rem"
-          _hover={{
-            transform: 'translateX(0.5rem)',
-          }}
-          color='primary'
-        >
-          <AiOutlineRight />
-        </Container>
-      </Flex>
+    <Grid templateColumns='repeat(5, 1fr)' gap={4}>
+  <GridItem colSpan={4}><Text>
+    {name}
+  </Text></GridItem>
+  <GridItem colStart={5} colEnd={6} _hover={{
+    transform: 'translateX(0.5rem)',
+  }}
+  color='primary'><AiOutlineRight /></GridItem>
+</Grid>
+
     </Box>
   )
 }
@@ -106,14 +104,7 @@ function LandingHeader() {
                   // borderRadius="12.54px"
                   // onClick={() => handleItemClick(item.name)}
                 >
-                  {item.name==="Apply as Renter" : (<Button variant="primary">  {item.name}
-                  </Button>) ?
-                  <Text
-                  >
-                    {item.name}
-                  </Text>}
-                   
-                  
+                {(item.name).indexOf('Renter') >=0 ? <Button variant="primary">{item.name}</Button>: <Text>{item.name}</Text>}
                 </Box>
               )
             },
@@ -124,10 +115,30 @@ function LandingHeader() {
             color='primary'
             onMouseOver={handleHover}
           >
+          <Flex
+            boxSizing='border-box'
+            gap='1.5rem'
+            justifyContent='center'
+            textAlign='center'
+            alignItems='center'
+            flexWrap='wrap'
+          >
+          <Text>Login</Text>
             <AiOutlineDownCircle color='inherit' />
+            </Flex>
           </Box>
           <Box _hover={{ cursor: 'pointer' }} display={hovered ? 'block' : 'none'} color='primary'>
+          <Flex
+            boxSizing='border-box'
+            gap='1.5rem'
+            justifyContent='center'
+            textAlign='center'
+            alignItems='center'
+            flexWrap='wrap'
+          >
+          <Text>Login</Text>
             <AiOutlineUpCircle color='inherit' />
+            </Flex>
           </Box>
           <Box
             onMouseLeave={handleHover}
@@ -140,13 +151,8 @@ function LandingHeader() {
               height: 'fit-content',
               marginTop: 0,
               position: 'absolute',
-              // zIndex: 9,
               top: '4rem',
-              // left: '-50%',
-              // transform: 'var(--open-state) translateX(-50%)',
               transition: '.2s ease-in-out',
-              // transformOrigin: 'top left',
-              // '--open-state': 'scaleY(0)',
             }}
           >
             <VStack width='90%' gap='20px' textAlign='left' alignItems='left' justifyContent='left'>

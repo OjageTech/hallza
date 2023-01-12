@@ -19,7 +19,6 @@ import BarChart from '../../../Charts/BarChart';
 import LineChart from '../../../Charts/LineChart';
 import { QuickShowDetails } from '../QuickShowDetails';
 import { RecentTransactions } from '../RecentTransactions';
-import cardStyles from '../../../../interfaces/cardStyles';
 import {
   numberWithCommas,
   percentChange,

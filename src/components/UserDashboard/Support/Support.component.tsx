@@ -70,17 +70,7 @@ const SearchSection: React.FC<{}> = () => (
         Type your question or search keyword
       </Text>
       <Searchbar
-        groupHeight="58px"
-        paddingLeftInputLeft="5"
-        heightInputLeft="50px"
-        pl="4rem"
-        inputHeight="50px"
-        fontSize="16px"
-        variant="flushed"
-        inputWidth="320px"
-        borderRadius="10px"
-        placeholder="Start typing..."
-        bg="white"
+      
       />
     </VStack>
   </Container>
