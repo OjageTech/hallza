@@ -60,21 +60,21 @@ export const navRoutes: IRoute[] = [
   // @TODO Change the element to the correct one!
   {
     path: ROUTE.BOOKING_SYSTEM,
-    name: 'Booking System',
+    name: 'Find Venues',
     element: SignUp,
     exact: true,
     selected: false,
   },
   {
     path: ROUTE.PRICING,
-    name: 'Pricing',
+    name: 'Apply as Renter',
     element: SignUp,
     exact: true,
     selected: false,
   },
   {
     path: ROUTE.CONTACT,
-    name: 'Contact',
+    name: 'Login',
     element: SignUp,
     exact: true,
     selected: false,
