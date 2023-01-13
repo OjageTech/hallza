@@ -1,11 +1,4 @@
-import {
-  useState,
-  useRef,
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link as RouteLink } from 'react-router-dom'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { FaSun } from 'react-icons/fa'
@@ -27,10 +20,12 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import { navRoutes } from '../../routes/routes'
-type PopItemProps = {
+
+interface PopItemProps {
   name: string
 }
-const PopItem = ({ name }: PopItemProps) => {
+
+const PopItem: React.FC<PopItemProps> = ({ name }) => {
   return (
     <Box
       _hover={{
@@ -43,21 +38,26 @@ const PopItem = ({ name }: PopItemProps) => {
       as={RouteLink}
       to='/Login'
     >
-    <Grid templateColumns='repeat(5, 1fr)' gap={4}>
-  <GridItem colSpan={4}><Text>
-    {name}
-  </Text></GridItem>
-  <GridItem colStart={5} colEnd={6} _hover={{
-    transform: 'translateX(0.5rem)',
-  }}
-  color='primary'><AiOutlineRight /></GridItem>
-</Grid>
-
+      <Grid templateColumns='repeat(5, 1fr)' gap={4}>
+        <GridItem colSpan={4}>
+          <Text>{name}</Text>
+        </GridItem>
+        <GridItem
+          colStart={5}
+          colEnd={6}
+          _hover={{
+            transform: 'translateX(0.5rem)',
+          }}
+          color='primary'
+        >
+          <AiOutlineRight />
+        </GridItem>
+      </Grid>
     </Box>
   )
 }
 
-function LandingHeader() {
+const LandingHeader: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const [hovered, setHovered] = useState(false)
 
@@ -65,66 +65,62 @@ function LandingHeader() {
     setHovered(!hovered)
   }
 
-  const [scrollPosition, setScrollPosition] = useState(0);
-const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-};0.
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const handleScroll = () => {
+    const position = window.pageYOffset
+    setScrollPosition(position)
+  }
 
-
-useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    },[]);
-    console.log(scrollPosition)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+  console.log(scrollPosition)
   return (
     <>
-      <Grid w='100vw'  pt='1rem' pb='0.5rem' templateColumns='repeat(8, 1fr)' gap={0} as="header" position="fixed" bg={'#F9FAFB'} top="0" >
-
-          <GridItem  colSpan={5} bg="primry">Hallzas</GridItem>
-          <GridItem colSpan={3} >
-            <Flex
-              pl='1rem'
-              pr='1rem'
-              mr="1.5rem"
-              boxSizing='border-box'
-              gap='1.5rem'
-              justifyContent='flex-end'
-              alignItems='center'
-              flexWrap='wrap'
-            >
-              {navRoutes.map(
-                (item: {
-                  name:
-                    | string
-                    | number
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | ReactFragment
-                    | ReactPortal
-                    | null
-                    | undefined
-                }) => {
-                  // const Icon = item.icon;
-                  return (
-                    <Box
-                      _hover={{
-                        cursor: 'pointer',
-                        textDecoration: 'underline',
-                        textUnderlineOffset: '1rem',
-                        textDecorationColor: 'primary',
-                      }}
-                      // variant={active == item.name ? 'activeItem' : 'navItem'}
-                      // borderRadius="12.54px"
-                      // onClick={() => handleItemClick(item.name)}
-                    >
-                    {(item.name).indexOf('Renter') >=0 ? <Button variant="primary">{item.name}</Button>: <Text>{item.name}</Text>}
-                    </Box>
-                  )
-                },
-              )}
+      <Grid
+        w='100vw'
+        pt='1rem'
+        pb='0.5rem'
+        templateColumns='repeat(8, 1fr)'
+        gap={0}
+        as='header'
+        position='fixed'
+        bg={'#F9FAFB'}
+        top='0'
+      >
+        <GridItem colSpan={5} bg="primry">Hallzas</GridItem>
+          <GridItem colSpan={3}>
+<Flex
+         pl='1rem'
+         pr='1rem'
+         mr='1.5rem'
+         boxSizing='border-box'
+         gap='1.5rem'
+         justifyContent='flex-end'
+         alignItems='center'
+         flexWrap='wrap'
+       >
+{navRoutes.map((item) => {
+return (
+<Box
+_hover={{
+cursor: 'pointer',
+textDecoration: 'underline',
+textUnderlineOffset: '1rem',
+textDecorationColor: 'primary',
+}}
+>
+{(item.name as string).indexOf('Renter') >= 0 ? (
+<Button variant='primary'>{item.name}</Button>
+) : (
+<Text>{item.name}</Text>
+)}
+</Box>
+)
+})}
               <Box
                 _hover={{ cursor: 'pointer' }}
                 display={hovered ? 'none' : 'block'}
@@ -200,29 +196,18 @@ useEffect(() => {
                   </VStack>
                 </VStack>
               </Box>
-              {colorMode === 'light' ? (
-                <Box
-                  _hover={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  <FaSun size='2rem' onClick={toggleColorMode} />
-                </Box>
-              ) : (
-                <Box
-                  _hover={{
-                    cursor: 'pointer',
-                  }}
-                >
-                  <RiMoonLine size='2rem' onClick={toggleColorMode} />
-                </Box>
-              )}
-            </Flex>
-          </GridItem>
+              <IconButton
+          aria-label='Toggle dark mode'
+          icon={colorMode === 'dark' ? <FaSun /> : <RiMoonLine />}
+          onClick={toggleColorMode}
+        />
+      </Flex>
+    </GridItem>
+  </Grid>
+</>
 
-      </Grid>
-    </>
-  )
+)
 }
 
-export default LandingHeader
+export default LandingHeader;
+

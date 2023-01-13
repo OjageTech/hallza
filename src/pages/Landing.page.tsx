@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import { Link as RouteLink } from 'react-router-dom';
-import {useAnimation, motion, useScroll} from "framer-motion";
+import {useAnimation, AnimatePresence, motion, useScroll} from "framer-motion";
 import {useInView} from "react-intersection-observer"
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaSun } from 'react-icons/fa';
