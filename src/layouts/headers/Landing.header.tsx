@@ -64,7 +64,21 @@ function LandingHeader() {
   const handleHover = () => {
     setHovered(!hovered)
   }
-  // const bg = useColorModeValue('#F9FAFB', 'red.200')
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+};0.
+
+
+useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    },[]);
+    console.log(scrollPosition)
   return (
     <>
       <Grid w='100vw'  pt='1rem' pb='0.5rem' templateColumns='repeat(8, 1fr)' gap={0} as="header" position="fixed" bg={'#F9FAFB'} top="0" >

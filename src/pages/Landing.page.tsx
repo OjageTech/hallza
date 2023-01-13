@@ -46,19 +46,7 @@ const AppNameVariants = {
 }
 
 function AppName() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-};
-
-useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    },[]);
-    console.log(scrollPosition)
+  
 
   const controls = useAnimation();
   const [ref, inView] = useInView();
