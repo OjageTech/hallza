@@ -1,4 +1,7 @@
+import {useEffect, useRef, useState} from 'react';
 import { Link as RouteLink } from 'react-router-dom';
+import {useAnimation, motion, useScroll} from "framer-motion";
+import {useInView} from "react-intersection-observer"
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaSun } from 'react-icons/fa';
 import { RiMoonLine } from 'react-icons/ri';
@@ -14,6 +17,7 @@ import ProminentFeatures from '../components/ProminentFeatures/ProminentFeatures
 import LandingHeader from '../layouts/headers/Landing.header';
 import { ROUTE } from '../routes';
 import FeaturedVenues from '../components/FeaturedVenues';
+import SearchBar from '../components/common/searchbar/Searchbar';
 
 // type NavLinkProps = { text: string };
 // const NavLink = ({ text }: NavLinkProps) => (
@@ -35,7 +39,70 @@ const UnderlineDecor = ({ text, color }: UnderlineDecorType) => (
     {text}
   </Text>
 );
+
+const AppNameVariants = {
+  visible: {opacity:1, scale:4, transition: {duration:1}},
+  hidden: {opacity:0, scale:0}
+}
+
+function AppName() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+const handleScroll = () => {
+    const position = window.pageYOffset;
+    setScrollPosition(position);
+};
+
+useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    },[]);
+    console.log(scrollPosition)
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView();
+  useEffect(() => {
+    if(inView){
+      controls.start("visible");
+    }
+  }, [controls, inView])
+  return(
+    <motion.div
+      animate={{scale:2}}
+      initial="visible"
+      variants={AppNameVariants}>
+      <Box
+      textDecoration="underline"
+      textUnderlineOffset="1rem"
+      textDecorationColor="#e5e7eb"
+      sx={{
+        // /* Fallback: Set a background color. */
+        backgroundColor: 'teal',
+
+        /* Create the gradient. */
+        backgroundImage: 'linear-gradient(to right,#14b8a6,#8b5cf6)',
+
+        /* Set the background size and repeat properties. */
+        backgroundSize: '100%',
+        backgroundRepeat: 'repeat',
+
+        /* Use the text as a mask for the background. */
+        /* This will show the gradient as a text color rather than element bg. */
+        '-webkit-background-clip': 'text',
+        '-webkit-text-fill-color': 'transparent',
+        '-moz-background-clip': 'text',
+        '-moz-text-fill-color': 'transparent',
+      }}
+      as="span"
+    >
+      Hallza
+      </Box>
+    </motion.div>
+  )
+}
 function Hero() {
+
   return (<VStack
     alignItems="center"
     textAlign="center"
@@ -52,39 +119,15 @@ function Hero() {
       as="h1"
       display="inline-block"
       fontSize={{
-        base: '2rem', md: '4.5rem', lg: '6rem', xl: '8rem',
+        base: '1rem', md: '2.5rem', lg: '1.5rem', xl: '4rem',
       }}
       lineHeight={1}
       fontWeight={900}
     >
-      <Box
-        textDecoration="underline"
-        textUnderlineOffset="1rem"
-        textDecorationColor="#e5e7eb"
-        sx={{
-          // /* Fallback: Set a background color. */
-          backgroundColor: 'teal',
+    <AppName />
 
-          /* Create the gradient. */
-          backgroundImage: 'linear-gradient(to right,#14b8a6,#8b5cf6)',
-
-          /* Set the background size and repeat properties. */
-          backgroundSize: '100%',
-          backgroundRepeat: 'repeat',
-
-          /* Use the text as a mask for the background. */
-          /* This will show the gradient as a text color rather than element bg. */
-          '-webkit-background-clip': 'text',
-          '-webkit-text-fill-color': 'transparent',
-          '-moz-background-clip': 'text',
-          '-moz-text-fill-color': 'transparent',
-        }}
-        as="span"
-      >
-        Hallza
-      </Box>
     </Text>
-    <Box w="50vw">
+    <Box w="50vw" pt="4rem">
       <Text
         as="h2"
         fontSize="2.5rem"
@@ -135,6 +178,7 @@ const Landing = () => (
     <Container minW="100vw" minH="100vh">
       <LandingHeader />
       <Hero />
+      <SearchBar />
       <Box h="2rem" />
       <FeaturedVenues />
       <Box h="2rem" />
@@ -144,5 +188,3 @@ const Landing = () => (
 );
 
 export default Landing;
-
-

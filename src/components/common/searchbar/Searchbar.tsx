@@ -1,6 +1,6 @@
 // import the required modules
 import React, { useState } from 'react';
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Center,Button,Container, FormControl, FormLabel, Input,Grid, GridItem } from '@chakra-ui/react';
 // import { supabase } from '../../../supabaseClient';
 
 // define the SearchBar component
@@ -34,11 +34,17 @@ const SearchBar: React.FC = () => {
 
   // render the search bar form
   return (
-    <form 
-    // onSubmit={handleSubmit}
-    >
-      
-    </form>
+    <Center><Container>
+      <Grid templateColumns='repeat(10, 1fr)' gap={2}>
+        <GridItem colSpan={4}>
+          <Input placeholder="Search"/>
+        </GridItem>
+        <GridItem colSpan={2}><Input placeholder="location" /></GridItem>
+        <GridItem colSpan={2} color='primary'><Input placeholder="Capacity" /></GridItem>
+        <GridItem colSpan={2} color='primary'><Input placeholder="Date"/></GridItem>
+      </Grid>
+  </Container>
+</Center>
   );
 };
 
