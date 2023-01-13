@@ -8,6 +8,7 @@ import { ButtonStyles as Button } from './components/buttonStyles';
 import { BodyStyles as Styles } from './components/bodyStyles';
 import { Card } from './components/cardStyles';
 import { Box } from './components/boxStyles';
+import { Grid } from './components/gridStyles';
 
 const breakpoints = {
   sm: '320px',
@@ -66,5 +67,6 @@ export const myNewTheme = extendTheme({
     Styles,
     Card,
     Box,
+    Grid,
   },
 });

@@ -109,14 +109,14 @@ const Deposit: React.FC<{}> = () => {
                     type="reset"
                     mt="1rem"
                   >
-										Clear
+                    Clear
                   </Button>
                   <Button
                     variant="primaryOutline"
                     type="submit"
                     mt="1rem"
                   >
-										Deposit
+                    Deposit
                   </Button>
                 </Flex>
               </VStack>

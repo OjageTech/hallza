@@ -69,9 +69,7 @@ const SearchSection: React.FC<{}> = () => (
       >
         Type your question or search keyword
       </Text>
-      <Searchbar
-      
-      />
+      <Searchbar />
     </VStack>
   </Container>
 );

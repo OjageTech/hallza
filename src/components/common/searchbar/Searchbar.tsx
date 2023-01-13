@@ -1,6 +1,11 @@
 // import the required modules
 import React, { useState } from 'react';
-import { Center,Button,Container, FormControl, FormLabel, Input,Grid, GridItem } from '@chakra-ui/react';
+import {
+  Center, Button,InputLeftElement,InputGroup, Container, FormControl, FormLabel, Input, Grid, GridItem,
+} from '@chakra-ui/react';
+import { FaLocationArrow } from 'react-icons/fa';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import {SearchIcon} from '@chakra-ui/icons'
 // import { supabase } from '../../../supabaseClient';
 
 // define the SearchBar component
@@ -34,17 +39,45 @@ const SearchBar: React.FC = () => {
 
   // render the search bar form
   return (
-    <Center><Container>
-      <Grid templateColumns='repeat(10, 1fr)' gap={2}>
-        <GridItem colSpan={4}>
-          <Input placeholder="Search"/>
-        </GridItem>
-        <GridItem colSpan={2}><Input placeholder="location" /></GridItem>
-        <GridItem colSpan={2} color='primary'><Input placeholder="Capacity" /></GridItem>
-        <GridItem colSpan={2} color='primary'><Input placeholder="Date"/></GridItem>
-      </Grid>
-  </Container>
-</Center>
+    <Center>
+      <Container>
+        <Grid  width="100%" templateColumns="repeat(13, 1fr)" gap={2}>
+          <GridItem colSpan={6}>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents='none'
+                children={<SearchIcon color='gray.300' />}
+              />
+              <Input variant="filled" placeholder="Search" />
+            </InputGroup>
+          </GridItem>
+          <GridItem variant="filled" colSpan={4}>
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents='none'
+                children={<FaLocationArrow color='gray' />}
+              />
+                <Input placeholder="location" />
+            </InputGroup>
+          </GridItem>
+          <GridItem variant="filled" colSpan={4}>
+            <InputGroup>
+          <InputLeftElement
+                pointerEvents='none'
+                children={<BsFillPeopleFill color='gray' />}
+              />
+                <Input placeholder="Capacity" />
+            </InputGroup>
+                </GridItem>
+            
+          <GridItem variant="filled" colSpan={4}><Input placeholder="Date" /></GridItem>
+        
+         <GridItem variant="filled" colSpan={4}>
+           <Button variant="secondary"> Search </Button>
+          </GridItem>
+        </Grid>
+      </Container>
+    </Center>
   );
 };
 
