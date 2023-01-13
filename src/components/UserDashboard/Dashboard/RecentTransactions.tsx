@@ -28,7 +28,7 @@ export function RecentTransactions() {
   ];
   // const dispatch = useAppDispatch();
   // useEffect(() => {
-  // 	dispatch(addTransaction(9000));
+  // dispatch(addTransaction(9000));
   // }, []);
 
   return (

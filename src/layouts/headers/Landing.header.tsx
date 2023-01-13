@@ -1,26 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
-import "animate.css"
+import { useState, useEffect } from 'react';
+import 'animate.css';
 import { Link as RouteLink } from 'react-router-dom';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FaSun } from 'react-icons/fa';
 import { RiMoonLine } from 'react-icons/ri';
+
 import {
-  useAnimation, AnimatePresence, motion, useScroll,
-} from 'framer-motion';
-import { AiOutlineDownCircle, AiOutlineUpCircle, AiOutlineRight } from 'react-icons/ai';
+  AiOutlineDownCircle,
+  AiOutlineUpCircle,
+  AiOutlineRight,
+} from 'react-icons/ai';
 import {
   Button,
-  Center,
   IconButton,
   VStack,
   Flex,
   Grid,
   GridItem,
-  Link,
   Text,
-  Container,
   useColorMode,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import Box from '../../components/common/Box';
 import HeaderGrid from '../../components/common/HeaderGrid';
@@ -28,10 +25,10 @@ import AppName from '../../components/common/AppName';
 import { navRoutes } from '../../routes/routes';
 
 interface PopItemProps {
-  name: string
+  name: string;
 }
 
-const PopItem: React.FC<PopItemProps> = ({ name }) => (
+const PopItem = ({ name }: PopItemProps) => (
   <Box
     _hover={{
       cursor: 'pointer',
@@ -91,7 +88,7 @@ const LandingHeader: React.FC = () => {
       w="100vw"
       pt="1rem"
       pb="0.5rem"
-       templateRows="repeat(2, 1fr)"
+      templateRows="repeat(2, 1fr)"
       templateColumns="repeat(5, 1fr)"
       gap={0}
       as="header"
@@ -100,18 +97,20 @@ const LandingHeader: React.FC = () => {
     >
       <GridItem rowSpan={3} colSpan={1}>
         <Text
-        className="animate__animated animate__backInDown"
-        pl="3rem"
-        display={scrollPosition > 190 ? 'inline-block' : 'none'}
+          className="animate__animated animate__backInDown"
+          pl="3rem"
+          display={scrollPosition > 190 ? 'inline-block' : 'none'}
           as="h1"
           fontSize={{
-            base: '.5rem', md: '1rem', lg: '1rem', xl: '1.5rem',
+            base: '.5rem',
+            md: '1rem',
+            lg: '1rem',
+            xl: '1.5rem',
           }}
           lineHeight={0}
           fontWeight={900}
         >
           <AppName txtDecoration="none" />
-
         </Text>
       </GridItem>
       <GridItem colStart={6} colSpan={3}>
@@ -159,7 +158,11 @@ const LandingHeader: React.FC = () => {
               <AiOutlineDownCircle color="inherit" />
             </Flex>
           </Box>
-          <Box _hover={{ cursor: 'pointer' }} display={hovered ? 'block' : 'none'} color="primary">
+          <Box
+            _hover={{ cursor: 'pointer' }}
+            display={hovered ? 'block' : 'none'}
+            color="primary"
+          >
             <Flex
               boxSizing="border-box"
               gap="1.5rem"
@@ -187,7 +190,13 @@ const LandingHeader: React.FC = () => {
               transition: '.2s ease-in-out',
             }}
           >
-            <VStack width="90%" gap="20px" textAlign="left" alignItems="left" justifyContent="left">
+            <VStack
+              width="90%"
+              gap="20px"
+              textAlign="left"
+              alignItems="left"
+              justifyContent="left"
+            >
               <VStack
                 textAlign="left"
                 alignItems="left"
@@ -224,7 +233,6 @@ const LandingHeader: React.FC = () => {
         </Flex>
       </GridItem>
     </HeaderGrid>
-
   );
 };
 

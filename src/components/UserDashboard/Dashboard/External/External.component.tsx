@@ -94,9 +94,9 @@ const TicketHead = () => (
 );
 
 type EachTicketProp = {
-	text: string;
-	backgroundImg: any;
-	Icon: any;
+  text: string;
+  backgroundImg: any;
+  Icon: any;
 };
 
 const Tickets = [
@@ -123,8 +123,8 @@ const EachTicket = ({
 }: EachTicketProp) => (
   <Box
     _hover={{
-		  transform: 'scale(1.1)',
-		  cursor: 'pointer',
+      transform: 'scale(1.1)',
+      cursor: 'pointer',
     }}
     margin="1rem"
     boxShadow="dark-lg"

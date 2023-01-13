@@ -10,7 +10,7 @@ const FeatureData = [
     title: 'Venue Specific',
     subtitle: 'Your dashboard is very customisable ',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'danger',
   },
@@ -18,7 +18,7 @@ const FeatureData = [
     title: 'TanStack Query',
     subtitle: 'Powerful asynchronous state management tool',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'green',
   },
@@ -26,7 +26,7 @@ const FeatureData = [
     title: 'TanStack Query',
     subtitle: 'Powerful asynchronous state management tool',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'secondary',
   },
@@ -34,7 +34,7 @@ const FeatureData = [
     title: 'TanStack Query',
     subtitle: 'Powerful asynchronous state management tool',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'orange',
   },
@@ -42,7 +42,7 @@ const FeatureData = [
     title: 'TanStack Query',
     subtitle: 'Powerful asynchronous state management tool',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'blue',
   },
@@ -50,18 +50,18 @@ const FeatureData = [
     title: 'TanStack Query',
     subtitle: 'Powerful asynchronous state management tool',
     content:
-			'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
+      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
     color: 'violet',
   },
 ];
 
 type FeatureProps = {
-	title: string;
-	subtitle: string;
-	content: string;
-	newBadge: boolean;
-    color: string;
+  title: string;
+  subtitle: string;
+  content: string;
+  newBadge: boolean;
+  color: string;
 };
 
 const Feature = ({
@@ -73,27 +73,22 @@ const Feature = ({
 }: FeatureProps) => (
   <GridItem>
     <Card w="fit-content" h="fit-content">
-      <Flex
-
-        justifyContent="space-between"
-        alignItems="center"
-        gap=".5rem"
-      >
+      <Flex justifyContent="space-between" alignItems="center" gap=".5rem">
         <Text
           color={color}
           lineHeight={{
-						  base: '1rem',
-						  md: '1.5rem',
-						  lg: '1.6rem',
-						  xl: '2rem',
+            base: '1rem',
+            md: '1.5rem',
+            lg: '1.6rem',
+            xl: '2rem',
           }}
           fontWeight={800}
           fontSize={{
-						  base: '.55rem',
-						  sm: '.8rem',
-						  md: '1rem',
-						  lg: '1.1rem',
-						  xl: '1.2rem',
+            base: '.55rem',
+            sm: '.8rem',
+            md: '1rem',
+            lg: '1.1rem',
+            xl: '1.2rem',
           }}
         >
           {title}
@@ -111,10 +106,10 @@ const Feature = ({
         fontWeight={300}
         lineHeight="1.75rem"
         fontSize={{
-					  base: '.6rem',
-					  md: '.7rem',
-					  lg: '.8rem',
-					  xl: '1rem',
+          base: '.6rem',
+          md: '.7rem',
+          lg: '.8rem',
+          xl: '1rem',
         }}
       >
         {subtitle}
@@ -122,10 +117,10 @@ const Feature = ({
       <Text
         mt=".5rem"
         fontSize={{
-					  base: '.5rem',
-					  md: '.7rem',
-					  lg: '.8rem',
-					  xl: '1rem',
+          base: '.5rem',
+          md: '.7rem',
+          lg: '.8rem',
+          xl: '1rem',
         }}
       >
         {content}
@@ -138,17 +133,17 @@ const ProminentFeatures = () => (
     <Text
       as="h3"
       fontSize={{
-				  base: '.7rem',
-				  md: '.95rem',
-				  lg: '1rem',
-				  xl: '2.4rem',
+        base: '.7rem',
+        md: '.95rem',
+        lg: '1rem',
+        xl: '2.4rem',
       }}
       fontWeight={300}
       lineHeight={{
-				  base: '1rem',
-				  md: '1.5rem',
-				  lg: '2rem',
-				  xl: '3.1rem',
+        base: '1rem',
+        md: '1.5rem',
+        lg: '2rem',
+        xl: '3.1rem',
       }}
     >
       Most Prominent Features
@@ -156,12 +151,15 @@ const ProminentFeatures = () => (
     <Grid
       mt="1rem"
       templateColumns={{
-				  base: 'repeat(1,minmax(0,1fr))',
-				  sm: 'repeat(2,minmax(0,1fr))',
-				  lg: 'repeat(3,minmax(0,1fr))',
+        base: 'repeat(1,minmax(0,1fr))',
+        sm: 'repeat(2,minmax(0,1fr))',
+        lg: 'repeat(3,minmax(0,1fr))',
       }}
       gap={{
-        sm: '.6rem', md: '.8rem', lg: '1.5rem', xl: '2.3rem',
+        sm: '.6rem',
+        md: '.8rem',
+        lg: '1.5rem',
+        xl: '2.3rem',
       }}
     >
       {FeatureData.map(({

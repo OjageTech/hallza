@@ -30,21 +30,16 @@ import Badger from './Badger';
 
 type PanelTextProps = { text: string };
 const PanelText = ({ text }: PanelTextProps) => (
-  <Text
-    fontFamily="cursive"
-    color="white"
-    fontWeight={800}
-    fontSize="20px"
-  >
+  <Text fontFamily="cursive" color="white" fontWeight={800} fontSize="20px">
     <strong>{text}</strong>
   </Text>
 );
 
 type SidebarItemContentProps = {
-	text: string;
-	Icon: React.ReactNode;
-	badgeVisibility: string;
-	badgeContent: number;
+  text: string;
+  Icon: React.ReactNode;
+  badgeVisibility: string;
+  badgeContent: number;
 };
 const SidebarItemContent = ({
   text,
@@ -58,23 +53,13 @@ const SidebarItemContent = ({
   );
   if (!expanded) {
     return (
-      <HStack
-        minWidth="5vw"
-        minHeight="45px"
-        pl="0"
-        justifyContent="center"
-      >
+      <HStack minWidth="5vw" minHeight="45px" pl="0" justifyContent="center">
         {Icon}
       </HStack>
     );
   }
   return (
-    <HStack
-      minWidth="13vw"
-      minHeight="45px"
-      pl="2rem"
-      justifyContent="left"
-    >
+    <HStack minWidth="13vw" minHeight="45px" pl="2rem" justifyContent="left">
       {Icon}
       <Text fontWeight={500} fontSize="16px">
         {text}
@@ -85,26 +70,20 @@ const SidebarItemContent = ({
 };
 
 type SidebarItemProps = {
-	to: USER_DASHBOARD_ROUTE | ROUTE | IN_DASHBOARD_ROUTE;
-	name: string;
-	selected: boolean;
-	Icon: React.ReactNode;
+  to: USER_DASHBOARD_ROUTE | ROUTE | IN_DASHBOARD_ROUTE;
+  name: string;
+  selected: boolean;
+  Icon: React.ReactNode;
 };
 
 const SideBarItem = ({
-  to,
-  name,
-  selected,
-  Icon,
+  to, name, Icon,
 }: SidebarItemProps) => {
-  const [active, setActive] = useState('');
-
   const [badgeVisibility, setBadgeVisibility] = useState('none');
   const [badgeContent, setBadgeContent] = useState(0);
 
   const nomba = 1;
 
-  const activeBgGradient =		'linear(-273.78deg,darken 2.4%, danger 27.63%, primary 102.85%)';
   useEffect(() => {
     if (nomba > 0) {
       setBadgeContent(nomba);
@@ -117,7 +96,7 @@ const SideBarItem = ({
       as={RouteLink}
       to={to}
       _hover={{
-			  cursor: 'pointer',
+        cursor: 'pointer',
       }}
       borderRadius="12.42px"
     >
@@ -131,9 +110,7 @@ const SideBarItem = ({
   );
 };
 const SidebarItems = () => {
-  const active = useAppSelector(
-    (state: any) => state.mainSidebar.activeItem,
-  );
+  const active = useAppSelector((state: any) => state.mainSidebar.activeItem);
   const dispatch = useAppDispatch();
 
   const handleItemClick = (itemName: string) => {
@@ -143,21 +120,21 @@ const SidebarItems = () => {
   return (
     <VStack height="100vh" gap="20px" alignItems="flex-start">
       {nestRoutes.map((item) => {
-			  const Icon = item.icon;
-			  return (
-  <Box
-    variant={active == item.name ? 'activeItem' : 'navItem'}
-    borderRadius="12.54px"
-    onClick={() => handleItemClick(item.name)}
-  >
-    <SideBarItem
-      Icon={<Icon />}
-      selected={item.selected}
-      to={item.path}
-      name={item.name}
-    />
-  </Box>
-			  );
+        const Icon = item.icon;
+        return (
+          <Box
+            variant={active === item.name ? 'activeItem' : 'navItem'}
+            borderRadius="12.54px"
+            onClick={() => handleItemClick(item.name)}
+          >
+            <SideBarItem
+              Icon={<Icon />}
+              selected={item.selected}
+              to={item.path}
+              name={item.name}
+            />
+          </Box>
+        );
       })}
     </VStack>
   );
@@ -168,9 +145,7 @@ const SidebarItems = () => {
  * @returns The Dashboard Sidebar
  */
 const DashboardSidebar = () => {
-  const expanded = useAppSelector(
-    (state: any) => state.mainSidebar.value,
-  );
+  const expanded = useAppSelector((state: any) => state.mainSidebar.value);
   const dispatch = useAppDispatch();
   const handleToggle = () => {
     dispatch(toggleExpanded());
@@ -198,8 +173,8 @@ const DashboardSidebar = () => {
         variant="rounded"
         title={expanded ? 'close' : 'expand'}
         _hover={{
-				  cursor: 'pointer',
-				  'box-shadow': 'dark-lg',
+          cursor: 'pointer',
+          'box-shadow': 'dark-lg',
         }}
         boxShadow="md"
         display="flex"
@@ -219,22 +194,7 @@ const DashboardSidebar = () => {
         {expanded ? <FaChevronLeft /> : <FaChevronRight />}
       </Box>
       <VStack gap="3rem" pt="1.5rem">
-        {/* <Container margin="0" padding="1rem" bg="white">
-					<Flex justifyContent="center" alignItems="center">
-						<Image
-							width="40px"
-							height="40px"
-							src={logo}
-							alt="hallza"
-						/>
-						<Text display={expanded ? 'block' : 'none'} as="h1">
-							hallza
-						</Text>
-					</Flex>
-				</Container> */}
-
         <PanelText text="hallza" />
-
         <SidebarItems />
       </VStack>
     </Box>

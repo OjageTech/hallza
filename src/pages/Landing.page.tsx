@@ -19,7 +19,7 @@ import LandingHeader from '../layouts/headers/Landing.header';
 import { ROUTE } from '../routes';
 import FeaturedVenues from '../components/FeaturedVenues';
 import SearchBar from '../components/common/searchbar/Searchbar';
-
+import PreSearch from '../components/common/searchbar/PreSearch';
 // type NavLinkProps = { text: string };
 // const NavLink = ({ text }: NavLinkProps) => (
 //   <Link>
@@ -27,8 +27,8 @@ import SearchBar from '../components/common/searchbar/Searchbar';
 //   </Link>
 // );
 type UnderlineDecorType = {
-	text: string;
-	color: string;
+text: string;
+color: string;
 };
 const UnderlineDecor = ({ text, color }: UnderlineDecorType) => (
   <Text
@@ -36,7 +36,7 @@ const UnderlineDecor = ({ text, color }: UnderlineDecorType) => (
     textDecorationStyle="dashed"
     textDecorationColor={color}
     as="span"
-		>
+  >
     {text}
   </Text>
 );
@@ -114,11 +114,14 @@ function Hero() {
     </VStack>
   );
 }
+
 const Landing = () => (
   <div className="Landing">
     <Container minW="100vw" minH="100vh">
       <LandingHeader />
       <Hero />
+      <PreSearch />
+      <Box h="2rem" />
       <SearchBar />
       <Box h="2rem" />
       <FeaturedVenues />

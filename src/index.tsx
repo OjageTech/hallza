@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { myNewTheme } from './assets/styles/theme';
 
 const root = ReactDOM.createRoot(
-	document.getElementById('root') as HTMLElement,
+  document.getElementById('root') as HTMLElement,
 );
 
 root.render(

@@ -19,10 +19,7 @@ import BarChart from '../../../Charts/BarChart';
 import LineChart from '../../../Charts/LineChart';
 import { QuickShowDetails } from '../QuickShowDetails';
 import { RecentTransactions } from '../RecentTransactions';
-import {
-  numberWithCommas,
-  percentChange,
-} from '../../../../app/functions';
+import { numberWithCommas, percentChange } from '../../../../app/functions';
 
 function Pic() {
   return (
@@ -90,10 +87,7 @@ function FirstHalf() {
   );
 }
 const CommissionsEarned = () => (
-  <QuickShowDetails
-    activityText="Commissions earned"
-    amount={1134075}
-  />
+  <QuickShowDetails activityText="Commissions earned" amount={1134075} />
 );
 const PayoutReleased = () => (
   <QuickShowDetails activityText="Payouts released" amount={700134} />
@@ -104,11 +98,7 @@ const PayoutPending = () => (
 
 function SecondHalf() {
   return (
-    <Flex
-      pt="1.5rem"
-      border="1px solid danger"
-      justifyContent="space-between"
-    >
+    <Flex pt="1.5rem" border="1px solid danger" justifyContent="space-between">
       <CommissionsEarned />
       <PayoutReleased />
       <PayoutPending />
@@ -116,17 +106,35 @@ function SecondHalf() {
   );
 }
 
+/**
+ * Checks if the type contains the text 'Payout' and responds accordingly
+ * @param type
+ * @param icon
+ * @param color
+ * @param pr
+ * @returns checker which is an object, can be accessed by using the dot notation
+ */
+/* eslint-disable no-param-reassign */
+function typeOfRequest(type: string, icon: any, color: string, pr: string) {
+  if (type.indexOf('Payout') !== -1) {
+    icon = payoutRequestIcon;
+    color = '#05EFF4';
+    pr = '1.2rem';
+  } else {
+    icon = commissionsRequestIcon;
+    color = '#E987EB';
+  }
+  const checker = { icon, color, pr };
+  return checker;
+}
+
 type TransactionProps = {
-	value: number[];
-	date: string;
-	type: string;
+  value: number[];
+  date: string;
+  type: string;
 };
 
-export const Transaction = ({
-  value,
-  date,
-  type,
-}: TransactionProps) => {
+export const Transaction = ({ value, date, type }: TransactionProps) => {
   const last2Values = value.slice(-2); // 👉️ ['d', 'e']
 
   const prevAmt = last2Values[0];
@@ -136,7 +144,7 @@ export const Transaction = ({
   // appropriate icon
   let color = '';
   let pr = '';
-  let icon: any;
+  let icon: any = '';
   icon = typeOfRequest(type, icon, color, pr).icon;
   pr = typeOfRequest(type, icon, color, pr).pr;
   color = typeOfRequest(type, icon, color, pr).color;
@@ -178,12 +186,7 @@ export const Transaction = ({
           fontWeight={500}
         >
           <Text fontSize="14px">Amount</Text>
-          <Box
-            textAlign="left"
-            fontWeight={600}
-            fontSize="12px"
-            color={color}
-          >
+          <Box textAlign="left" fontWeight={600} fontSize="12px" color={color}>
             N
             {numberWithCommas(currentAmt)}
           </Box>
@@ -199,11 +202,7 @@ export const Transaction = ({
             textAlign="left"
             fontWeight={600}
             fontSize="12px"
-            color={
-							percentChange(prevAmt, currentAmt) > 0
-							  ? 'green'
-							  : 'danger'
-						}
+            color={percentChange(prevAmt, currentAmt) > 0 ? 'green' : 'danger'}
           >
             {`${percentChange(prevAmt, currentAmt)}%`}
           </Box>
@@ -214,12 +213,7 @@ export const Transaction = ({
           lineHeight="18px"
           fontWeight={500}
         >
-          <LineChart
-            w={400}
-            h={300}
-            borderColor={color}
-            dataS={value}
-          />
+          <LineChart w={400} h={300} borderColor={color} dataS={value} />
         </VStack>
       </HStack>
     </Card>
@@ -241,29 +235,3 @@ const Portfolio = () => (
   </Box>
 );
 export default Portfolio;
-
-/**
- * Checks if the type contains the text 'Payout' and responds accordingly
- * @param type
- * @param icon
- * @param color
- * @param pr
- * @returns checker which is an object, can be accessed by using the dot notation
- */
-function typeOfRequest(
-  type: string,
-  icon: any,
-  color: string,
-  pr: string,
-) {
-  if (type.indexOf('Payout') !== -1) {
-    icon = payoutRequestIcon;
-    color = '#05EFF4';
-    pr = '1.2rem';
-  } else {
-    icon = commissionsRequestIcon;
-    color = '#E987EB';
-  }
-  const checker = { icon, color, pr };
-  return checker;
-}

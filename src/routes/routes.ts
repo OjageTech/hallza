@@ -54,7 +54,6 @@ const routes: IRoute[] = [
     exact: true,
     selected: false,
   },
-
 ];
 export const navRoutes: IRoute[] = [
   // @TODO Change the element to the correct one!

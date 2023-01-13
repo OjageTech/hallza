@@ -68,10 +68,10 @@ const ReferralLink = () => {
         className="animate__animated animate__flash animate__faster"
         onClick={handleMouseOver}
         _hover={{
-				  cursor: 'pointer',
-				  background:
-						'linear-gradient(220deg, #3C3C3B 1%, rgba(60, 60, 59, 0) 100%)',
-				  animation: '2s ease-in-out',
+          cursor: 'pointer',
+          background:
+            'linear-gradient(220deg, #3C3C3B 1%, rgba(60, 60, 59, 0) 100%)',
+          animation: '2s ease-in-out',
         }}
         alignItems="center"
         padding="1rem"

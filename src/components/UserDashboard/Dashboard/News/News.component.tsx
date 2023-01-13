@@ -1,10 +1,5 @@
 import {
-  Box,
-  Flex,
-  HStack,
-  Image,
-  Text,
-  VStack,
+  Box, Flex, HStack, Image, Text, VStack,
 } from '@chakra-ui/react';
 import couchPoster from '../../../../assets/images/couchPoster.png';
 import musicPoster from '../../../../assets/images/musicPoster.png';
@@ -25,6 +20,7 @@ const NewsItemsData = [
 ];
 
 function NewsHeader(props: any) {
+  const { day, type } = props;
   return (
     <VStack
       textTransform="capitalize"
@@ -33,32 +29,35 @@ function NewsHeader(props: any) {
       textAlign="left"
     >
       <Text fontSize="23px" fontWeight={500} lineHeight="44px">
-        {props.day}
+        {day}
         's
       </Text>
       <Text fontSize="32px" fontWeight={700}>
-        {props.type}
+        {type}
       </Text>
     </VStack>
   );
 }
 function NewsItem(props: any) {
+  const {
+    poster, headline, postDate, category,
+  } = props;
   return (
     <Flex
       _hover={{
-			  boxShadow: 'rgba(54, 69, 79, 0.35) 0px 5px 15px',
-			  cursor: 'pointer',
+        boxShadow: 'rgba(54, 69, 79, 0.35) 0px 5px 15px',
+        cursor: 'pointer',
       }}
       borderRadius="35px"
       alignItems="center"
       margin="2rem 2rem 0 0"
     >
-      <Image src={props.poster} alt="news_poster" pr="1rem" />
+      <Image src={poster} alt="news_poster" pr="1rem" />
       <VStack>
-        <Text fontSize="23px">{props.headline}</Text>
+        <Text fontSize="23px">{headline}</Text>
         <Flex justifyContent="left" fontSize="14px" color="#8c8c8c">
-          <Text pr="2rem">{props.category}</Text>
-          <Text>{props.postDate}</Text>
+          <Text pr="2rem">{category}</Text>
+          <Text>{postDate}</Text>
         </Flex>
       </VStack>
     </Flex>
@@ -72,20 +71,22 @@ const News = () => (
   >
     <NewsHeader day="today" type="Market Analysis" />
     <Box>
-      {NewsItemsData.map((item) => (
+      {NewsItemsData.map(({
+        poster, headline, category, postDate,
+      }) => (
         <NewsItem
-          poster={item.poster}
-          headline={item.headline}
-          category={item.category}
-          postDate={item.postDate}
+          poster={poster}
+          headline={headline}
+          category={category}
+          postDate={postDate}
         />
       ))}
     </Box>
     {/**
-		 * @TODO
-		 * Label the data that goes into this component
-		 * Day, Type, NewsItem, NewsCategory, PostDate
-		 */}
+     * @TODO
+     * Label the data that goes into this component
+     * Day, Type, NewsItem, NewsCategory, PostDate
+     */}
   </Box>
 );
 export default News;

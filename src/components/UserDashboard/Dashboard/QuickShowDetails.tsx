@@ -17,8 +17,8 @@ import moreIcon from '../../../assets/images/moreIcon.svg';
 import { CurrencyBadge } from './CurrencyBadge';
 
 type quickShowDetailsProps = {
-	activityText: string;
-	amount: number;
+  activityText: string;
+  amount: number;
 };
 export const QuickShowDetails = ({
   activityText,
@@ -39,7 +39,7 @@ export const QuickShowDetails = ({
           <Image
             src={moreIcon}
             _hover={{
-						  cursor: 'pointer',
+              cursor: 'pointer',
             }}
           />
         </PopoverTrigger>

@@ -12,6 +12,7 @@ const initialState: SearchState = {
 
 // Create a slice containing the configuration of the state
 // and the reducers functions
+/* eslint-disable no-param-reassign */
 const searchSlice = createSlice({
   name: 'search',
   initialState,

@@ -1,10 +1,11 @@
 import { Badge, Flex } from '@chakra-ui/react';
 
 type ItemBadgeProps = {
-	nomba?: number;
-	disp?: string;
-	bg?: string;
+  nomba?: number;
+  disp?: string;
+  bg?: string;
 };
+
 /**
  *
  * @param nomba, disp
@@ -33,4 +34,9 @@ function Badger({ nomba, disp, bg }: ItemBadgeProps) {
   );
 }
 
+Badger.defaultProps = {
+  nomba: 1,
+  disp: 'new',
+  bg: 'inherit',
+};
 export default Badger;

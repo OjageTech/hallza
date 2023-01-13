@@ -11,8 +11,8 @@ import { inDashboardRoutes } from '../../../routes/routes';
 
 const toggleItems = ['Portfolio', 'Activity', 'External', 'News'];
 type ToggleItemProps = {
-	to: USER_DASHBOARD_ROUTE | IN_DASHBOARD_ROUTE | ROUTE;
-	name: string;
+  to: USER_DASHBOARD_ROUTE | IN_DASHBOARD_ROUTE | ROUTE;
+  name: string;
 };
 function ToggleItem({ to, name }: ToggleItemProps) {
   return (
@@ -45,7 +45,7 @@ export function ToggleMenu() {
           <Box
             borderRadius="15px"
             onClick={() => setActive(name)}
-            bg={active == name ? 'gray.300' : ''}
+            bg={active === name ? 'gray.300' : ''}
           >
             <ToggleItem to={path} name={name} />
           </Box>

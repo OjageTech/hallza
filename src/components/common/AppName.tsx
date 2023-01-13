@@ -10,7 +10,7 @@ const AppNameVariants = {
   hidden: { opacity: 0, scale: 0 },
 };
 
-function AppName(props:any) {
+function AppName({ txtDecoration }: any) {
   const controls = useAnimation();
   const [ref, inView] = useInView();
   useEffect(() => {
@@ -26,7 +26,7 @@ function AppName(props:any) {
     >
       <Box
         className="animate__backInDown"
-        textDecoration={props.txtDecoration}
+        textDecoration={txtDecoration}
         textUnderlineOffset="1rem"
         textDecorationColor="#e5e7eb"
         sx={{

@@ -4,10 +4,10 @@ import type { RootState } from '../../app/store';
 
 // Define a type for the slice state
 interface payoutTransactionState {
-	value: number[];
-	type: string;
-	id: string;
-	date: string;
+  value: number[];
+  type: string;
+  id: string;
+  date: string;
 }
 
 // Define the initial state using that type
@@ -20,6 +20,7 @@ const initialState: payoutTransactionState = {
   date: '25/11/2022',
 };
 
+/* eslint-disable no-param-reassign */
 export const payoutTransactionSlice = createSlice({
   name: 'payoutTransaction',
   // `createSlice` will infer the state type from the `initialState` argument

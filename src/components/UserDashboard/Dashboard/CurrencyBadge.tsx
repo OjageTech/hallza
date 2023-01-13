@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react';
 
 type CurrencyBadge = {
-	currency: string;
+  currency: string;
 };
 export function CurrencyBadge({ currency }: CurrencyBadge) {
   return (

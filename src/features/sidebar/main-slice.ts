@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
+/* eslint-disable no-param-reassign */
 interface expandedState {
-	value: boolean;
-	activeItem: string
+  value: boolean;
+  activeItem: string;
 }
 
 // Define the initial state using that type

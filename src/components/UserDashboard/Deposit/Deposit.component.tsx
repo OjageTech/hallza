@@ -18,10 +18,10 @@ import { useAppSelector } from '../../../app/hooks';
 import Card from '../../common/Card';
 
 interface MyFormValues {
-	firstName: string;
+  firstName: string;
 }
 
-const Deposit: React.FC<{}> = () => {
+const Deposit: React.FC = () => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const formik = useFormik({
@@ -48,7 +48,6 @@ const Deposit: React.FC<{}> = () => {
         <Container ml={0} textAlign="left" pl="1.5rem">
           <Text as="h4">
             <strong>Balance:</strong>
-            {' '}
             N2,000,134
           </Text>
         </Container>
@@ -56,12 +55,10 @@ const Deposit: React.FC<{}> = () => {
         <Flex m="1.5rem">
           <Box bg="gainsboro" w="50%" p="1rem">
             <Text fontStyle="italic">
-              "
-              Pending: The request has been sent but is not yet
-              processed. Verified: The request has passed
-              verification. Processing: The request is being
-              processed. Once processed, the funds will be sent to
-              your account.
+              " Pending: The request has been sent but is not yet processed.
+              Verified: The request has passed verification. Processing: The
+              request is being processed. Once processed, the funds will be sent
+              to your account.
             </Text>
           </Box>
           <Box w="50%" p="1rem">
@@ -104,18 +101,10 @@ const Deposit: React.FC<{}> = () => {
                   <Text ml="1rem">0 Naira</Text>
                 </Flex>
                 <Flex gap="5px">
-                  <Button
-                    variant="primaryOutline"
-                    type="reset"
-                    mt="1rem"
-                  >
+                  <Button variant="primaryOutline" type="reset" mt="1rem">
                     Clear
                   </Button>
-                  <Button
-                    variant="primaryOutline"
-                    type="submit"
-                    mt="1rem"
-                  >
+                  <Button variant="primaryOutline" type="submit" mt="1rem">
                     Deposit
                   </Button>
                 </Flex>
@@ -125,9 +114,7 @@ const Deposit: React.FC<{}> = () => {
         </Flex>
         {/* Create a small warning  text */}
         <Text fontSize="13px" color="danger" ml="1.5rem">
-          "
-          Please note that you can only Deposit to the payment
-          method.
+          " Please note that you can only Deposit to the payment method.
         </Text>
       </Card>
 

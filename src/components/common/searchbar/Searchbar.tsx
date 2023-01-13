@@ -1,11 +1,20 @@
 // import the required modules
 import React, { useState } from 'react';
 import {
-  Center, Button,InputLeftElement,InputGroup, Container, FormControl, FormLabel, Input, Grid, GridItem,
+  Center,
+  Button,
+  InputLeftElement,
+  InputGroup,
+  Container,
+  FormControl,
+  FormLabel,
+  Input,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 import { FaLocationArrow } from 'react-icons/fa';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import {SearchIcon} from '@chakra-ui/icons'
+import { SearchIcon } from '@chakra-ui/icons';
 // import { supabase } from '../../../supabaseClient';
 
 // define the SearchBar component
@@ -41,39 +50,43 @@ const SearchBar: React.FC = () => {
   return (
     <Center>
       <Container>
-        <Grid  width="100%" templateColumns="repeat(13, 1fr)" gap={2}>
+        <Grid
+          templateRows="repeat(2, 1fr)"
+          templateColumns="repeat(13, 1fr)"
+          gap={2}
+        >
           <GridItem colSpan={6}>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents='none'
-                children={<SearchIcon color='gray.300' />}
-              />
+              <InputLeftElement pointerEvents="none">
+                <SearchIcon color="gray.300" />
+              </InputLeftElement>
+
               <Input variant="filled" placeholder="Search" />
             </InputGroup>
           </GridItem>
-          <GridItem variant="filled" colSpan={4}>
+          <GridItem colSpan={4}>
             <InputGroup>
-              <InputLeftElement
-                pointerEvents='none'
-                children={<FaLocationArrow color='gray' />}
-              />
-                <Input placeholder="location" />
+              <InputLeftElement pointerEvents="none">
+                <FaLocationArrow color="gray" />
+              </InputLeftElement>
+              <Input placeholder="location" />
             </InputGroup>
           </GridItem>
-          <GridItem variant="filled" colSpan={4}>
+          <GridItem colSpan={4}>
             <InputGroup>
-          <InputLeftElement
-                pointerEvents='none'
-                children={<BsFillPeopleFill color='gray' />}
-              />
-                <Input placeholder="Capacity" />
+              <InputLeftElement pointerEvents="none">
+                <BsFillPeopleFill color="gray" />
+              </InputLeftElement>
+              <Input placeholder="Capacity" />
             </InputGroup>
-                </GridItem>
-            
-          <GridItem variant="filled" colSpan={4}><Input placeholder="Date" /></GridItem>
-        
-         <GridItem variant="filled" colSpan={4}>
-           <Button variant="secondary"> Search </Button>
+          </GridItem>
+
+          <GridItem colSpan={4}>
+            <Input placeholder="Date" />
+          </GridItem>
+
+          <GridItem colSpan={4}>
+            <Button variant="secondary"> Search </Button>
           </GridItem>
         </Grid>
       </Container>

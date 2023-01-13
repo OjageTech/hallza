@@ -52,11 +52,11 @@ const RReferrals = [
 ];
 
 type ReferralProps = {
-	name: string;
-	deposit: string;
-	gen: number;
-	when: string;
-	img: any;
+  name: string;
+  deposit: string;
+  gen: number;
+  when: string;
+  img: any;
 };
 
 /**
@@ -67,18 +67,10 @@ type ReferralProps = {
  * in a Flexbox layout
  */
 const Referral = ({
-  img,
-  name,
-  gen,
-  deposit,
-  when,
+  img, name, gen, deposit, when,
 }: ReferralProps) => (
   <Flex padding="5px" justifyContent="left" alignItems="left">
-    <HStack
-      w="280px"
-      justifyContent="space-between"
-      alignItems="left"
-    >
+    <HStack w="280px" justifyContent="space-between" alignItems="left">
       <Image src={img} alt={`${name}_user`} />
       <Flex width="20rem" alignItems="flex-end">
         <VStack width="55%" alignItems="left">
@@ -113,12 +105,7 @@ const Referral = ({
           >
             {`N${deposit}`}
           </Text>
-          <Text
-            textAlign="right"
-            fontWeight={300}
-            fontSize="12px"
-            order={1}
-          >
+          <Text textAlign="right" fontWeight={300} fontSize="12px" order={1}>
             {when}
           </Text>
         </VStack>
@@ -130,7 +117,7 @@ const Referrals = () => (
   <Box textAlign="center" marginBottom="2rem">
     <VStack alignItems="left" marginBottom="2rem">
       {RReferrals.map(
-			  ({
+        ({
           id, img, name, gen, deposit, when,
         }): ReactNode => (
           <Referral
@@ -141,7 +128,7 @@ const Referrals = () => (
             deposit={numberWithCommas(deposit)}
             when={when}
           />
-			  ),
+        ),
       )}
     </VStack>
     <Button
@@ -172,10 +159,10 @@ const Shortcuts = () => (
       borderRadius="12.42px"
       bgGradient="linear-gradient(273.78deg, #FFFFFF 8.84%, #B8479F 47.63%, #F495FB 102.85%)"
       _hover={{
-			  animation: 'ease-in-out .5s',
-			  cursor: 'pointer',
-			  background:
-					'linear-gradient(-270deg, #FFFFFF 8%, #B8479F 47.63%, #F495FB 102.85%)',
+        animation: 'ease-in-out .5s',
+        cursor: 'pointer',
+        background:
+          'linear-gradient(-270deg, #FFFFFF 8%, #B8479F 47.63%, #F495FB 102.85%)',
       }}
     >
       <VStack

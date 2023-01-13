@@ -48,7 +48,7 @@ function Payout() {
   //                 }
 
   return (
-  // THIS IS THE MAIN DIV THAT CONTAINS ALL THE OTHER DIV OF THE APPLICATION
+  //  THIS IS THE MAIN DIV THAT CONTAINS ALL THE OTHER DIV OF THE APPLICATION
 
     <Box marginTop="5.2rem" marginLeft="14rem" w="100vw" h="70">
       {/*
@@ -59,7 +59,7 @@ function Payout() {
       */}
       <Flex h="20vh" justifyContent="space-evenly">
         <Box
-					// border="1px solid highlight"
+          // border="1px solid highlight"
           w="10vw"
           h="20vh"
           borderRadius="15"
@@ -83,7 +83,7 @@ function Payout() {
         </Box>
 
         <Box
-					// border="1px solid highlight"
+          // border="1px solid highlight"
           w="10vw"
           h="20vh"
           borderRadius="15"
@@ -107,7 +107,7 @@ function Payout() {
         </Box>
 
         <Box
-					// border="1px solid highlight"
+          // border="1px solid highlight"
           w="10vw"
           h="20vh"
           borderRadius="15"
@@ -174,7 +174,7 @@ function Payout() {
           <HStack flex="1">
             <Select
               w="8rem"
-							// placeholder={selectedPage}
+              // placeholder={selectedPage}
               onChange={() => setSelectedPage(selectedPage)}
               value={selectedPage}
             >
@@ -200,9 +200,7 @@ function Payout() {
         {/* THIS IS A COMPONENT  */}
         <Box height="67vh" mt="4px" mb="15px" overflowY="scroll">
           {selectedPage === 'Paid' && <Paid />}
-          {selectedPage === 'Pending' && (
-          <Pending number={numberofrows} />
-          )}
+          {selectedPage === 'Pending' && <Pending number={numberofrows} />}
           {selectedPage === 'Approved' && <Approved />}
           {selectedPage === 'Rejected' && <Rejected />}
 

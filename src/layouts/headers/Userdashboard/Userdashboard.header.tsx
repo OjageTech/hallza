@@ -41,9 +41,7 @@ const DashboardHeader = () => {
   const expanded: boolean = useAppSelector(
     (state: { mainSidebar: { value: boolean } }) => state.mainSidebar.value,
   );
-  const active = useAppSelector(
-    (state: any) => state.mainSidebar.activeItem,
-  );
+  const active = useAppSelector((state: any) => state.mainSidebar.activeItem);
 
   const isSupport = active === 'Support';
   let w: string;
@@ -74,18 +72,8 @@ const DashboardHeader = () => {
       overflow="hidden"
     >
       <Flex alignItems="center" justifyContent="space-between">
-        <HStack
-          pl="1rem"
-          width="auto"
-          alignItems="center"
-          spacing="13rem"
-        >
+        <HStack pl="1rem" width="auto" alignItems="center" spacing="13rem">
           <WelcomeText text={`${greeting()}, Nneka`} />
-          <span>
-            {active}
-            {'<-'}
-            {' '}
-          </span>
         </HStack>
         <Flex
           alignItems="center"
@@ -93,23 +81,9 @@ const DashboardHeader = () => {
           justifyContent="space-between"
           width="25vw"
         >
-          {/* <Searchbar
-						groupHeight="58px"
-						paddingLeftInputLeft="5"
-						heightInputLeft="50px"
-            pl='4rem'
-            inputHeight='50px'
-            fontSize='16px'
-            variant='flushed'
-            inputWidth='320px'
-            borderRadius='10px'
-            placeholder='Search'
-            bg='primary'
-					/> */}
-
           <Image
             _hover={{
-						  cursor: 'pointer',
+              cursor: 'pointer',
             }}
             width="24px"
             height="24px"
