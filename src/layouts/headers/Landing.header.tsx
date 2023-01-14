@@ -96,27 +96,9 @@ const LandingHeader: React.FC = () => {
       top="0"
       zIndex="overlay"
     >
-      <GridItem rowSpan={3} colSpan={1}>
-        <Text
-          className="animate__animated animate__backInDown"
-          pl="3rem"
-          display={scrollPosition > 190 ? 'inline-block' : 'none'}
-          as="h1"
-          fontSize={{
-            base: '.5rem',
-            md: '1rem',
-            lg: '1rem',
-            xl: '1.5rem',
-          }}
-          lineHeight={0}
-          fontWeight={900}
-        >
-          <AppName txtDecoration="none" />
-        </Text>
-      </GridItem>
+      {/* <GridItem rowSpan={3} colSpan={1} /> */}
       <GridItem colStart={6} colSpan={3}>
         <Flex
-          pl="1rem"
           pr="1rem"
           mr="1.5rem"
           boxSizing="border-box"
@@ -125,6 +107,23 @@ const LandingHeader: React.FC = () => {
           alignItems="center"
           flexWrap="wrap"
         >
+          <Text
+            className="animate__animated animate__backInDown"
+            pr="3rem"
+            mr="34.4rem"
+            display={scrollPosition > 190 ? 'inline-block' : 'none'}
+            as="h1"
+            fontSize={{
+              base: '.5rem',
+              md: '1rem',
+              lg: '1rem',
+              xl: '1.5rem',
+            }}
+            lineHeight={0}
+            fontWeight={900}
+          >
+            <AppName txtDecoration="none" />
+          </Text>
           {navRoutes.map((item) => (
             <Box
               _hover={{
