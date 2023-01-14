@@ -15,7 +15,7 @@ export const ButtonStyles = {
         boxShadow: 'md',
       },
     }),
-    primaryOutline: (props: any) => ({
+    primaryOutline: () => ({
       bg: 'transparent',
       border: '1px solid',
       color: 'primary',
@@ -33,7 +33,7 @@ export const ButtonStyles = {
         boxShadow: 'md',
       },
     }),
-    tertiary: (props: any) => ({
+    tertiary: () => ({
       bg: 'transparent',
       border: '1px solid #FFFFFF',
       color: '#FFFFFF',

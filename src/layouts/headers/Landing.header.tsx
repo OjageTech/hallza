@@ -94,6 +94,7 @@ const LandingHeader: React.FC = () => {
       as="header"
       position="fixed"
       top="0"
+      zIndex="overlay"
     >
       <GridItem rowSpan={3} colSpan={1}>
         <Text

@@ -1,155 +1,207 @@
+import { useState } from 'react';
 import {
-  Text, Flex, VStack, Grid, GridItem,
+  Text, Flex, Select, Grid, GridItem, Image, Container,
 } from '@chakra-ui/react';
+import { MdArrowDropDown } from 'react-icons/md';
 import Badger from '../layouts/sidebars/UserDashboard/Badger';
 import Box from './common/Box';
 import Card from './common/Card';
 
-
-
-const FeatureData = [
+const FeaturedVenueData = [
   {
-    title: 'Venue Specific',
-    subtitle: 'Your dashboard is very customisable ',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'danger',
+    renterLogo:
+      'https://images.unsplash.com/photo-1551150441-3f3828204ef0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+    capacity: 500,
+    price: '1.4 milion',
+    rating: 3,
+    name: 'Villa De Papos',
+    renterName: 'Mountain Hotel',
+    previewImage:
+      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   },
   {
-    title: 'TanStack Query',
-    subtitle: 'Powerful asynchronous state management tool',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'green',
+    renterLogo:
+      'https://images.unsplash.com/photo-1545231027-637d2f6210f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bG9nb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+    capacity: 900,
+    price: '1.4 milion',
+    rating: 3,
+    name: 'Nalova Lyonga Amphitheatre',
+    renterName: 'University of Buea',
+    previewImage:
+      'https://images.unsplash.com/photo-1526045004414-3e7ed02f9ca1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGV2ZW50JTIwaGFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
   },
   {
-    title: 'TanStack Query',
-    subtitle: 'Powerful asynchronous state management tool',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'secondary',
+    renterLogo:
+      'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bG9nb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+    capacity: 900,
+    price: '1.4 milion',
+    rating: 5,
+    name: 'HoneyCamp Plaza',
+    renterName: 'Chariot Hotel',
+    previewImage:
+      'https://images.unsplash.com/photo-1591899916510-d8eea9eb7b25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGhhbGx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
   },
   {
-    title: 'TanStack Query',
-    subtitle: 'Powerful asynchronous state management tool',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'orange',
+    renterLogo:
+      'https://images.unsplash.com/photo-1557053964-937650b63311?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+    capacity: 900,
+    price: '1.4 milion',
+    rating: 4,
+    name: 'Upper Level',
+    renterName: 'Burj Khalifa',
+    previewImage:
+      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2x1YiUyMGV2ZW50JTIwaGFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
   },
   {
-    title: 'TanStack Query',
-    subtitle: 'Powerful asynchronous state management tool',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'blue',
+    renterLogo:
+      'https://images.unsplash.com/photo-1601158935942-52255782d322?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+    capacity: 900,
+    price: '1.4 milion',
+    rating: 1,
+    name: 'Auditorium B',
+    renterName: 'Catholic Church',
+    previewImage:
+      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   },
   {
-    title: 'TanStack Query',
-    subtitle: 'Powerful asynchronous state management tool',
-    content:
-      'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
-    newBadge: true,
-    color: 'violet',
+    renterLogo:
+      'https://images.unsplash.com/photo-1516876437184-593fda40c7ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
+    capacity: 900,
+    price: '1.4 milion',
+    rating: 3.5,
+    name: 'Ejagham Club House I',
+    renterName: 'Ejagham Club House',
+    previewImage:
+      'https://images.unsplash.com/photo-1620735692151-26a7e0748429?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
   },
 ];
 
-type FeatureProps = {
-  title: string;
-  subtitle: string;
-  content: string;
-  newBadge: boolean;
-  color: string;
+type FeaturedVenueProps = {
+  name: string;
+  renterName: string;
+  previewImage: string;
+  renterLogo: string;
+  capacity: number;
+  price: string;
+  rating: number;
 };
 
-const Feature = ({
-  title,
-  subtitle,
-  content,
-  newBadge,
-  color,
-}: FeatureProps) => (
-  <GridItem>
-    <Card w="fit-content" h="fit-content">
-      <Flex justifyContent="space-between" alignItems="center" gap=".5rem">
-        <Text
-          color={color}
-          lineHeight={{
-            base: '1rem',
-            md: '1.5rem',
-            lg: '1.6rem',
-            xl: '2rem',
+const FeaturedVenue = ({
+  renterLogo,
+  previewImage,
+  capacity,
+  price,
+  renterName,
+  rating,
+  name,
+}: FeaturedVenueProps) => {
+  const [cardHovered, setCardHovered] = useState(false);
+  return (
+    <GridItem>
+      <Card
+        _hover={{
+          cursor: 'pointer',
+        }}
+        onMouseEnter={() => setCardHovered(!cardHovered)}
+        onMouseLeave={() => setCardHovered(!cardHovered)}
+        pos="relative"
+        p={0}
+        backgroundRepeat="no-repeat"
+        bgSize="cover"
+        bgImage={previewImage}
+        w={{
+          base: '9rem',
+          sm: '12rem',
+          md: '15rem',
+          lg: '17rem',
+          xl: '20vw',
+        }}
+        h={{
+          base: '27vh',
+          sm: '31vh',
+          md: '34vh',
+          lg: '37vh',
+          xl: '40vh',
+        }}
+      >
+        <Container w="fit-content" bg="ActiveBorder" p={0} pos="absolute" left="1.5pc" border="1px solid" borderRadius="sm" display={cardHovered ? 'block' : 'none'}><Badger disp="Buea" /></Container>
+        <Container display={cardHovered ? 'block' : 'none'} borderRadius="xl" position="absolute" bottom={0} h="40vh" overflow="hidden" backgroundPosition="center" backgroundSize="cover" bgImage="linear-gradient(180deg, transparent 62%, rgba(0,0,0,0.00345888) 63.94%, rgba(0,0,0,0.014204) 65.89%, rgba(0,0,0,0.0326639) 67.83%, rgba(0,0,0,0.0589645) 69.78%, rgba(0,0,0,0.0927099) 71.72%, rgba(0,0,0,0.132754) 73.67%, rgba(0,0,0,0.177076) 75.61%, rgba(0,0,0,0.222924) 77.56%, rgba(0,0,0,0.267246) 79.5%, rgba(0,0,0,0.30729) 81.44%, rgba(0,0,0,0.341035) 83.39%, rgba(0,0,0,0.367336) 85.33%, rgba(0,0,0,0.385796) 87.28%, rgba(0,0,0,0.396541) 89.22%, rgba(0,0,0,0.4) 91.17%)" />
+        <Container display={cardHovered ? 'block' : 'none'} pos="static" zIndex="overlay" alignSelf="flex-end" p={0} mt="auto">
+          <Flex p={0} justifyContent="space-between" alignItems="end" color="#F9FAFB" gap="6.5rem">
+            <Text
+              alignSelf="flex-end"
+              fontWeight={700}
+              fontSize={{
+                base: '.45rem',
+                sm: '.7rem',
+                md: '.8rem',
+                lg: '.9rem',
+                xl: '1rem',
+              }}
+            >
+              {name}
+            </Text>
+            <Text
+              alignSelf="flex-end"
+              fontWeight={500}
+              fontSize={{
+                base: '.45rem',
+                sm: '.7rem',
+                md: '.8rem',
+                lg: '.9rem',
+                xl: '1rem',
+              }}
+            >
+              {rating}
+            </Text>
+          </Flex>
+        </Container>
+      </Card>
+      <Flex mt="2.5" alignItems="center">
+        <Image
+          src={renterLogo}
+          borderRadius="50%"
+          alt={name}
+          h={{
+            base: '.7vh',
+            sm: '1vh',
+            md: '2vh',
+            lg: '3vh',
+            xl: '4vh',
           }}
-          fontWeight={800}
+          w={{
+            base: '.7vh',
+            sm: '1vh',
+            md: '2vh',
+            lg: '3vh',
+            xl: '4vh',
+          }}
+        />
+        <Text
+          ml={2.5}
+          fontWeight={500}
           fontSize={{
-            base: '.55rem',
-            sm: '.8rem',
-            md: '1rem',
-            lg: '1.1rem',
-            xl: '1.2rem',
+            base: '.45rem',
+            sm: '.7rem',
+            md: '.8rem',
+            lg: '.9rem',
+            xl: '1rem',
           }}
         >
-          {title}
+          {renterName}
         </Text>
-        <Box display={newBadge ? 'true' : 'false'}>
-          {' '}
-          <Badger bg={color} disp="New" />
-          {' '}
-        </Box>
       </Flex>
-      <Text
-        color={color}
-        mt=".5rem"
-        fontStyle="italic"
-        fontWeight={300}
-        lineHeight="1.75rem"
-        fontSize={{
-          base: '.6rem',
-          md: '.7rem',
-          lg: '.8rem',
-          xl: '1rem',
-        }}
-      >
-        {subtitle}
-      </Text>
-      <Text
-        mt=".5rem"
-        fontSize={{
-          base: '.5rem',
-          md: '.7rem',
-          lg: '.8rem',
-          xl: '1rem',
-        }}
-      >
-        {content}
-      </Text>
-    </Card>
-  </GridItem>
-);
-const ProminentFeatures = () => (
+    </GridItem>
+  );
+};
+const FeaturedVenues = () => (
   <Box margin="0 auto" w="70vw">
-    <Text
-      as="h3"
-      fontSize={{
-        base: '.7rem',
-        md: '.95rem',
-        lg: '1rem',
-        xl: '2.4rem',
-      }}
-      fontWeight={300}
-      lineHeight={{
-        base: '1rem',
-        md: '1.5rem',
-        lg: '2rem',
-        xl: '3.1rem',
-      }}
-    >
-      Most Prominent Features
-    </Text>
+    <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
+      <option value="Popular">Popular</option>
+      <option value="Luxurious">Luxurious</option>
+      <option value="New & Noteworthy">New & Noteworthy3</option>
+    </Select>
+    <Box h="2rem" />
     <Grid
       mt="1rem"
       templateColumns={{
@@ -164,19 +216,21 @@ const ProminentFeatures = () => (
         xl: '2.3rem',
       }}
     >
-      {FeatureData.map(({
-        title, subtitle, content, newBadge, color,
+      {FeaturedVenueData.map(({
+        renterLogo, capacity, price, rating, name, previewImage, renterName,
       }) => (
-        <Feature
-          title={title}
-          subtitle={subtitle}
-          content={content}
-          newBadge={newBadge}
-          color={color}
+        <FeaturedVenue
+          renterLogo={renterLogo}
+          capacity={capacity}
+          price={price}
+          rating={rating}
+          name={name}
+          previewImage={previewImage}
+          renterName={renterName}
         />
       ))}
     </Grid>
   </Box>
 );
 
-export default ProminentFeatures;
+export default FeaturedVenues;

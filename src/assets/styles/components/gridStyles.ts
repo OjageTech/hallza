@@ -9,7 +9,7 @@ export const Grid = defineStyleConfig({
   }),
   // Two variants: rounded and nav
   variants: {
-    base: (props: any) => ({
+    base: () => ({
 
     }),
 
@@ -19,7 +19,7 @@ export const Grid = defineStyleConfig({
       boxShadow: 'xl',
       bg: mode(darken('#F9FAFB', 0), whiten('black', 0))(props),
     }),
-    activeItem: (props: any) => ({
+    activeItem: () => ({
       color: '#F9FAFB',
       boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
       backdropFilter: 'blur(5px)',

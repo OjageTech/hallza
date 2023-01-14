@@ -64,7 +64,7 @@ const SidebarItemContent = ({
       <Text fontWeight={500} fontSize="16px">
         {text}
       </Text>
-      <Badger nomba={badgeContent} disp={badgeVisibility} />
+      <Badger nomba={badgeContent.toString()} disp={badgeVisibility} />
     </HStack>
   );
 };

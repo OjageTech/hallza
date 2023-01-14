@@ -21,22 +21,22 @@ const black = '#000000';
 
 const lightDark = '#121318';
 
-const white = '#ffffff';
+// const white = '#ffffff';
 const whitish = '#F9FAFB';
 const platinum = '#e66868';
 const silver = '#bfbfbf';
-const manatee = '#96939b';
-const dodgerBlue = '#1e90ff';
+// const manatee = '#96939b';
+// const dodgerBlue = '#1e90ff';
 const mangoTango = '#fc814a';
 const myTeal = '#14b8a6';
 const myPurple = '#8b5cf6';
 const venetianRed = '#C90612ff';
 const background = { _light: whitish, _dark: black };
 
-const config: ThemeConfig = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
-};
+// const config: ThemeConfig = {
+//   initialColorMode: 'light',
+//   useSystemColorMode: false,
+// };
 
 export const myNewTheme = extendTheme({
   styles: {
