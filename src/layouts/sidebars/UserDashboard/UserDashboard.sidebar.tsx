@@ -77,7 +77,7 @@ type SidebarItemProps = {
 };
 
 const SideBarItem = ({
-  to, name, Icon,
+  to, name, Icon, selected,
 }: SidebarItemProps) => {
   const [badgeVisibility, setBadgeVisibility] = useState('none');
   const [badgeContent, setBadgeContent] = useState(0);
