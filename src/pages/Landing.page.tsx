@@ -1,9 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { FaSun } from 'react-icons/fa';
-import { RiMoonLine } from 'react-icons/ri';
 import {
   Button,
   VStack,
@@ -20,12 +16,7 @@ import { ROUTE } from '../routes';
 import FeaturedVenues from '../components/FeaturedVenues';
 import SearchBar from '../components/common/searchbar/Searchbar';
 import PreSearch from '../components/common/searchbar/PreSearch';
-// type NavLinkProps = { text: string };
-// const NavLink = ({ text }: NavLinkProps) => (
-//   <Link>
-//     <Text>{text}</Text>
-//   </Link>
-// );
+
 type UnderlineDecorType = {
 text: string;
 color: string;

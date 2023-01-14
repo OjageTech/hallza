@@ -22,23 +22,23 @@ export const Card = defineStyleConfig({
   }),
   // Four variants: huge, flat, medium and tall
   variants: {
-    huge: (props: any) => ({
+    huge: () => ({
       height: '443px',
       width: '744px',
     }),
-    flat: (props: any) => ({
+    flat: () => ({
       height: '81px',
       width: '738px',
       padding: '0',
     }),
-    medium: (props: any) => ({
+    medium: () => ({
       width: '331px',
       height: '123px',
       paddingLeft: '12px',
       paddingTop: '12px',
       alignItems: 'left',
     }),
-    tall: (props: any) => ({
+    tall: () => ({
       height: '561px',
       width: '358px',
     }),

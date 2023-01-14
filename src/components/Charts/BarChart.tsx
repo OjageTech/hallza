@@ -33,7 +33,7 @@ const BarChart: React.FC<Record<string, unknown>> | any = ({
     'June',
     'July',
   ];
-  const [data, setData] = useState({
+  const [data] = useState({
     labels,
     datasets: [
       {
