@@ -4,6 +4,7 @@ import {
 } from '@chakra-ui/react';
 import { MdArrowDropDown } from 'react-icons/md';
 import Badger from '../layouts/sidebars/UserDashboard/Badger';
+import Rating from './common/rating/Rating.component';
 import Box from './common/Box';
 import Card from './common/Card';
 
@@ -141,19 +142,7 @@ const FeaturedVenue = ({
             >
               {name}
             </Text>
-            <Text
-              alignSelf="flex-end"
-              fontWeight={500}
-              fontSize={{
-                base: '.45rem',
-                sm: '.7rem',
-                md: '.8rem',
-                lg: '.9rem',
-                xl: '1rem',
-              }}
-            >
-              {rating}
-            </Text>
+            <Rating rating={rating} />
           </Flex>
         </Container>
       </Card>

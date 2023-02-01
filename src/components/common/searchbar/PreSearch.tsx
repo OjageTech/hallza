@@ -5,10 +5,12 @@ import {
 
 const PreSearch = () => (
   <Center>
-    <Box w="50vw">
-      <Text fontSize="1.5em" as="h3" textAlign="center">
-        Search hundreds of halls and bookable function rooms for your events
-        based on your capacity, location and time needs
+    <Box w="60vw" fontWeight={200} textAlign="center">
+      <Text role="heading" fontSize="30px" as="h3">
+        Search the specific venue/hall you need for you event
+      </Text>
+      <Text margin="0 auto" fontSize="20px" w="40vw" as="h4">
+        You can customize search based on location, capacity, price range of the hall
       </Text>
     </Box>
   </Center>

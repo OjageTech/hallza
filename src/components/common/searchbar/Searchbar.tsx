@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
   Center,
   Button,
-  InputLeftElement,
+  InputRightElement,
   InputGroup,
   Container,
   FormControl,
@@ -49,47 +49,19 @@ const SearchBar: React.FC = () => {
   // render the search bar form
   return (
     <Center>
-      <Container>
-        <Grid
-          templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(13, 1fr)"
-          gap={2}
+      <InputGroup w="604px">
+        <InputRightElement
+          bgGradient="linear-gradient(to bottom, #14B8A6, #8B5CF6 80%) 1"
+          h="58px"
+          w="43px"
+          borderRightRadius="5px"
+          pointerEvents="none"
         >
-          <GridItem colSpan={6}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="gray.300" />
-              </InputLeftElement>
+          <SearchIcon w="20px" h="20px" color="white" />
+        </InputRightElement>
 
-              <Input variant="filled" placeholder="Search" />
-            </InputGroup>
-          </GridItem>
-          <GridItem colSpan={4}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <FaLocationArrow color="gray" />
-              </InputLeftElement>
-              <Input placeholder="location" />
-            </InputGroup>
-          </GridItem>
-          <GridItem colSpan={4}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <BsFillPeopleFill color="gray" />
-              </InputLeftElement>
-              <Input placeholder="Capacity" />
-            </InputGroup>
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Input placeholder="Date" />
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Button variant="secondary"> Search </Button>
-          </GridItem>
-        </Grid>
-      </Container>
+        <Input h="58px" variant="filled" placeholder="Type and Hit Enter" />
+      </InputGroup>
     </Center>
   );
 };

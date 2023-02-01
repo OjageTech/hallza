@@ -78,11 +78,11 @@ const LandingHeader: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  console.log(scrollPosition);
   const AppNameVariants = {
     visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
     hidden: { opacity: 0, scale: 0 },
   };
+
   return (
     <HeaderGrid
       w="100vw"
@@ -96,35 +96,51 @@ const LandingHeader: React.FC = () => {
       top="0"
       zIndex="overlay"
     >
-      <GridItem rowSpan={3} colSpan={1}>
-        <Text
-          className="animate__animated animate__backInDown"
-          pl="3rem"
-          display={scrollPosition > 190 ? 'inline-block' : 'none'}
-          as="h1"
-          fontSize={{
-            base: '.5rem',
-            md: '1rem',
-            lg: '1rem',
-            xl: '1.5rem',
-          }}
-          lineHeight={0}
-          fontWeight={900}
-        >
-          <AppName txtDecoration="none" />
-        </Text>
-      </GridItem>
+      {/* <GridItem rowSpan={3} colSpan={1} /> */}
       <GridItem colStart={6} colSpan={3}>
         <Flex
-          pl="1rem"
           pr="1rem"
           mr="1.5rem"
           boxSizing="border-box"
           gap="1.5rem"
           justifyContent="flex-end"
+          justify="space-between"
           alignItems="center"
           flexWrap="wrap"
         >
+          <Text
+            className="animate__animated animate__backInDown"
+            pr="3rem"
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '3fr',
+              gridTemplateRows: 'auto',
+              gridGap: '30px',
+              margin: '0 auto',
+              maxWidth: '960px',
+              '@media screen and (max-width: 700px)': {
+                gridTemplateColumns: '1fr 5fr',
+                columnSpan: '4',
+                gridTemplateRows: 'auto',
+              },
+              '@media screen and (min-width: 700px)': {
+                gridTemplateColumns: '1fr 8fr',
+                columnSpan: '4',
+                gridTemplateRows: 'auto',
+              },
+            }}
+            as="h1"
+            fontSize={{
+              base: '.5rem',
+              md: '1rem',
+              lg: '1rem',
+              xl: '1.5rem',
+            }}
+            lineHeight={0}
+            fontWeight={900}
+          >
+            <AppName txtDecoration="none" />
+          </Text>
           {navRoutes.map((item) => (
             <Box
               _hover={{
