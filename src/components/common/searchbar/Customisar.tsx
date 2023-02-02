@@ -13,17 +13,20 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { BiDownArrow } from 'react-icons/bi';
+import { FaLocationArrow, FaMoneyBill } from 'react-icons/fa';
+import { BsFillPeopleFill } from 'react-icons/bs';
+import { IconType } from 'react-icons/lib';
 
 interface SelectProps {
   options: string[];
-  //   onOptionsSelected: (selectedValue: string) => void;
+  Icon: React.ReactElement<any, string | React.JSXElementConstructor<any>> | undefined;
   selectedValue: string;
   setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CustomSelect: React.FC<SelectProps> = ({
   options,
-  //   onOptionsSelected,
+  Icon,
   selectedValue,
   setSelectedValue,
 }: SelectProps) => (
@@ -33,7 +36,7 @@ const CustomSelect: React.FC<SelectProps> = ({
     w="312px"
     boxShadow="rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;"
     variant="outline"
-    icon={<BiDownArrow />}
+    icon={Icon}
     value={selectedValue}
     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedValue(e.target.value);
@@ -72,7 +75,7 @@ const Customisar = ({ onOptionsSelected }: CustomisarProps) => {
         <GridItem colSpan={2}>
           <CustomSelect
             options={options.location}
-            // onOptionsSelected={onOptionsSelected}
+            Icon={<FaLocationArrow />}
             selectedValue={selectedLocation}
             setSelectedValue={setselectedLocation}
           />
@@ -80,7 +83,7 @@ const Customisar = ({ onOptionsSelected }: CustomisarProps) => {
         <GridItem colSpan={2}>
           <CustomSelect
             options={options.capacity}
-            // onOptionsSelected={onOptionsSelected}
+            Icon={<BsFillPeopleFill />}
             selectedValue={selectedCapacity}
             setSelectedValue={setselectedCapacity}
           />
@@ -88,7 +91,7 @@ const Customisar = ({ onOptionsSelected }: CustomisarProps) => {
         <GridItem colSpan={2}>
           <CustomSelect
             options={options.price}
-            // onOptionsSelected={onOptionsSelected}
+            Icon={<FaMoneyBill />}
             selectedValue={selectedPrice}
             setSelectedValue={setselectedPrice}
           />

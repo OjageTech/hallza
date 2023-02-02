@@ -1,5 +1,6 @@
 // import the required modules
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Center,
   Button,
@@ -12,41 +13,19 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
-import { FaLocationArrow } from 'react-icons/fa';
-import { BsFillPeopleFill } from 'react-icons/bs';
+
 import { SearchIcon } from '@chakra-ui/icons';
-// import { supabase } from '../../../supabaseClient';
 
 // define the SearchBar component
 const SearchBar: React.FC = () => {
-  // create state variables for the location, capacity, and availability inputs
-  const [location, setLocation] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [availability, setAvailability] = useState(false);
-
-  // // define the handleSubmit function to be called when the form is submitted
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault(); // prevent the form from reloading the page
-
-  //   // use the Supabase client to search for event halls in the database
-  //   const query = supabase.from('halls')
-  //     .select('*');
-  //   if (location) {
-  //     query.where({ location });
-  //   }
-  //   if (capacity) {
-  //     query.where({ capacity });
-  //   }
-  //   if (availability) {
-  //     query.where({ availability });
-  //   }
-  //   const { data } = await query.commit();
-
-  //   // update the page with the search results
-  //   updatePageWithResults(data);
-  // };
-
-  // render the search bar form
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 13) {
+      // Trigger the search function here
+      navigate(`/search/${searchTerm}`);
+    }
+  };
   return (
     <Center>
       <InputGroup w="604px">
@@ -60,7 +39,13 @@ const SearchBar: React.FC = () => {
           <SearchIcon w="20px" h="20px" color="white" />
         </InputRightElement>
 
-        <Input h="58px" variant="filled" placeholder="Type and Hit Enter" />
+        <Input
+          h="58px"
+          variant="filled"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder="Type and Hit Enter"
+        />
       </InputGroup>
     </Center>
   );

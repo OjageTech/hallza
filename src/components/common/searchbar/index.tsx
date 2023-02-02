@@ -22,10 +22,6 @@ const SearchSection = () => {
       alignItems="center"
       id="searchSection"
     >
-      <Box>
-        selected capacity:
-        {selectedCapacity}
-      </Box>
       <PreSearch />
       <Box id="searchSection" h="2rem" />
       <SearchBar />

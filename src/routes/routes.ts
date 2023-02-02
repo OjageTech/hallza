@@ -10,6 +10,7 @@ import Userdashboard from '../pages/Userdashboard/Userdashboard.page';
 import Login from '../pages/auth/Login.page';
 import SignUp from '../pages/auth/Signup.page';
 import Landing from '../pages/Landing.page';
+import SearchResults from '../pages/SearchResults/SearchResults.page';
 import { ROUTE, USER_DASHBOARD_ROUTE, IN_DASHBOARD_ROUTE } from '.';
 // COMPONENTS FOR THE NESTROUTES
 import Deposit from '../components/UserDashboard/Deposit/Deposit.component';
@@ -52,6 +53,13 @@ const routes: IRoute[] = [
     name: 'Signup',
     element: SignUp,
     exact: true,
+    selected: false,
+  },
+  {
+    path: ROUTE.SEARCH,
+    name: 'Search',
+    element: SearchResults,
+    exact: false,
     selected: false,
   },
 ];
