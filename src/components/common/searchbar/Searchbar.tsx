@@ -17,7 +17,10 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 
 // define the SearchBar component
-const SearchBar: React.FC = () => {
+interface SearchBar {
+  value?: string | undefined;
+}
+const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -44,6 +47,7 @@ const SearchBar: React.FC = () => {
           variant="filled"
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
+          value={value}
           placeholder="Type and Hit Enter"
         />
       </InputGroup>
@@ -51,4 +55,7 @@ const SearchBar: React.FC = () => {
   );
 };
 
+SearchBar.defaultProps = {
+  value: undefined,
+};
 export default SearchBar;

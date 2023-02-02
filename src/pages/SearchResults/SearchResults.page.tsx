@@ -1,19 +1,39 @@
 import { useParams } from 'react-router-dom';
-import { Box, VStack } from '@chakra-ui/react';
+import {
+  Box, Center, Container, Flex, Text,
+} from '@chakra-ui/react';
+import LandingHeader from '../../layouts/headers/Landing.header';
+import Card from '../../components/common/Card';
+import SearchBar from '../../components/common/searchbar/Searchbar';
+import FeaturedVenues from '../../components/FeaturedVenues';
 
-const SearchResults = ({ match }: any) => {
+const SearchResults = () => {
   const { searchTerm } = useParams();
   return (
-    <Box>
-      <div>
-        <h1>
-          Search Results for
-          "
+    <div>
+      <LandingHeader />
+      <Card h="15vh" w="100%">
+        "FE"
+        <Box mt="4rem">
+          <SearchBar value={searchTerm} />
+        </Box>
+      </Card>
+      <Center>
+        <Box fontWeight={700} fontSize="33px" mt={70}>
           {searchTerm}
-          "
-        </h1>
-      </div>
-    </Box>
+        </Box>
+      </Center>
+      <Center mt={3}>
+        <Flex gap={4} as="dl">
+          <dt>Related:</dt>
+          <dd>Party</dd>
+          <dd>Celebration</dd>
+          <dd>Ocassion</dd>
+        </Flex>
+      </Center>
+      <Box h="2rem" />
+      <FeaturedVenues />
+    </div>
   );
 };
 

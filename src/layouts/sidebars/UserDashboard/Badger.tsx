@@ -15,14 +15,14 @@ function Badger({ nomba, disp, bg }: ItemBadgeProps) {
   return (
     <Badge
       textTransform="uppercase"
-      fontWeight={900}
+      fontWeight={500}
       borderRadius="lg"
       display={disp}
       fontSize="0.75rem"
       lineHeight="1rem"
       pt=".5rem"
       pb=".5rem"
-      color={bg != null ? 'white' : 'inherit'}
+      color={bg != null ? 'black' : 'inherit'}
       animation="pulse 2s cubic-bezier(.4,0,.6,1) infinite"
       bg={bg}
     >
