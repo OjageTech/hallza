@@ -8,6 +8,7 @@ export enum ROUTE {
   LOGIN = '/login',
   SIGNUP = '/signup',
   USER_DASHBOARD = '/userDashboard/*',
+  SEARCH = '/search/:searchTerm',
 }
 
 export enum USER_PROFILE_ROUTE {
@@ -51,7 +52,11 @@ type TArgs =
   | {
       path: USER_PROFILE_ROUTE.CONTACT;
       params: { activityId: string };
-    };
+    }
+  | {
+    path: ROUTE.SEARCH;
+    params: { searchTerm: string };
+  };
 
 type TArgsWithParams = Extract<TArgs, { path: any; params: any }>;
 

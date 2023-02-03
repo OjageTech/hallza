@@ -78,11 +78,11 @@ const LandingHeader: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  console.log(scrollPosition);
   const AppNameVariants = {
     visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
     hidden: { opacity: 0, scale: 0 },
   };
+
   return (
     <HeaderGrid
       w="100vw"
@@ -104,14 +104,31 @@ const LandingHeader: React.FC = () => {
           boxSizing="border-box"
           gap="1.5rem"
           justifyContent="flex-end"
+          justify="space-between"
           alignItems="center"
           flexWrap="wrap"
         >
           <Text
             className="animate__animated animate__backInDown"
             pr="3rem"
-            mr="34.4rem"
-            display={scrollPosition > 190 ? 'inline-block' : 'none'}
+            sx={{
+              display: 'grid',
+              gridTemplateColumns: '3fr',
+              gridTemplateRows: 'auto',
+              gridGap: '30px',
+              margin: '0 auto',
+              maxWidth: '960px',
+              '@media screen and (max-width: 700px)': {
+                gridTemplateColumns: '1fr 5fr',
+                columnSpan: '4',
+                gridTemplateRows: 'auto',
+              },
+              '@media screen and (min-width: 700px)': {
+                gridTemplateColumns: '1fr 8fr',
+                columnSpan: '4',
+                gridTemplateRows: 'auto',
+              },
+            }}
             as="h1"
             fontSize={{
               base: '.5rem',

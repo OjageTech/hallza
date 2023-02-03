@@ -1,9 +1,10 @@
 // import the required modules
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Center,
   Button,
-  InputLeftElement,
+  InputRightElement,
   InputGroup,
   Container,
   FormControl,
@@ -12,86 +13,49 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
-import { FaLocationArrow } from 'react-icons/fa';
-import { BsFillPeopleFill } from 'react-icons/bs';
+
 import { SearchIcon } from '@chakra-ui/icons';
-// import { supabase } from '../../../supabaseClient';
 
 // define the SearchBar component
-const SearchBar: React.FC = () => {
-  // create state variables for the location, capacity, and availability inputs
-  const [location, setLocation] = useState('');
-  const [capacity, setCapacity] = useState('');
-  const [availability, setAvailability] = useState(false);
-
-  // // define the handleSubmit function to be called when the form is submitted
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault(); // prevent the form from reloading the page
-
-  //   // use the Supabase client to search for event halls in the database
-  //   const query = supabase.from('halls')
-  //     .select('*');
-  //   if (location) {
-  //     query.where({ location });
-  //   }
-  //   if (capacity) {
-  //     query.where({ capacity });
-  //   }
-  //   if (availability) {
-  //     query.where({ availability });
-  //   }
-  //   const { data } = await query.commit();
-
-  //   // update the page with the search results
-  //   updatePageWithResults(data);
-  // };
-
-  // render the search bar form
+interface SearchBar {
+  value?: string | undefined;
+}
+const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.keyCode === 13) {
+      // Trigger the search function here
+      navigate(`/search/${searchTerm}`);
+    }
+  };
   return (
     <Center>
-      <Container>
-        <Grid
-          templateRows="repeat(2, 1fr)"
-          templateColumns="repeat(13, 1fr)"
-          gap={2}
+      <InputGroup w="604px">
+        <InputRightElement
+          bgGradient="linear-gradient(to bottom, #14B8A6, #8B5CF6 80%) 1"
+          h="58px"
+          w="43px"
+          borderRightRadius="5px"
+          pointerEvents="none"
         >
-          <GridItem colSpan={6}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <SearchIcon color="gray.300" />
-              </InputLeftElement>
+          <SearchIcon w="20px" h="20px" color="white" />
+        </InputRightElement>
 
-              <Input variant="filled" placeholder="Search" />
-            </InputGroup>
-          </GridItem>
-          <GridItem colSpan={4}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <FaLocationArrow color="gray" />
-              </InputLeftElement>
-              <Input placeholder="location" />
-            </InputGroup>
-          </GridItem>
-          <GridItem colSpan={4}>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <BsFillPeopleFill color="gray" />
-              </InputLeftElement>
-              <Input placeholder="Capacity" />
-            </InputGroup>
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Input placeholder="Date" />
-          </GridItem>
-
-          <GridItem colSpan={4}>
-            <Button variant="secondary"> Search </Button>
-          </GridItem>
-        </Grid>
-      </Container>
+        <Input
+          h="58px"
+          variant="filled"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
+          value={value}
+          placeholder="Type and Hit Enter"
+        />
+      </InputGroup>
     </Center>
   );
 };
 
+SearchBar.defaultProps = {
+  value: undefined,
+};
 export default SearchBar;
