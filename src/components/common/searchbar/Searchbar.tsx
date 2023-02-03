@@ -44,11 +44,16 @@ const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
 
         <Input
           h="58px"
-          variant="filled"
+          _focus={{
+            boxShadow: 'outline',
+            borderColor: 'blue.500',
+            backgroundColor: 'red.700',
+          }}
+          boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
+          variant="styled"
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
-          value={value}
-          placeholder="Type and Hit Enter"
+          placeholder={value}
         />
       </InputGroup>
     </Center>
@@ -56,6 +61,7 @@ const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
 };
 
 SearchBar.defaultProps = {
-  value: undefined,
+  value: 'Type and hit Enter'
+  ,
 };
 export default SearchBar;
