@@ -54,7 +54,7 @@ const ToNextSectionButton: React.FC<ToNextSectionButtonProps> = ({ sectionId, on
       position="absolute"
       top="80%"
       variant="primaryOutline"
-      right="30%"
+      right="25%"
       transform="translate(60%, 2%, 1%)"
       border="1px solid red"
       sx={{
@@ -75,11 +75,15 @@ function Hero({ sectionId }: HeroInterface) {
   const scrollRef: RefObject<HTMLDivElement> = React.createRef();
 
   const handleClick = () => {
-    setScrollToNextSection(true);
-    const section = document.querySelector(`#${sectionId}`);
-    section?.scrollIntoView({ behavior: 'smooth' });
-
-    const scrollPosition = window.pageYOffset + 800;
+    // setScrollToNextSection(true);
+    // const section = document.querySelector(`#${sectionId}`);
+    // section?.scrollIntoView({ behavior: 'smooth' });
+    const inputElement = document.querySelector('input[type="text"]'); // not found
+    let scrollPosition = 800;
+    if (inputElement instanceof HTMLInputElement) {
+      inputElement.focus(); // not doing anytin
+      scrollPosition = window.pageYOffset + inputElement.offsetTop - 100;
+    }
 
     // Scroll to the desired position
     window.scrollTo({

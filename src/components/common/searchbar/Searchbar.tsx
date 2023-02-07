@@ -1,4 +1,3 @@
-// import the required modules
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -12,23 +11,26 @@ import {
   Input,
   Grid,
   GridItem,
+  useColorMode,
 } from '@chakra-ui/react';
 
 import { SearchIcon } from '@chakra-ui/icons';
 
-// define the SearchBar component
 interface SearchBar {
   value?: string | undefined;
 }
+
 const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const { colorMode } = useColorMode();
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.keyCode === 13) {
-      // Trigger the search function here
       navigate(`/search/${searchTerm}`);
     }
   };
+
   return (
     <Center>
       <InputGroup w="604px">
@@ -47,7 +49,7 @@ const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
           _focus={{
             boxShadow: 'outline',
             borderColor: 'blue.500',
-            backgroundColor: 'red.700',
+            backgroundColor: colorMode === 'light' ? 'white' : 'black',
           }}
           boxShadow="rgba(0, 0, 0, 0.35) 0px 5px 15px"
           variant="styled"
@@ -61,7 +63,7 @@ const SearchBar: React.FC<SearchBar> = ({ value }: SearchBar) => {
 };
 
 SearchBar.defaultProps = {
-  value: 'Type and hit Enter'
-  ,
+  value: 'Type and hit Enter',
 };
+
 export default SearchBar;

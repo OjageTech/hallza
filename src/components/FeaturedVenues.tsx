@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AiTwotoneHeart, AiFillEye } from 'react-icons/ai';
+import { MdArrowDropDown } from 'react-icons/md';
 import {
   Text,
   Flex,
@@ -8,8 +9,9 @@ import {
   GridItem,
   Image,
   Container,
+  Button,
 } from '@chakra-ui/react';
-import { MdArrowDropDown } from 'react-icons/md';
+import mockData from './HALLS-MOCK_DATA.json';
 import Badger from '../layouts/sidebars/UserDashboard/Badger';
 import Rating from './common/rating/Rating.component';
 import Box from './common/Box';
@@ -105,7 +107,7 @@ type FeaturedVenueProps = {
   rating: number;
 };
 
-const FeaturedVenue = ({
+export const FeaturedVenue = ({
   renterLogo,
   previewImage,
   capacity,
@@ -175,13 +177,7 @@ const FeaturedVenue = ({
           p={0}
           mt="auto"
         >
-          <Flex
-            ml="-25px"
-            p={0}
-            alignItems="end"
-            color="#F9FAFB"
-            gap="3.5rem"
-          >
+          <Flex ml="-25px" p={0} alignItems="end" color="#F9FAFB" gap="3.5rem">
             <Text
               as="span"
               alignSelf="flex-end"
@@ -250,52 +246,65 @@ const FeaturedVenue = ({
     </GridItem>
   );
 };
-const FeaturedVenues = () => (
-  <Box margin="0 auto" w="94%">
-    <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
-      <option value="Popular">Popular</option>
-      <option value="Luxurious">Luxurious</option>
-      <option value="New & Noteworthy">New & Noteworthy3</option>
-    </Select>
-    <Box h="2rem" />
-    <Grid
-      mt="1rem"
-      templateColumns={{
-        base: 'repeat(1,minmax(0,1fr))',
-        sm: 'repeat(2,minmax(0,1fr))',
-        lg: 'repeat(3,minmax(0,1fr))',
-        xl: 'repeat(4,minmax(0,1fr))',
-      }}
-      gap={{
-        sm: '.6rem',
-        md: '.8rem',
-        lg: '1.5rem',
-        xl: '2.3rem',
-      }}
-    >
-      {FeaturedVenueData.map(
-        ({
-          renterLogo,
-          capacity,
-          price,
-          rating,
-          name,
-          previewImage,
-          renterName,
-        }) => (
-          <FeaturedVenue
-            renterLogo={renterLogo}
-            capacity={capacity}
-            price={price}
-            rating={rating}
-            name={name}
-            previewImage={previewImage}
-            renterName={renterName}
-          />
-        ),
+const FeaturedVenues = () => {
+  const [displayCount, setDisplayCount] = useState(12);
+
+  const handleLoadMore = () => {
+    setDisplayCount(displayCount + 12);
+  };
+
+  return (
+    <Box margin="0 auto" w="94%">
+      <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
+        <option value="Popular">Popular</option>
+        <option value="Luxurious">Luxurious</option>
+        <option value="New & Noteworthy">New & Noteworthy3</option>
+      </Select>
+      <Box h="2rem" />
+      <Grid
+        mt="1rem"
+        templateColumns={{
+          base: 'repeat(1,minmax(0,1fr))',
+          sm: 'repeat(2,minmax(0,1fr))',
+          lg: 'repeat(3,minmax(0,1fr))',
+          xl: 'repeat(4,minmax(0,1fr))',
+        }}
+        gap={{
+          sm: '.6rem',
+          md: '.8rem',
+          lg: '1.5rem',
+          xl: '2.3rem',
+        }}
+      >
+        {mockData.slice(0, displayCount).map(
+          ({
+            renterLogo,
+            capacity,
+            price,
+            rating,
+            name,
+            previewImage,
+            renterName,
+          }) => (
+            <FeaturedVenue
+              renterLogo={renterLogo}
+              capacity={capacity}
+              price={price}
+              rating={rating}
+              name={name}
+              previewImage={previewImage}
+              renterName={renterName}
+            />
+          ),
+        )}
+      </Grid>
+      {displayCount < mockData.length && (
+        <Box mt="1rem" textAlign="center">
+          <Button variant="primaryOutline" onClick={handleLoadMore}>Load More</Button>
+        </Box>
       )}
-    </Grid>
-  </Box>
-);
+    </Box>
+  );
+};
 
 export default FeaturedVenues;

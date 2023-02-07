@@ -1,54 +1,21 @@
-# hallza
+# Hallza - Online Booking and Invoicing platform
 
-hallza is an MLM System using the Unilevel plan or Forced Matrix plan with a re-entry option. The system comes with essential features to run and maintain a successful referral marketing program, including membership with renewal on an interval basis.
+> Hallza is an Online Booking and Invoicing platform for halls and venues. The platform allows customers to search for and book halls and function rooms, negotiate pricing based on their needs, and receive automatic email reminders for upcoming bookings and invoices. Venue owners can post details about their venues, generate invoices, manage their booking activities, and add additional services such as catering or entertainment. The platform integrates with calendar applications such as Google Calendar and Outlook and is designed to be user-friendly and efficient. Hallza serves customers, venue owners, event planners, and administrators and is built to help streamline the process of booking and managing events.
 
-## Installation
+## Key Features
 
-Use the package manager [npm](https://npmjs.com) to install hallza.
+- Search and book halls and function rooms
+- Negotiate pricing based on customer needs
+- Venue owners can post details about their venues
+- Generate invoices and manage bookings
+- Add additional services such as catering or entertainment
+- Integrate with calendar applications
+- Automatic email and SMS reminders for bookings and invoices
 
-```bash
-npm install
-```
+## User Roles
 
-## Style Library
+- Customers
+- Venue Owners
+- Event Planners
+- Administrators
 
-### Chakra-UI
-
-#### [Learn More About it](https://chakra-ui.com)
-
-## Understanding the Project Folders Structure
-
-### Assets Folder
-As the name says, it contains assets of our project. It consists of images and styling files. Here we can store our global styles. We are centralizing the project so we can store the page-based or component-based styles over here. But we can even keep style according to the pages folder or component folder also. But that depends on developer comfortability.
-
-### Layouts Folder
-As the name says, it contains layouts available to the whole project like header, footer, etc. We can store the header, footer, or sidebar code here and call it.
-
-### Components Folder
-Components are the building blocks of any react project. This folder consists of a collection of UI components like buttons, modals, inputs, loader, etc., that can be used across various files in the project. Each component should consist of a test file to do a unit test as it will be widely used in the project.
-
-### Pages Folder
-The files in the pages folder indicate the route of the react application. Each file in this folder contains its route. A page can contain its subfolder. Each page has its state and is usually used to call an async operation. It usually consists of various components grouped.
-
-An asynchronous programming model where the developer process the stream of coming data to propagate the changes in code. Click to explore about, Reactive Programming Solutions for Monitoring Platform
-Middleware Folder
-This folder consists of middleware that allows for side effects in the application. It is used when we are using redux with it. Here we keep all our custom middleware.
-
-### Routes Folder
-This folder consists of all routes of the application. It consists of private, protected, and all types of routes. Here we can even call our sub-route.
-
-### Config Folder
-This folder consists of a configuration file where we store environment variables in config.js. We will use this file to set up multi-environment configurations in your application.
-
-### Services Folder
-This folder is added because we use Redux. Inside it, there are 3 folders named actions, reducers, and constant subfolders to manage states. The actions and reducers will be called in almost all the pages, so create actions, reducers & constants according to pages name.
-
-### Utils Folder
-Utils folder consists of some repeatedly used functions that are commonly used in the project. It contains only common ts functions & objects like dropdown options, regex condition, data formatting, etc.
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)

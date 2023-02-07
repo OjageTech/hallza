@@ -1,19 +1,43 @@
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import { MdArrowDropDown } from 'react-icons/md';
 import {
-  Box, Center, Container, Flex, Text,
+  Box,
+  Center,
+  Select,
+  Button,
+  Grid,
+  Flex,
+  Text,
 } from '@chakra-ui/react';
 import LandingHeader from '../../layouts/headers/Landing.header';
 import Card from '../../components/common/Card';
 import SearchBar from '../../components/common/searchbar/Searchbar';
-import FeaturedVenues from '../../components/FeaturedVenues';
+import FeaturedVenues, { FeaturedVenue } from '../../components/FeaturedVenues';
+import mockData from '../../components/HALLS-MOCK_DATA.json';
 
 const SearchResults = () => {
   const { searchTerm } = useParams();
+  const lowerCaseSearchTerm = searchTerm ? searchTerm.toLowerCase() : '';
+  const filteredData = mockData.filter(
+    (item) => item.name.toLowerCase().includes(lowerCaseSearchTerm)
+      || item.renterName.toLowerCase().includes(lowerCaseSearchTerm),
+  );
+
+  const [displayCount, setDisplayCount] = useState(12);
+
+  const handleLoadMore = () => {
+    setDisplayCount(displayCount + 12);
+  };
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
   return (
     <div>
       <LandingHeader />
       <Card h="15vh" w="100%">
-        "FE"
         <Box mt="4rem">
           <SearchBar value={searchTerm} />
         </Box>
@@ -32,7 +56,56 @@ const SearchResults = () => {
         </Flex>
       </Center>
       <Box h="2rem" />
-      <FeaturedVenues />
+      <Box margin="0 auto" w="94%">
+        <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
+          <option value="Popular">Popular</option>
+          <option value="Luxurious">Luxurious</option>
+          <option value="New & Noteworthy">New & Noteworthy3</option>
+        </Select>
+        <Box h="2rem" />
+        <Grid
+          mt="1rem"
+          templateColumns={{
+            base: 'repeat(1,minmax(0,1fr))',
+            sm: 'repeat(2,minmax(0,1fr))',
+            lg: 'repeat(3,minmax(0,1fr))',
+            xl: 'repeat(4,minmax(0,1fr))',
+          }}
+          gap={{
+            sm: '.6rem',
+            md: '.8rem',
+            lg: '1.5rem',
+            xl: '2.3rem',
+          }}
+        >
+          {filteredData.slice(0, displayCount).map(
+            ({
+              renterLogo,
+              capacity,
+              price,
+              rating,
+              name,
+              previewImage,
+              renterName,
+            }) => (
+              <FeaturedVenue
+                renterLogo={renterLogo}
+                capacity={capacity}
+                price={price}
+                rating={rating}
+                name={name}
+                previewImage={previewImage}
+                renterName={renterName}
+              />
+            ),
+          )}
+        </Grid>
+        {displayCount < filteredData.length && (
+          <Box mt="1rem" textAlign="center">
+            <Button variant="primaryOutline" onClick={handleLoadMore}>Load More</Button>
+          </Box>
+        )}
+      </Box>
     </div>
   );
 };
