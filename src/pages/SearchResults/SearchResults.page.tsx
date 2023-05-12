@@ -13,14 +13,30 @@ import {
 import LandingHeader from '../../layouts/headers/Landing.header';
 import Card from '../../components/common/Card';
 import SearchBar from '../../components/common/searchbar/Searchbar';
-import FeaturedVenues, { FeaturedVenue } from '../../components/FeaturedVenues';
-import mockData from '../../components/HALLS-MOCK_DATA.json';
+import FeaturedVenues, {
+  FeaturedVenue,
+  FeaturedVenueProps,
+} from '../../components/FeaturedVenues';
+import {
+  selectRentals,
+  addRental,
+  removeRental,
+  updateRental,
+  incrementLove,
+  incrementView,
+  // updateRentalProperty,
+} from '../../features/hallsdata/hallsdata-slice';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 const SearchResults = () => {
   const { searchTerm } = useParams();
-  const lowerCaseSearchTerm = searchTerm ? searchTerm.toLowerCase() : '';
-  const filteredData = mockData.filter(
-    (item) => item.name.toLowerCase().includes(lowerCaseSearchTerm)
+  const lowerCaseSearchTerm = searchTerm
+    ? searchTerm.toLowerCase()
+    : '';
+  const rentals = useAppSelector(selectRentals);
+
+  const filteredData = rentals.filter(
+    (item: FeaturedVenueProps) => item.name.toLowerCase().includes(lowerCaseSearchTerm)
       || item.renterName.toLowerCase().includes(lowerCaseSearchTerm),
   );
 
@@ -37,18 +53,28 @@ const SearchResults = () => {
   return (
     <div>
       <LandingHeader />
-      <Card h="15vh" w="100%">
+      <Card
+        h="15vh"
+        w="100%"
+      >
         <Box mt="4rem">
           <SearchBar value={searchTerm} />
         </Box>
       </Card>
       <Center>
-        <Box fontWeight={700} fontSize="33px" mt={70}>
+        <Box
+          fontWeight={700}
+          fontSize="33px"
+          mt={70}
+        >
           {searchTerm}
         </Box>
       </Center>
       <Center mt={3}>
-        <Flex gap={4} as="dl">
+        <Flex
+          gap={4}
+          as="dl"
+        >
           <dt>Related:</dt>
           <dd>Party</dd>
           <dd>Celebration</dd>
@@ -56,8 +82,15 @@ const SearchResults = () => {
         </Flex>
       </Center>
       <Box h="2rem" />
-      <Box margin="0 auto" w="94%">
-        <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
+      <Box
+        margin="0 auto"
+        w="94%"
+      >
+        <Select
+          icon={<MdArrowDropDown />}
+          w="10vw"
+          fontWeight={300}
+        >
           <option value="Popular">Popular</option>
           <option value="Luxurious">Luxurious</option>
           <option value="New & Noteworthy">New & Noteworthy3</option>
@@ -78,31 +111,47 @@ const SearchResults = () => {
             xl: '2.3rem',
           }}
         >
-          {filteredData.slice(0, displayCount).map(
-            ({
-              renterLogo,
-              capacity,
-              price,
-              rating,
-              name,
-              previewImage,
-              renterName,
-            }) => (
-              <FeaturedVenue
-                renterLogo={renterLogo}
-                capacity={capacity}
-                price={price}
-                rating={rating}
-                name={name}
-                previewImage={previewImage}
-                renterName={renterName}
-              />
-            ),
-          )}
+          {filteredData
+            .slice(0, displayCount)
+            .map(
+              ({
+                id,
+                renterLogo,
+                capacity,
+                price,
+                rating,
+                name,
+                previewImage,
+                renterName,
+                loves,
+                views,
+              }: FeaturedVenueProps) => (
+                <FeaturedVenue
+                  id={id}
+                  renterLogo={renterLogo}
+                  capacity={capacity}
+                  price={price}
+                  rating={rating}
+                  name={name}
+                  previewImage={previewImage}
+                  renterName={renterName}
+                  loves={loves}
+                  views={views}
+                />
+              ),
+            )}
         </Grid>
         {displayCount < filteredData.length && (
-          <Box mt="1rem" textAlign="center">
-            <Button variant="primaryOutline" onClick={handleLoadMore}>Load More</Button>
+          <Box
+            mt="1rem"
+            textAlign="center"
+          >
+            <Button
+              variant="primaryOutline"
+              onClick={handleLoadMore}
+            >
+              Load More
+            </Button>
           </Box>
         )}
       </Box>

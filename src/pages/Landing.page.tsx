@@ -14,10 +14,16 @@ import {
 import rentApart from '../assets/images/rent_apart.svg';
 
 import Box from '../components/common/Box';
-import ProminentFeatures from '../components/ProminentFeatures/ProminentFeatures.component';
+import HallzaBanner from '../components/HallzaBanner/HallzaBanner.component';
+import ProminentCanDos from '../components/CanDos/CanDos.component';
+// import ProminentFeatures from '../components/ProminentFeatures/ProminentFeatures.component';
 import LandingHeader from '../layouts/headers/Landing.header';
+import Footer from '../layouts/footers/Landing.footer';
 import { ROUTE } from '../routes';
-import FeaturedVenues from '../components/FeaturedVenues';
+import CallToAddVenues from '../components/CallToAddVenues/CallToAddVenues';
+import CallToViewAllServices from '../components/CallToViewAllServices/CallToViewAllServices';
+import CallToFindVenues from '../components/CallToFindVenues/CallToFindVenues';
+
 import SearchBar from '../components/common/searchbar/Searchbar';
 import PreSearch from '../components/common/searchbar/PreSearch';
 import PostSearch from '../components/common/searchbar/PostSearch';
@@ -43,8 +49,15 @@ interface ToNextSectionButtonProps {
   onClick: () => void;
 }
 
-const ToNextSectionButton: React.FC<ToNextSectionButtonProps> = ({ sectionId, onClick }) => (
-  <Box position="relative" h="40vh" w="54vw">
+const ToNextSectionButton: React.FC<ToNextSectionButtonProps> = ({
+  sectionId,
+  onClick,
+}) => (
+  <Box
+    position="relative"
+    h="40vh"
+    w="54vw"
+  >
     <Button
       className="animate__animated animate__pulse animate__infinite"
       fontSize="20px"
@@ -58,7 +71,8 @@ const ToNextSectionButton: React.FC<ToNextSectionButtonProps> = ({ sectionId, on
       transform="translate(60%, 2%, 1%)"
       border="1px solid red"
       sx={{
-        borderImage: 'linear-gradient(to bottom, #14B8A6 50%, #8B5CF6 50%) 1',
+        borderImage:
+          'linear-gradient(to bottom, #14B8A6 50%, #8B5CF6 50%) 1',
         borderRadius: 5,
       }}
       onClick={onClick}
@@ -69,32 +83,18 @@ const ToNextSectionButton: React.FC<ToNextSectionButtonProps> = ({ sectionId, on
 );
 type HeroInterface = {
   sectionId: string;
-}
+};
 function Hero({ sectionId }: HeroInterface) {
   const [scrollToNextSection, setScrollToNextSection] = useState(false);
   const scrollRef: RefObject<HTMLDivElement> = React.createRef();
 
-  const handleClick = () => {
-    // setScrollToNextSection(true);
-    // const section = document.querySelector(`#${sectionId}`);
-    // section?.scrollIntoView({ behavior: 'smooth' });
-    const inputElement = document.querySelector('input[type="text"]'); // not found
-    let scrollPosition = 800;
-    if (inputElement instanceof HTMLInputElement) {
-      inputElement.focus(); // not doing anytin
-      scrollPosition = window.pageYOffset + inputElement.offsetTop - 100;
-    }
-
-    // Scroll to the desired position
-    window.scrollTo({
-      top: scrollPosition,
-      behavior: 'smooth',
-    });
-  };
-
   React.useEffect(() => {
     if (scrollToNextSection && scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      scrollRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest',
+      });
       window.scrollBy(0, window.innerHeight);
     }
   }, [scrollToNextSection, scrollRef]);
@@ -114,9 +114,17 @@ function Hero({ sectionId }: HeroInterface) {
     >
       <Grid gap={57}>
         <GridItem colSpan={2}>
-          <Image w={493} h={375} src={rentApart} />
+          <Image
+            w={493}
+            h={375}
+            src={rentApart}
+          />
         </GridItem>
-        <GridItem w={575} colStart={4} colEnd={6}>
+        <GridItem
+          w={575}
+          colStart={4}
+          colEnd={6}
+        >
           <Box pt="4rem">
             <Text
               as="h2"
@@ -126,11 +134,17 @@ function Hero({ sectionId }: HeroInterface) {
             >
               Online
               {' '}
-              <UnderlineDecor color="#eab308" text="Booking" />
+              <UnderlineDecor
+                color="#eab308"
+                text="Booking"
+              />
               {' '}
               and
               {' '}
-              <UnderlineDecor color="#eab308" text="Invoicing" />
+              <UnderlineDecor
+                color="#eab308"
+                text="Invoicing"
+              />
               {' '}
               for your Hall or Venue
             </Text>
@@ -146,25 +160,41 @@ function Hero({ sectionId }: HeroInterface) {
               all other bookable function rooms.
             </Text>
           </Box>
-          <Flex mt={8} gap="3.5rem">
+          <Flex
+            mt={8}
+            gap="3.5rem"
+          >
             <Button
               as={RouteLink}
               to={ROUTE.USER_DASHBOARD}
               variant="primary"
             >
-              Free Trial
+              Add a venue
             </Button>
             <Button
               as={RouteLink}
               to={ROUTE.LOGIN}
               variant="primaryOutline"
             >
-              Watch Video
+              Explore services
             </Button>
           </Flex>
+          <Text mt="1rem">
+            Looking to rent an event space instead?
+            {' '}
+            <Text
+              color="primary"
+              fontWeight={600}
+              _hover={{ cursor: 'pointer' }}
+              as={RouteLink}
+              to={ROUTE.FIND}
+            >
+              Find it
+            </Text>
+          </Text>
         </GridItem>
       </Grid>
-      <ToNextSectionButton sectionId={sectionId} onClick={handleClick} />
+      <ProminentCanDos />
     </VStack>
   );
 }
@@ -174,15 +204,24 @@ const Landing = () => {
   const [sectionId, setSectionId] = useState('heroSection');
   return (
     <div className="Landing">
-      <Container minW="100vw" minH="100vh">
+      <Container
+        minW="100vw"
+        minH="100vh"
+        p={0}
+      >
         <LandingHeader />
         <Hero sectionId={sectionId} />
-        <SearchSection />
-
+        <HallzaBanner />
+        <CallToAddVenues />
+        <CallToViewAllServices />
+        <CallToFindVenues />
+        {/* <SearchSection /> */}
         <Box h="2rem" />
-        <FeaturedVenues />
-        <Box h="2rem" />
-        <ProminentFeatures />
+        {/* <FeaturedVenues /> */}
+        {/* <Box h="2rem" />
+        <ProminentFeatures /> */}
+        <Box h="6rem" />
+        <Footer />
       </Container>
     </div>
   );

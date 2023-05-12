@@ -7,8 +7,8 @@ import Badger from '../../layouts/sidebars/UserDashboard/Badger';
 
 const FeatureData = [
   {
-    title: 'Venue Specific',
-    subtitle: 'Your dashboard is very customisable ',
+    title: 'Post Your Venue',
+    subtitle: 'Join the network',
     content:
       'Fetch, cache, update and wrangle all forms of async data in your TS/JS, React, Vue, Solid & Svelte applications all without touching any "global state',
     newBadge: true,
@@ -129,7 +129,7 @@ const Feature = ({
   </GridItem>
 );
 const ProminentFeatures = () => (
-  <Box margin="0 auto" w="70vw">
+  <Box margin="0 auto" w="95vw">
     <Text
       as="h3"
       fontSize={{
@@ -146,14 +146,14 @@ const ProminentFeatures = () => (
         xl: '3.1rem',
       }}
     >
-      Most Prominent Features
+      You are able to
     </Text>
     <Grid
       mt="1rem"
       templateColumns={{
         base: 'repeat(1,minmax(0,1fr))',
-        sm: 'repeat(2,minmax(0,1fr))',
-        lg: 'repeat(3,minmax(0,1fr))',
+        sm: 'repeat(3,minmax(0,1fr))',
+        lg: 'repeat(4,minmax(0,1fr))',
       }}
       gap={{
         sm: '.6rem',

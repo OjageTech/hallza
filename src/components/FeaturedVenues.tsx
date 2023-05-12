@@ -1,6 +1,5 @@
+/* eslint-disable react/no-unused-prop-types */
 import { useState } from 'react';
-import { AiTwotoneHeart, AiFillEye } from 'react-icons/ai';
-import { MdArrowDropDown } from 'react-icons/md';
 import {
   Text,
   Flex,
@@ -11,101 +10,37 @@ import {
   Container,
   Button,
 } from '@chakra-ui/react';
-import mockData from './HALLS-MOCK_DATA.json';
+import { MdArrowDropDown } from 'react-icons/md';
+import { AiTwotoneHeart, AiFillEye } from 'react-icons/ai';
+import {
+  selectRentals,
+  addRental,
+  removeRental,
+  updateRental,
+  incrementLove,
+  incrementView,
+  // updateRentalProperty,
+} from '../features/hallsdata/hallsdata-slice';
+import { useAppSelector, useAppDispatch } from '../app/hooks';
+
+// import mockData from './HALLS-MOCK_DATA.json';
 import Badger from '../layouts/sidebars/UserDashboard/Badger';
 import Rating from './common/rating/Rating.component';
 import Box from './common/Box';
 import Card from './common/Card';
 
-const FeaturedVenueData = [
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1551150441-3f3828204ef0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-    capacity: 500,
-    price: '1.4 milion',
-    rating: 3,
-    name: 'Villa De Papos',
-    renterName: 'Mountain Hotel',
-    previewImage:
-      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1545231027-637d2f6210f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bG9nb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 3,
-    name: 'Nalova Lyonga Amphitheatre',
-    renterName: 'University of Buea',
-    previewImage:
-      'https://images.unsplash.com/photo-1526045004414-3e7ed02f9ca1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGV2ZW50JTIwaGFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1567446537708-ac4aa75c9c28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bG9nb3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 5,
-    name: 'HoneyCamp Plaza',
-    renterName: 'Chariot Hotel',
-    previewImage:
-      'https://images.unsplash.com/photo-1591899916510-d8eea9eb7b25?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGhhbGx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1557053964-937650b63311?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 4,
-    name: 'Upper Level',
-    renterName: 'Burj Khalifa',
-    previewImage:
-      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y2x1YiUyMGV2ZW50JTIwaGFsbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1601158935942-52255782d322?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 1,
-    name: 'Auditorium B',
-    renterName: 'Catholic Church',
-    previewImage:
-      'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1516876437184-593fda40c7ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGxvZ298ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 3.5,
-    name: 'Ejagham Club House I',
-    renterName: 'Ejagham Club House',
-    previewImage:
-      'https://images.unsplash.com/photo-1620735692151-26a7e0748429?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZXZlbnQlMjBoYWxsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  },
-  {
-    renterLogo:
-      'https://images.unsplash.com/photo-1601409655050-6d869c309812?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGd1Y2NpfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-    capacity: 900,
-    price: '1.4 milion',
-    rating: 5,
-    name: 'Gucci',
-    renterName: 'The House of Gucci',
-    previewImage:
-      'https://images.unsplash.com/photo-1624954980724-3233ca78880d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGd1Y2NpfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
-  },
-];
-
-type FeaturedVenueProps = {
+export interface FeaturedVenueProps {
+  id: string;
   name: string;
   renterName: string;
   previewImage: string;
   renterLogo: string;
   capacity: number;
-  price: string;
+  price: number;
   rating: number;
-};
+  loves: number;
+  views: number;
+}
 
 export const FeaturedVenue = ({
   renterLogo,
@@ -115,6 +50,8 @@ export const FeaturedVenue = ({
   renterName,
   rating,
   name,
+  loves,
+  views,
 }: FeaturedVenueProps) => {
   const [cardHovered, setCardHovered] = useState(false);
   return (
@@ -155,7 +92,10 @@ export const FeaturedVenue = ({
           borderRadius="sm"
           display={cardHovered ? 'block' : 'none'}
         >
-          <Badger bg="white" disp="Buea" />
+          <Badger
+            bg="white"
+            disp="Buea"
+          />
         </Container>
         <Container
           p={0}
@@ -177,7 +117,13 @@ export const FeaturedVenue = ({
           p={0}
           mt="auto"
         >
-          <Flex ml="-25px" p={0} alignItems="end" color="#F9FAFB" gap="3.5rem">
+          <Flex
+            ml="-25px"
+            p={0}
+            alignItems="end"
+            color="#F9FAFB"
+            gap="3.5rem"
+          >
             <Text
               as="span"
               alignSelf="flex-end"
@@ -197,7 +143,11 @@ export const FeaturedVenue = ({
           </Flex>
         </Container>
       </Card>
-      <Flex mt="2.5" gap={7} alignItems="center">
+      <Flex
+        mt="2.5"
+        gap={7}
+        alignItems="center"
+      >
         <Flex alignItems="center">
           <Image
             src={renterLogo}
@@ -232,14 +182,27 @@ export const FeaturedVenue = ({
             {renterName}
           </Text>
         </Flex>
-        <Flex color="gray" gap={3} justifyContent="center" alignItems="center">
-          <Flex justifyContent="center" alignItems="center" gap={1}>
+        <Flex
+          color="gray"
+          gap={3}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            gap={1}
+          >
             <AiTwotoneHeart />
-            95
+            {loves}
           </Flex>
-          <Flex gap={1} justifyContent="center" alignItems="center">
+          <Flex
+            gap={1}
+            justifyContent="center"
+            alignItems="center"
+          >
             <AiFillEye />
-            2
+            {views}
           </Flex>
         </Flex>
       </Flex>
@@ -247,6 +210,9 @@ export const FeaturedVenue = ({
   );
 };
 const FeaturedVenues = () => {
+  const rentals = useAppSelector(selectRentals);
+  const dispatch = useAppDispatch();
+
   const [displayCount, setDisplayCount] = useState(12);
 
   const handleLoadMore = () => {
@@ -254,8 +220,15 @@ const FeaturedVenues = () => {
   };
 
   return (
-    <Box margin="0 auto" w="94%">
-      <Select icon={<MdArrowDropDown />} w="10vw" fontWeight={300}>
+    <Box
+      margin="0 auto"
+      w="94%"
+    >
+      <Select
+        icon={<MdArrowDropDown />}
+        w="10vw"
+        fontWeight={300}
+      >
         <option value="Popular">Popular</option>
         <option value="Luxurious">Luxurious</option>
         <option value="New & Noteworthy">New & Noteworthy3</option>
@@ -276,31 +249,47 @@ const FeaturedVenues = () => {
           xl: '2.3rem',
         }}
       >
-        {mockData.slice(0, displayCount).map(
-          ({
-            renterLogo,
-            capacity,
-            price,
-            rating,
-            name,
-            previewImage,
-            renterName,
-          }) => (
-            <FeaturedVenue
-              renterLogo={renterLogo}
-              capacity={capacity}
-              price={price}
-              rating={rating}
-              name={name}
-              previewImage={previewImage}
-              renterName={renterName}
-            />
-          ),
-        )}
+        {rentals
+          .slice(0, displayCount)
+          .map(
+            ({
+              id,
+              renterLogo,
+              capacity,
+              price,
+              rating,
+              name,
+              previewImage,
+              renterName,
+              loves,
+              views,
+            }: FeaturedVenueProps) => (
+              <FeaturedVenue
+                renterLogo={renterLogo}
+                capacity={capacity}
+                price={price}
+                rating={rating}
+                name={name}
+                previewImage={previewImage}
+                renterName={renterName}
+                loves={0}
+                views={0}
+                id={id}
+              />
+            ),
+          )}
       </Grid>
-      {displayCount < mockData.length && (
-        <Box mt="1rem" textAlign="center">
-          <Button variant="primaryOutline" onClick={handleLoadMore}>Load More</Button>
+      {displayCount < rentals.length && (
+        <Box
+          mt="1rem"
+          textAlign="center"
+        >
+          <Button
+            variant="primaryOutline"
+            onClick={handleLoadMore}
+          >
+            Load More
+          </Button>
         </Box>
       )}
     </Box>

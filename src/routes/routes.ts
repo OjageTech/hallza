@@ -9,6 +9,7 @@ import IRoute from '../interfaces/route';
 import Userdashboard from '../pages/Userdashboard/Userdashboard.page';
 import Login from '../pages/auth/Login.page';
 import SignUp from '../pages/auth/Signup.page';
+import FindnBrowseVenues from '../pages/FindnBrowseVenues/FindnBrowseVenues.page';
 import Landing from '../pages/Landing.page';
 import SearchResults from '../pages/SearchResults/SearchResults.page';
 import { ROUTE, USER_DASHBOARD_ROUTE, IN_DASHBOARD_ROUTE } from '.';
@@ -59,6 +60,13 @@ const routes: IRoute[] = [
     path: ROUTE.SEARCH,
     name: 'Search',
     element: SearchResults,
+    exact: false,
+    selected: false,
+  },
+  {
+    path: ROUTE.FIND,
+    name: 'FindnBrowseVenues',
+    element: FindnBrowseVenues,
     exact: false,
     selected: false,
   },

@@ -78,10 +78,6 @@ const LandingHeader: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  const AppNameVariants = {
-    visible: { opacity: 1, scale: 4, transition: { duration: 1 } },
-    hidden: { opacity: 0, scale: 0 },
-  };
 
   return (
     <HeaderGrid
@@ -97,7 +93,10 @@ const LandingHeader: React.FC = () => {
       zIndex="overlay"
     >
       {/* <GridItem rowSpan={3} colSpan={1} /> */}
-      <GridItem colStart={6} colSpan={3}>
+      <GridItem
+        colStart={6}
+        colSpan={3}
+      >
         <Flex
           pr="1rem"
           mr="1.5rem"
@@ -141,23 +140,8 @@ const LandingHeader: React.FC = () => {
           >
             <AppName txtDecoration="none" />
           </Text>
-          {navRoutes.map((item) => (
-            <Box
-              _hover={{
-                cursor: 'pointer',
-                textDecoration: 'underline',
-                textUnderlineOffset: '1rem',
-                textDecorationColor: 'primary',
-              }}
-            >
-              {(item.name as string).indexOf('Renter') >= 0 ? (
-                <Button variant="primary">{item.name}</Button>
-              ) : (
-                <Text>{item.name}</Text>
-              )}
-            </Box>
-          ))}
-          <Box
+          <Button variant="primary">Go to profile</Button>
+          {/* <Box
             _hover={{ cursor: 'pointer' }}
             display={hovered ? 'none' : 'block'}
             color="primary"
@@ -221,7 +205,10 @@ const LandingHeader: React.FC = () => {
                 width="200px"
                 gap="1rem"
               >
-                <Text fontWeight={500} as="h4">
+                <Text
+                  fontWeight={500}
+                  as="h4"
+                >
                   Client
                 </Text>
                 <PopItem name="Login" />
@@ -234,7 +221,10 @@ const LandingHeader: React.FC = () => {
                 width="200px"
                 gap="1rem"
               >
-                <Text fontWeight={500} as="h4">
+                <Text
+                  fontWeight={500}
+                  as="h4"
+                >
                   Venue
                 </Text>
                 <PopItem name="Login" />
@@ -242,6 +232,7 @@ const LandingHeader: React.FC = () => {
               </VStack>
             </VStack>
           </Box>
+          */}
           <IconButton
             aria-label="Toggle dark mode"
             icon={colorMode === 'dark' ? <FaSun /> : <RiMoonLine />}

@@ -9,6 +9,7 @@ export enum ROUTE {
   SIGNUP = '/signup',
   USER_DASHBOARD = '/userDashboard/*',
   SEARCH = '/search/:searchTerm',
+  FIND = '/find',
 }
 
 export enum USER_PROFILE_ROUTE {
