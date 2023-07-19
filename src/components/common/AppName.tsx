@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  useAnimation, AnimatePresence, motion, useScroll,
+  useAnimation,
+  AnimatePresence,
+  motion,
+  useScroll,
 } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Box from './Box';
@@ -19,39 +22,35 @@ function AppName({ txtDecoration }: any) {
     }
   }, [controls, inView]);
   return (
-    <motion.div
-      animate={{ scale: 2 }}
-      initial="visible"
-      variants={AppNameVariants}
-    >
-      <Box
-        className="animate__backInDown"
-        textDecoration={txtDecoration}
-        textUnderlineOffset="1rem"
-        textDecorationColor="#e5e7eb"
-        sx={{
+    <Box
+      className="animate__backInDown"
+      textDecoration={txtDecoration}
+      fontWeight={700}
+      fontSize="xl"
+      textUnderlineOffset="1rem"
+      textDecorationColor="#e5e7eb"
+      sx={{
         // /* Fallback: Set a background color. */
-          backgroundColor: 'teal',
+        backgroundColor: 'teal',
 
-          /* Create the gradient. */
-          backgroundImage: 'linear-gradient(to right,#14b8a6,#8b5cf6)',
+        /* Create the gradient. */
+        backgroundImage: 'linear-gradient(to right,#14b8a6,#8b5cf6)',
 
-          /* Set the background size and repeat properties. */
-          backgroundSize: '100%',
-          backgroundRepeat: 'repeat',
+        /* Set the background size and repeat properties. */
+        backgroundSize: '100%',
+        backgroundRepeat: 'repeat',
 
-          /* Use the text as a mask for the background. */
-          /* This will show the gradient as a text color rather than element bg. */
-          '-webkit-background-clip': 'text',
-          '-webkit-text-fill-color': 'transparent',
-          '-moz-background-clip': 'text',
-          '-moz-text-fill-color': 'transparent',
-        }}
-        as="span"
-      >
-        Hallza
-      </Box>
-    </motion.div>
+        /* Use the text as a mask for the background. */
+        /* This will show the gradient as a text color rather than element bg. */
+        '-webkit-background-clip': 'text',
+        '-webkit-text-fill-color': 'transparent',
+        '-moz-background-clip': 'text',
+        '-moz-text-fill-color': 'transparent',
+      }}
+      as="span"
+    >
+      Hallza
+    </Box>
   );
 }
 

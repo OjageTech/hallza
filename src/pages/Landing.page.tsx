@@ -10,6 +10,7 @@ import {
   Text,
   Container,
   Image,
+  Checkbox,
 } from '@chakra-ui/react';
 import rentApart from '../assets/images/rent_apart.svg';
 
@@ -28,6 +29,7 @@ import SearchBar from '../components/common/searchbar/Searchbar';
 import PreSearch from '../components/common/searchbar/PreSearch';
 import PostSearch from '../components/common/searchbar/PostSearch';
 import SearchSection from '../components/common/searchbar';
+import MainSearch from '../components/common/MainSearch/MainSearch';
 
 type UnderlineDecorType = {
   text: string;
@@ -160,38 +162,12 @@ function Hero({ sectionId }: HeroInterface) {
               all other bookable function rooms.
             </Text>
           </Box>
-          <Flex
+          <Box
             mt={8}
-            gap="3.5rem"
           >
-            <Button
-              as={RouteLink}
-              to={ROUTE.USER_DASHBOARD}
-              variant="primary"
-            >
-              Add a venue
-            </Button>
-            <Button
-              as={RouteLink}
-              to={ROUTE.LOGIN}
-              variant="primaryOutline"
-            >
-              Explore services
-            </Button>
-          </Flex>
-          <Text mt="1rem">
-            Looking to rent an event space instead?
-            {' '}
-            <Text
-              color="primary"
-              fontWeight={600}
-              _hover={{ cursor: 'pointer' }}
-              as={RouteLink}
-              to={ROUTE.FIND}
-            >
-              Find it
-            </Text>
-          </Text>
+            <MainSearch />
+          </Box>
+          <Checkbox mt="1rem">I'm booking for my company</Checkbox>
         </GridItem>
       </Grid>
       <ProminentCanDos />

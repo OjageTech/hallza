@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import 'animate.css';
 import { Link as RouteLink } from 'react-router-dom';
-import { FaSun } from 'react-icons/fa';
+import { FaLanguage, FaSun } from 'react-icons/fa';
 import { RiMoonLine } from 'react-icons/ri';
 
 import {
@@ -18,10 +18,12 @@ import {
   GridItem,
   Text,
   useColorMode,
+  Image,
 } from '@chakra-ui/react';
 import Box from '../../components/common/Box';
 import HeaderGrid from '../../components/common/HeaderGrid';
 import AppName from '../../components/common/AppName';
+import US from '../../assets/images/US.png';
 import { navRoutes } from '../../routes/routes';
 
 interface PopItemProps {
@@ -84,6 +86,7 @@ const LandingHeader: React.FC = () => {
       w="100vw"
       pt="1rem"
       pb="0.5rem"
+      pl="2.8rem"
       templateRows="repeat(2, 1fr)"
       templateColumns="repeat(5, 1fr)"
       gap={0}
@@ -93,151 +96,124 @@ const LandingHeader: React.FC = () => {
       zIndex="overlay"
     >
       {/* <GridItem rowSpan={3} colSpan={1} /> */}
-      <GridItem
-        colStart={6}
-        colSpan={3}
-      >
-        <Flex
-          pr="1rem"
-          mr="1.5rem"
-          boxSizing="border-box"
-          gap="1.5rem"
-          justifyContent="flex-end"
-          justify="space-between"
-          alignItems="center"
-          flexWrap="wrap"
-        >
-          <Text
-            className="animate__animated animate__backInDown"
-            pr="3rem"
-            sx={{
-              display: 'grid',
-              gridTemplateColumns: '3fr',
-              gridTemplateRows: 'auto',
-              gridGap: '30px',
-              margin: '0 auto',
-              maxWidth: '960px',
-              '@media screen and (max-width: 700px)': {
-                gridTemplateColumns: '1fr 5fr',
-                columnSpan: '4',
-                gridTemplateRows: 'auto',
-              },
-              '@media screen and (min-width: 700px)': {
-                gridTemplateColumns: '1fr 8fr',
-                columnSpan: '4',
-                gridTemplateRows: 'auto',
-              },
-            }}
-            as="h1"
-            fontSize={{
-              base: '.5rem',
-              md: '1rem',
-              lg: '1rem',
-              xl: '1.5rem',
-            }}
-            lineHeight={0}
-            fontWeight={900}
-          >
+      <GridItem colStart={6} colSpan={3}>
+        <Flex justify="space-between">
+          <Text>
             <AppName txtDecoration="none" />
           </Text>
-          <Button variant="primary">Go to profile</Button>
-          {/* <Box
-            _hover={{ cursor: 'pointer' }}
-            display={hovered ? 'none' : 'block'}
-            color="primary"
-            onMouseOver={handleHover}
+          <Flex
+            pr="1rem"
+            mr="1.5rem"
+            boxSizing="border-box"
+            gap="1.5rem"
+            justifyContent="flex-end"
+            justify="space-between"
+            alignItems="center"
+            flexWrap="wrap"
           >
-            <Flex
-              boxSizing="border-box"
-              gap="1.5rem"
-              justifyContent="center"
-              textAlign="center"
-              alignItems="center"
-              flexWrap="wrap"
+            {/* Currency Change */}
+            <Button title="Select your currency" variant="ghost">XAF</Button>
+            {/* Language change */}
+            <Box title="Select your language" h="20px">
+              <Image _hover={{ cursor: 'pointer' }} h="100%" src={US} alt="English language" />
+            </Box>
+            {/* Ability to list your venue */}
+            <Button variant="outline" borderColor="primary">Add your venue</Button>
+            {/* Already logged in OR is already a member? then go to profile */}
+            {/* <Button variant="primary">Go to profile</Button> */}
+            {/* Login Options */}
+            <Box
+              _hover={{ cursor: 'pointer' }}
+              display={hovered ? 'none' : 'block'}
+              color="primary"
+              onMouseOver={handleHover}
             >
-              <Text>Login</Text>
-              <AiOutlineDownCircle color="inherit" />
-            </Flex>
-          </Box>
-          <Box
-            _hover={{ cursor: 'pointer' }}
-            display={hovered ? 'block' : 'none'}
-            color="primary"
-          >
-            <Flex
-              boxSizing="border-box"
-              gap="1.5rem"
-              justifyContent="center"
-              textAlign="center"
-              alignItems="center"
-              flexWrap="wrap"
+              <Flex
+                boxSizing="border-box"
+                gap="1.5rem"
+                justifyContent="center"
+                textAlign="center"
+                alignItems="center"
+                flexWrap="wrap"
+              >
+                <Text>Login</Text>
+                <AiOutlineDownCircle color="inherit" />
+              </Flex>
+            </Box>
+            <Box
+              _hover={{ cursor: 'pointer' }}
+              display={hovered ? 'block' : 'none'}
+              color="primary"
             >
-              <Text>Login</Text>
-              <AiOutlineUpCircle color="inherit" />
-            </Flex>
-          </Box>
-          <Box
-            onMouseLeave={handleHover}
-            sx={{
-              display: hovered ? 'block' : 'none',
-              width: '250px',
-              padding: '18px',
-              border: '1px solid #bdbdbd',
-              borderRadius: '4px',
-              height: 'fit-content',
-              marginTop: 0,
-              position: 'absolute',
-              top: '4rem',
-              transition: '.2s ease-in-out',
-            }}
-          >
-            <VStack
-              width="90%"
-              gap="20px"
-              textAlign="left"
-              alignItems="left"
-              justifyContent="left"
+              <Flex
+                boxSizing="border-box"
+                gap="1.5rem"
+                justifyContent="center"
+                textAlign="center"
+                alignItems="center"
+                flexWrap="wrap"
+              >
+                <Text>Login</Text>
+                <AiOutlineUpCircle color="inherit" />
+              </Flex>
+            </Box>
+            <Box
+              onMouseLeave={handleHover}
+              sx={{
+                display: hovered ? 'block' : 'none',
+                width: '250px',
+                padding: '18px',
+                border: '1px solid #bdbdbd',
+                borderRadius: '4px',
+                height: 'fit-content',
+                marginTop: 0,
+                position: 'absolute',
+                top: '4rem',
+                transition: '.2s ease-in-out',
+              }}
             >
               <VStack
+                width="90%"
+                gap="20px"
                 textAlign="left"
                 alignItems="left"
                 justifyContent="left"
-                width="200px"
-                gap="1rem"
               >
-                <Text
-                  fontWeight={500}
-                  as="h4"
+                <VStack
+                  textAlign="left"
+                  alignItems="left"
+                  justifyContent="left"
+                  width="200px"
+                  gap="1rem"
                 >
-                  Client
-                </Text>
-                <PopItem name="Login" />
-                <PopItem name="Create an Account" />
-              </VStack>
-              <VStack
-                textAlign="left"
-                alignItems="left"
-                justifyContent="left"
-                width="200px"
-                gap="1rem"
-              >
-                <Text
-                  fontWeight={500}
-                  as="h4"
+                  <Text fontWeight={500} as="h4">
+                    Client
+                  </Text>
+                  <PopItem name="Login" />
+                  <PopItem name="Create an Account" />
+                </VStack>
+                <VStack
+                  textAlign="left"
+                  alignItems="left"
+                  justifyContent="left"
+                  width="200px"
+                  gap="1rem"
                 >
-                  Venue
-                </Text>
-                <PopItem name="Login" />
-                <PopItem name="Book a Call" />
+                  <Text fontWeight={500} as="h4">
+                    Venue
+                  </Text>
+                  <PopItem name="Login" />
+                  <PopItem name="Book a Call" />
+                </VStack>
               </VStack>
-            </VStack>
-          </Box>
-          */}
-          <IconButton
-            aria-label="Toggle dark mode"
-            icon={colorMode === 'dark' ? <FaSun /> : <RiMoonLine />}
-            onClick={toggleColorMode}
-          />
+            </Box>
+            {/* ------ */}
+            <IconButton
+              aria-label="Toggle dark mode"
+              icon={colorMode === 'dark' ? <FaSun /> : <RiMoonLine />}
+              onClick={toggleColorMode}
+            />
+          </Flex>
         </Flex>
       </GridItem>
     </HeaderGrid>
