@@ -30,6 +30,7 @@ import PreSearch from '../components/common/searchbar/PreSearch';
 import PostSearch from '../components/common/searchbar/PostSearch';
 import SearchSection from '../components/common/searchbar';
 import MainSearch from '../components/common/MainSearch/MainSearch';
+import Offers from '../components/Offers/Offers';
 
 type UnderlineDecorType = {
   text: string;
@@ -187,6 +188,7 @@ const Landing = () => {
       >
         <LandingHeader />
         <Hero sectionId={sectionId} />
+        <Offers />
         <HallzaBanner />
         <CallToAddVenues />
         <CallToViewAllServices />
