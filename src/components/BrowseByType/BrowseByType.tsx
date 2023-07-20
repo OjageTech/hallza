@@ -5,7 +5,7 @@ import React from 'react';
 
 function BrowseByType() {
   return (
-    <Box mb="1rem" mt="2rem" ml="2.8rem" w="95.7%">
+    <Box mb="1rem" mt="2rem" ml="2.1rem" w="95.7%">
       <Text fontWeight={700} fontSize="22px">Browse by hall type</Text>
       <Flex mt=".9rem" justifyContent="space-between">
         <Box>
