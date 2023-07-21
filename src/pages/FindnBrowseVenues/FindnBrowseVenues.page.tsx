@@ -324,7 +324,7 @@ const Contents = () => (
     }}
   >
     {ContentsData.map((data: Venue) => (
-      <GridItem>
+      <GridItem key={data.name}>
         <Box
           _hover={{
             cursor: 'pointer',

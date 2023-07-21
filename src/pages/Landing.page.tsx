@@ -31,6 +31,7 @@ import PostSearch from '../components/common/searchbar/PostSearch';
 import SearchSection from '../components/common/searchbar';
 import MainSearch from '../components/common/MainSearch/MainSearch';
 import Offers from '../components/Offers/Offers';
+import Newsletter from '../components/Newsletter/Newsletter';
 import BrowseByType from '../components/BrowseByType/BrowseByType';
 
 type UnderlineDecorType = {
@@ -178,7 +179,6 @@ function Hero({ sectionId }: HeroInterface) {
 }
 
 const Landing = () => {
-  const a = '&lt';
   const [sectionId, setSectionId] = useState('heroSection');
   return (
     <div className="Landing">
@@ -192,11 +192,12 @@ const Landing = () => {
         <Offers />
         <BrowseByType />
         <HallzaBanner />
-        <CallToAddVenues />
-        <CallToViewAllServices />
         <CallToFindVenues />
+        {/* <CallToAddVenues /> */}
+        <CallToViewAllServices />
+        {/* <Box h="2rem" /> */}
+        <Box borderRadius={0} backgroundColor="gainsboro" pt="2rem"><Newsletter /></Box>
         {/* <SearchSection /> */}
-        <Box h="2rem" />
         {/* <FeaturedVenues /> */}
         {/* <Box h="2rem" />
         <ProminentFeatures /> */}
