@@ -196,12 +196,12 @@ const Landing = () => {
         {/* <CallToAddVenues /> */}
         <CallToViewAllServices />
         {/* <Box h="2rem" /> */}
-        <Box borderRadius={0} backgroundColor="gainsboro" pt="2rem"><Newsletter /></Box>
+        <Box borderRadius={0} backgroundColor="transparent" pt="2rem"><Newsletter /></Box>
         {/* <SearchSection /> */}
         {/* <FeaturedVenues /> */}
         {/* <Box h="2rem" />
         <ProminentFeatures /> */}
-        <Box h="6rem" />
+        <Box backgroundColor="transparent" h="6rem" />
         <Footer />
       </Container>
     </div>

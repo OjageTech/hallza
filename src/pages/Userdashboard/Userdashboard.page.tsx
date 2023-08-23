@@ -1,13 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { VStack, Flex, Container } from '@chakra-ui/react';
 import DashboardHeader from '../../layouts/headers/Userdashboard/Userdashboard.header';
 import DashboardSidebar from '../../layouts/sidebars/UserDashboard/UserDashboard.sidebar';
 import { nestRoutes } from '../../routes/routes';
+import authService from '../../services/auth.service';
+import { IUser, user } from '../../interfaces/user';
 
 const Userdashboard = () => {
-  const [path, setPath] = useState<string>('');
+  const [redirect, setRedirect] = useState<string | null>(null);
+  const [userReady, setUserReady] = useState<boolean>(false);
+  const [currentUser, setCurrentUser] = useState<user>();
 
+  useEffect(() => {
+    setCurrentUser(authService.getCurrentUser());
+    if (!currentUser) {
+      setRedirect('/');
+    }
+    setUserReady(true);
+  }, []);
+
+  if (redirect) {
+    return <Navigate to={redirect} />;
+  }
   return (
     <div className="userDashboard">
       {/*
@@ -16,7 +31,10 @@ const Userdashboard = () => {
     -CONTENT
 
     */}
+      {userReady
+      && (
       <Flex justify="start" alignItems="flex-start">
+        {currentUser?.username}
         <VStack justify="start" alignItems="flex-start">
           <DashboardHeader />
           <Container ml="40vh">
@@ -33,6 +51,7 @@ const Userdashboard = () => {
         </VStack>
         <DashboardSidebar />
       </Flex>
+      )}
     </div>
   );
 };

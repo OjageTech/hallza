@@ -15,19 +15,20 @@ const Footer = () => {
   return (
     <Container
       fontSize="14px"
-      position="absolute"
-      bottom={0}
-      mt={20}
+      // position="absolute"
+      // bottom={0}
+      // mt={20}
       maxWidth="100vw"
       ml={0}
       mr={0}
       padding="2px"
-      minW="100vw"
+      minW="100%"
       textAlign="center"
       alignItems="center"
       backgroundColor={
-        colorMode === 'light' ? 'tertiary' : 'cardColor'
+        colorMode === 'light' ? 'teal' : 'cardColor'
       }
+      color="white"
     >
       <Flex minH="3vh" justifyContent="space-between">
         <Flex>

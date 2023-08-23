@@ -9,13 +9,19 @@ import {
   Image,
   Button,
   Input,
+  Checkbox,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { AiOutlineBackward } from 'react-icons/ai';
 import FeaturedVenues from '../../components/FeaturedVenues';
 import { Venue } from '../../interfaces/venue';
 import girl from '../../assets/images/Edge_Editorial.png';
-import fio from '../../assets/images/ImageHeaderHero2_Blue.jpg';
+import lightBottle from '../../assets/images/lightBottle.jpg';
+import Packing from '../../assets/images/Packing.jpg';
+import LandingHeader from '../../layouts/headers/Landing.header';
+import MainSearch from '../../components/common/MainSearch/MainSearch';
+import geometricPatterns from '../../assets/images/geometricPatterns.png';
+import Footer from '../../layouts/footers/Landing.footer';
 
 const ContentsData: Venue[] = [
   {
@@ -33,14 +39,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [Packing, lightBottle],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -57,14 +63,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, lightBottle],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -81,14 +87,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, lightBottle],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -105,14 +111,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, Packing],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -129,14 +135,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, lightBottle],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -153,14 +159,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, Packing],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12345',
@@ -177,14 +183,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, fio],
+    photos: [girl, lightBottle],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12325',
@@ -201,14 +207,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [fio, girl],
+    photos: [lightBottle, girl],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12325',
@@ -225,14 +231,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [fio, girl],
+    photos: [lightBottle, Packing],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12325',
@@ -249,14 +255,14 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [fio, girl],
+    photos: [lightBottle, girl],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12325',
@@ -273,22 +279,22 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [fio, girl],
+    photos: [lightBottle, girl],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
   {
     id: 'p12325',
-    name: 'PurseHauz',
+    name: 'Miracle Center',
     description: 'The PursHauz',
     location: {
-      address: 'Lala',
-      city: 'Mamfe',
+      address: 'Muea',
+      city: 'Buea',
       state: 'SouthWest',
       zip: '31',
       country: 'Cameroon',
@@ -297,67 +303,87 @@ const ContentsData: Venue[] = [
     },
     capacity: 400,
     amenities: ['Projector', 'Flat Screen'],
-    photos: [fio, girl],
+    photos: [lightBottle, Packing],
     owner: {
       id: '39281',
       name: 'PurseMan',
       email: 'pursehauz@gmail.com',
     },
     created_at: 'Indiog2nd',
-    updated_at: 'fionwee',
+    updated_at: 'lightBottlenwee',
   },
 ];
-const Contents = () => (
+export const Contents = () => (
   <Grid
+    borderRadius="28px"
     mt="4rem"
     templateColumns={{
       base: 'repeat(1,minmax(0,1fr))',
       sm: 'repeat(2,minmax(0,1fr))',
-      lg: 'repeat(4,minmax(0,1fr))',
-      xl: 'repeat(5,minmax(0,1fr))',
+      lg: 'repeat(3,minmax(0,1fr))',
+      xl: 'repeat(4,minmax(0,1fr))',
     }}
     gap={{
       sm: '.5rem',
-      md: '.7rem',
-      lg: '.9rem',
-      xl: '1.1rem',
+      md: '1.7rem',
+      lg: '3.9rem',
+      xl: '4.1rem',
     }}
   >
     {ContentsData.map((data: Venue) => (
-      <GridItem key={data.name}>
+      <GridItem
+        key={data.name}
+        borderRadius="28px"
+        h="fit-content"
+        w="19vw"
+        _hover={{
+          cursor: 'pointer',
+          boxShadow: '2xl',
+        }}
+      >
         <Box
+          h="25vh"
+          boxShadow="lg"
           _hover={{
             cursor: 'pointer',
           }}
-          h="20vh"
-          w="16vw"
-          borderRadius="md"
-          border=".5px solid"
         >
           <Image
-            objectFit="cover"
+            borderTopRadius="10px"
             h="100%"
-            src={data.photos[0]}
+            w="100%"
+            objectFit="cover"
+            src={data.photos[1]}
           />
         </Box>
-        <Flex
-          alignItems="center"
-          mt=".5rem"
-          gap="5px"
-        >
-          <Box
-            border=".5px solid"
-            borderRadius="50%"
-            h="20px"
-            w="20px"
-          >
-            <Image
-              objectFit="cover"
-              src={data.photos[1]}
-            />
-          </Box>
-          <Text>{data.name}</Text>
-        </Flex>
+        <Box pl=".5rem" pr=".5rem" mt=".7rem" textAlign="center">
+          <Flex alignItems="center" justifyContent="space-between">
+            <Flex
+              alignItems="center"
+              gap="5px"
+            >
+              <Box
+                border=".5px solid"
+                borderRadius="50%"
+                h="20px"
+                w="20px"
+              >
+                <Image
+                  objectFit="cover"
+                  src={data.photos[1]}
+                />
+              </Box>
+              <Text>{data.name}</Text>
+            </Flex>
+            <Text>{data.location.city}</Text>
+          </Flex>
+          <Text mt=".7rem" fontSize="13px">
+            Starting from
+            {' '}
+            <strong>XAF 68,150</strong>
+            /day
+          </Text>
+        </Box>
       </GridItem>
     ))}
   </Grid>
@@ -367,85 +393,36 @@ const FindnBrowseVenues = () => (
     maxW="100vw"
     h="100vh"
   >
+    <LandingHeader />
     <Box
-      w="80vw"
-      m="0 auto"
-      className="nav"
+      mt="4rem"
+      backgroundImage={geometricPatterns}
+      backgroundPosition="right"
+      backgroundSize="cover"
+      pl="2.1rem"
+      pr="2.1rem"
+      h="30vh"
+      backgroundColor="teal.300"
+      pt="1rem"
     >
-      <Flex
-        mt="1rem"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Flex
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <AiOutlineBackward />
-          <Box
-            textUnderlineOffset="1rem"
-            fontWeight={700}
-            textDecorationColor="#e5e7eb"
-            sx={{
-              // /* Fallback: Set a background color. */
-              'backgroundColor': 'teal',
-
-              /* Create the gradient. */
-              'backgroundImage':
-                'linear-gradient(to right,#14b8a6,#8b5cf6)',
-
-              /* Set the background size and repeat properties. */
-              'backgroundSize': '100%',
-              'backgroundRepeat': 'repeat',
-
-              /* Use the text as a mask for the background. */
-              /* This will show the gradient as a text color rather than element bg. */
-              '-webkit-background-clip': 'text',
-              '-webkit-text-fill-color': 'transparent',
-              '-moz-background-clip': 'text',
-              '-moz-text-fill-color': 'transparent',
-            }}
-            as="span"
-          >
-            Hallza
-          </Box>
-        </Flex>
-        <Box>
-          <Flex
-            gap="1px"
-            borderRadius="md"
-            boxShadow="rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px"
-          >
-            <Input
-              borderRadius="md"
-              border="none"
-              w="29rem"
-              placeholder="Search"
-            />
-            <Flex
-              justifyContent="center"
-              alignItems="center"
-              bg="#F8F8F8"
-              w="4rem"
-              p="5px"
-              _hover={{ cursor: 'pointer' }}
-            >
-              <SearchIcon
-                w="20px"
-                h="20px"
-              />
-            </Flex>
-          </Flex>
-        </Box>
-        <Button variant="primary">Go to profile</Button>
-      </Flex>
+      <Text color="white" fontWeight={700} fontSize="40px">
+        Find the event space you need
+      </Text>
+      <Text color="white" fontSize="27px">
+        Search deals on hotel banquet halls, outdoor spaces and much more...
+      </Text>
+      <br />
+      <MainSearch />
+      <Checkbox mt="1rem" color="white">I'm booking for my company</Checkbox>
     </Box>
     <Box
       w="80vw"
-      m="0 auto"
+      ml="2.1rem"
+      mb="2.1rem"
     >
       <Contents />
     </Box>
+    <Footer />
   </Box>
 );
 

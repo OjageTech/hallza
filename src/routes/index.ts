@@ -7,8 +7,10 @@ export enum ROUTE {
   CONTACT = '/contact/',
   LOGIN = '/login',
   SIGNUP = '/signup',
+  VENUE_AUTH = '/venue-auth',
   USER_DASHBOARD = '/userDashboard/*',
-  SEARCH = '/search/:searchTerm',
+  SEARCH = '/search/:preferredLocation/:dateRange',
+  BROWSEBYTYPE = '/browse/:type/',
   FIND = '/find',
 }
 
@@ -45,6 +47,7 @@ type TArgs =
   | { path: ROUTE.BOOKING_SYSTEM }
   | { path: ROUTE.LOGIN }
   | { path: ROUTE.SIGNUP }
+  | { path: ROUTE.VENUE_AUTH }
   | { path: ROUTE.PRICING; params: { userId: string } }
   | {
       path: ROUTE.CONTACT;
@@ -56,7 +59,11 @@ type TArgs =
     }
   | {
     path: ROUTE.SEARCH;
-    params: { searchTerm: string };
+    params: { preferredLocation: string, dateRange: Date };
+  }
+  | {
+    path: ROUTE.BROWSEBYTYPE;
+    params: { type: string };
   };
 
 type TArgsWithParams = Extract<TArgs, { path: any; params: any }>;

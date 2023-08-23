@@ -1,36 +1,72 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box, Flex, Text, Image,
 } from '@chakra-ui/react';
-import React from 'react';
+import HallCover from '../../assets/images/mologo_compressed-danielle-cerullo-bIZJRVBLfOM-unsplash.jpg';
+import Stairs from '../../assets/images/Stairs.jpg';
+import ResortClub from '../../assets/images/ResortClub.jpg';
+import BueaTownStadium from '../../assets/images/BueaTownStadium.jpeg';
+
+const typeCategory = [
+  {
+    type: 'Hotels',
+    number: 22,
+    coverImage: HallCover,
+    to: '/browse/hotels',
+  },
+  {
+    type: 'The Outdoors',
+    number: 42,
+    coverImage: BueaTownStadium,
+    to: '/browse/outdoors',
+  },
+  {
+    type: 'Churches',
+    number: 12,
+    coverImage: Stairs,
+    to: '/browse/churches',
+  },
+  {
+    type: 'Resorts',
+    number: 10,
+    coverImage: ResortClub,
+    to: '/browse/resorts',
+  },
+];
 
 function BrowseByType() {
   return (
     <Box mb="1rem" mt="2rem" ml="2.1rem" w="95.7%">
       <Text fontWeight={700} fontSize="22px">Browse by hall type</Text>
       <Flex mt=".9rem" justifyContent="space-between">
-        <Box>
-          <Box h="26vh"><Image borderRadius={7} h="100%" src="https://images.unsplash.com/photo-1583953458882-302655b5c376?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvdGVsJTIwY29uZmVyZW5jZSUyMHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /></Box>
-          <Text fontWeight={600}>Hotels</Text>
-          <Text>22 hotels</Text>
-        </Box>
+        {
+          typeCategory.map((property) => (
+            <Box as={Link} to={property.to}>
+              <Box h="26vh" w="20vw"><Image borderRadius={7} h="100%" w="100%" objectFit="cover" src={property.coverImage} /></Box>
+              <Text fontWeight={600}>{property.type}</Text>
+              <Text>
+                {property.number}
+                {' '}
+                {(() => {
+                  switch (property.type) {
+                    case 'Hotels':
+                      return 'hotels';
+                    case 'Resorts':
+                      return 'resorts';
+                    case 'Churches':
+                      return 'churches';
+                    case 'The Outdoors':
+                      return 'spaces';
+                    default:
+                      return null;
+                  }
+                })()}
+              </Text>
+            </Box>
+          ))
+        }
 
-        <Box>
-          <Box h="26vh"><Image borderRadius={7} h="100%" src="https://images.unsplash.com/photo-1583953458882-302655b5c376?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvdGVsJTIwY29uZmVyZW5jZSUyMHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /></Box>
-          <Text fontWeight={600}>The Outdoors</Text>
-          <Text>42 spaces</Text>
-        </Box>
-
-        <Box>
-          <Box h="26vh"><Image borderRadius={7} h="100%" src="https://images.unsplash.com/photo-1583953458882-302655b5c376?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvdGVsJTIwY29uZmVyZW5jZSUyMHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /></Box>
-          <Text fontWeight={600}>Churches</Text>
-          <Text>12 churches</Text>
-        </Box>
-
-        <Box>
-          <Box h="26vh"><Image borderRadius={7} h="100%" src="https://images.unsplash.com/photo-1583953458882-302655b5c376?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fGhvdGVsJTIwY29uZmVyZW5jZSUyMHJvb218ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" /></Box>
-          <Text fontWeight={600}>Resorts</Text>
-          <Text>10 resorts</Text>
-        </Box>
       </Flex>
     </Box>
   );

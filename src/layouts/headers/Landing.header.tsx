@@ -25,6 +25,7 @@ import HeaderGrid from '../../components/common/HeaderGrid';
 import AppName from '../../components/common/AppName';
 import US from '../../assets/images/US.png';
 import { navRoutes } from '../../routes/routes';
+import MainSearch from '../../components/common/MainSearch/MainSearch';
 
 interface PopItemProps {
   name: string;
@@ -39,8 +40,6 @@ const PopItem = ({ name }: PopItemProps) => (
     borderRadius="0"
     borderBottom="1px solid #e5e5e5"
     width="200px"
-    as={RouteLink}
-    to="/Login"
   >
     <Grid templateColumns="repeat(5, 1fr)" gap={4}>
       <GridItem colSpan={4}>
@@ -69,24 +68,32 @@ const LandingHeader: React.FC = () => {
   };
 
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [navSearchVisible, setNavSearchVisible] = useState(false);
   const handleScroll = () => {
     const position = window.pageYOffset;
     setScrollPosition(position);
+    if (scrollPosition > 393) {
+      setNavSearchVisible(true);
+    } else {
+      setNavSearchVisible(false);
+    }
   };
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  /** This commented out code, would run handleScroll on the scroll event only on (re)-render of component */
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll, { passive: true });
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
   return (
     <HeaderGrid
       w="100vw"
       pt="1rem"
       pb="0.5rem"
-      pl="2.8rem"
+      pl="2.1rem"
       templateRows="repeat(2, 1fr)"
       templateColumns="repeat(5, 1fr)"
       gap={0}
@@ -97,8 +104,8 @@ const LandingHeader: React.FC = () => {
     >
       {/* <GridItem rowSpan={3} colSpan={1} /> */}
       <GridItem colStart={6} colSpan={3}>
-        <Flex justify="space-between">
-          <Text>
+        <Flex justify="space-between" alignItems="center">
+          <Text as={RouteLink} to="/">
             <AppName txtDecoration="none" />
           </Text>
           <Flex
@@ -111,6 +118,9 @@ const LandingHeader: React.FC = () => {
             alignItems="center"
             flexWrap="wrap"
           >
+            <Box className="animate__animated animate__fadeIn" display={navSearchVisible ? 'block' : 'none'}>
+              <MainSearch />
+            </Box>
             {/* Currency Change */}
             <Button title="Select your currency" variant="ghost">XAF</Button>
             {/* Language change */}
@@ -189,8 +199,19 @@ const LandingHeader: React.FC = () => {
                   <Text fontWeight={500} as="h4">
                     Client
                   </Text>
-                  <PopItem name="Login" />
-                  <PopItem name="Create an Account" />
+                  <Box
+                    as={RouteLink}
+                    to="/Login"
+                  >
+                    <PopItem name="Login" />
+
+                  </Box>
+                  <Box
+                    as={RouteLink}
+                    to="/signup"
+                  >
+                    <PopItem name="Create an Account" />
+                  </Box>
                 </VStack>
                 <VStack
                   textAlign="left"
@@ -202,7 +223,9 @@ const LandingHeader: React.FC = () => {
                   <Text fontWeight={500} as="h4">
                     Venue
                   </Text>
-                  <PopItem name="Login" />
+                  <Box as={RouteLink} to="/venue-auth">
+                    <PopItem name="Login" />
+                  </Box>
                   <PopItem name="Book a Call" />
                 </VStack>
               </VStack>

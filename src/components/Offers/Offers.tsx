@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   Box, Text, Flex, Image, Button,
 } from '@chakra-ui/react';
@@ -16,7 +17,7 @@ function Offers() {
             <Text fontWeight={600}>Find the perfect hall for your conference</Text>
             <Text>Browse event spaces offering discounts, extra amenities</Text>
             <br />
-            <Button variant="primary">Find a Venue</Button>
+            <Button variant="primary" as={Link} to="/find">Find a Venue</Button>
           </Box>
           <Image borderRightRadius={7} w="40%" src={ConfHall} />
         </Flex>

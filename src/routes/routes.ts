@@ -26,6 +26,8 @@ import Portfolio from '../components/UserDashboard/Dashboard/Portfolio/Portfolio
 import External from '../components/UserDashboard/Dashboard/External/External.component';
 import Activity from '../components/UserDashboard/Dashboard/Activity/Activity.component';
 import News from '../components/UserDashboard/Dashboard/News/News.component';
+import BrowseHallByType from '../pages/BrowseHallByType/BrowseHallByType.page';
+import Auth from '../pages/auth/VenueAuth/Auth.page';
 
 const routes: IRoute[] = [
   {
@@ -57,6 +59,13 @@ const routes: IRoute[] = [
     selected: false,
   },
   {
+    path: ROUTE.VENUE_AUTH,
+    name: 'VenueAuth',
+    element: Auth,
+    exact: true,
+    selected: false,
+  },
+  {
     path: ROUTE.SEARCH,
     name: 'Search',
     element: SearchResults,
@@ -67,6 +76,13 @@ const routes: IRoute[] = [
     path: ROUTE.FIND,
     name: 'FindnBrowseVenues',
     element: FindnBrowseVenues,
+    exact: false,
+    selected: false,
+  },
+  {
+    path: ROUTE.BROWSEBYTYPE,
+    name: 'BrowseByType',
+    element: BrowseHallByType,
     exact: false,
     selected: false,
   },
