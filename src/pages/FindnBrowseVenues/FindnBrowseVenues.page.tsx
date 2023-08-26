@@ -34,7 +34,7 @@ import geometricPatterns from '../../assets/images/geometricPatterns.png';
 import Footer from '../../layouts/footers/Landing.footer';
 import './styles.css';
 
-function FilterBy() {
+export function FilterBy() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyDCuLK99VxIqDi9_RsKVLILpE_lXi6omeo',
   });
@@ -44,7 +44,7 @@ function FilterBy() {
     [],
   );
   return (
-    <Box h="fit-content" w="20vw">
+    <Box h="fit-content" w="20vw" mt="2.89rem">
       <Box
         mt="1rem"
         mr="6px"
@@ -145,28 +145,46 @@ interface AllDetailsI {
 
 function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
   return (
-    <div className="animate__animated animate__fadeIn">
-      <Modal size="full" onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{data.name}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            This particular hall has a lot of amenities like tv, pool, guestroom
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              variant="primaryOutline"
-              background="danger"
-              color="white"
-              onClick={onClose}
-            >
-              Go back
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </div>
+    <Modal
+      onClose={onClose}
+      isOpen={isOpen}
+      isCentered
+    >
+      <ModalOverlay sx={{
+        background: 'rgba(255, 255, 255, 0.01)',
+        borderRadius: '10px',
+        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+        backdropFilter: 'blur(4px)',
+        border: '1px solid rgba(255, 255, 255, 0.3)',
+      }}
+      />
+      <ModalContent
+        sx={{
+          height: '90vh',
+          width: '90vw',
+          background: 'rgba(255, 255, 255, 0.9)',
+          borderRadius: '10px',
+          backdropFilter: 'blur(1px)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+        }}
+      >
+        <ModalHeader>{data.name}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          This particular hall has a lot of amenities like tv, pool, guestroom
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            variant="primaryOutline"
+            background="danger"
+            color="white"
+            onClick={onClose}
+          >
+            Go back
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 }
 
@@ -469,8 +487,8 @@ export const Contents = () => {
       templateColumns={{
         base: 'repeat(1,minmax(0,1fr))',
         sm: 'repeat(2,minmax(0,1fr))',
-        lg: 'repeat(3,minmax(0,1fr))',
-        xl: 'repeat(4,minmax(0,1fr))',
+        lg: 'repeat(2,minmax(0,1fr))',
+        xl: 'repeat(3,minmax(0,1fr))',
       }}
       gap={{
         sm: '.5rem',
@@ -560,7 +578,7 @@ const FindnBrowseVenues = () => (
         I'm booking for my company
       </Checkbox>
     </Box>
-    <Flex w="95vw" ml="2.1rem" mb="2.1rem">
+    <Flex w="95vw" ml="2.1rem" mb="2.1rem" gap="1ch">
       <FilterBy />
       <Contents />
     </Flex>
