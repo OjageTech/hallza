@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import dotenv from 'dotenv';
 import { Provider } from 'react-redux';
 import './index.css';
 import { ChakraProvider } from '@chakra-ui/react';
