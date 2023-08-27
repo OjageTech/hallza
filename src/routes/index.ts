@@ -12,6 +12,7 @@ export enum ROUTE {
   SEARCH = '/search/:preferredLocation/:dateRange',
   BROWSEBYTYPE = '/browse/:type/',
   FIND = '/find',
+  VENUE_DETAILS = '/venue-details/:id',
 }
 
 export enum USER_PROFILE_ROUTE {
@@ -64,6 +65,10 @@ type TArgs =
   | {
     path: ROUTE.BROWSEBYTYPE;
     params: { type: string };
+  }
+  | {
+    path: ROUTE.VENUE_DETAILS;
+    params: { id: string };
   };
 
 type TArgsWithParams = Extract<TArgs, { path: any; params: any }>;

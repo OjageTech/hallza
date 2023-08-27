@@ -21,7 +21,7 @@ import {
   CheckboxGroup,
   Stack,
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineBackward } from 'react-icons/ai';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { Venue } from '../../interfaces/venue';
@@ -188,9 +188,9 @@ function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
   );
 }
 
-const ContentsData: Venue[] = [
+export const ContentsData: Venue[] = [
   {
-    id: 'p12345',
+    id: 'hallza21820',
     name: 'PurseHauz',
     description: 'The PursHauz',
     location: {
@@ -214,8 +214,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
+    id: 'hallza12098',
+    name: 'The Hub',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -238,9 +238,9 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
-    description: 'The PursHauz',
+    id: 'hallza13809',
+    name: 'CrimiLounge',
+    description: 'Located off acien route',
     location: {
       address: 'Lala',
       city: 'Mamfe',
@@ -262,8 +262,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
+    id: 'hallza64720',
+    name: 'CasaDapapel',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -286,8 +286,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
+    id: 'hallza41509',
+    name: 'Nicksons',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -310,8 +310,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
+    id: 'hallza74140',
+    name: 'Lookattim',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -334,9 +334,9 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12345',
-    name: 'PurseHauz',
-    description: 'The PursHauz',
+    id: 'hallza01482',
+    name: 'inficospace',
+    description: 'The inficospace',
     location: {
       address: 'Lala',
       city: 'Mamfe',
@@ -358,8 +358,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12325',
-    name: 'PurseHauz',
+    id: 'hallza60217',
+    name: 'Ig_Palace',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -382,8 +382,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12325',
-    name: 'PurseHauz',
+    id: 'hallza91703',
+    name: 'SaveDaDate',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -406,8 +406,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12325',
-    name: 'PurseHauz',
+    id: 'hallza10293',
+    name: 'VachenX',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -430,8 +430,8 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12325',
-    name: 'PurseHauz',
+    id: 'hallza30291',
+    name: 'Club of friends',
     description: 'The PursHauz',
     location: {
       address: 'Lala',
@@ -454,9 +454,9 @@ const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
-    id: 'p12325',
+    id: 'hallza20819',
     name: 'Miracle Center',
-    description: 'The PursHauz',
+    description: 'The Miracle no di tire Jesus',
     location: {
       address: 'Muea',
       city: 'Buea',
@@ -479,6 +479,10 @@ const ContentsData: Venue[] = [
   },
 ];
 export const Contents = () => {
+  const navigate = useNavigate();
+  const handleClickDetails = (id: string) => {
+    navigate(`/venue-details/${id}`);
+  };
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Grid
@@ -507,7 +511,7 @@ export const Contents = () => {
             cursor: 'pointer',
             boxShadow: '2xl',
           }}
-          onClick={onOpen}
+          onClick={() => handleClickDetails(data.id)}
         >
           <Box
             h="25vh"
@@ -531,12 +535,6 @@ export const Contents = () => {
                   <Image objectFit="cover" src={data.photos[1]} />
                 </Box>
                 <Text>{data.name}</Text>
-                <AllDetails
-                  isOpen={isOpen}
-                  data={data}
-                  onOpen={onOpen}
-                  onClose={onClose}
-                />
               </Flex>
               <Text>{data.location.city}</Text>
             </Flex>

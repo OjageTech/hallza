@@ -10,6 +10,7 @@ import Userdashboard from '../pages/Userdashboard/Userdashboard.page';
 import Login from '../pages/auth/Login.page';
 import SignUp from '../pages/auth/Signup.page';
 import FindnBrowseVenues from '../pages/FindnBrowseVenues/FindnBrowseVenues.page';
+import VenueDetails from '../pages/VenueDetails/VenueDetails.page';
 import Landing from '../pages/Landing.page';
 import SearchResults from '../pages/SearchResults/SearchResults.page';
 import { ROUTE, USER_DASHBOARD_ROUTE, IN_DASHBOARD_ROUTE } from '.';
@@ -83,6 +84,13 @@ const routes: IRoute[] = [
     path: ROUTE.BROWSEBYTYPE,
     name: 'BrowseByType',
     element: BrowseHallByType,
+    exact: false,
+    selected: false,
+  },
+  {
+    path: ROUTE.VENUE_DETAILS,
+    name: 'VenueDetails',
+    element: VenueDetails,
     exact: false,
     selected: false,
   },
