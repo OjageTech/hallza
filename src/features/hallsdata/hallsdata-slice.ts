@@ -143,6 +143,6 @@ export const {
   // updateRentalProperty,
 } = rentalSlice.actions;
 
-export const selectRentals = (state: RootState) => state.rentals;
+export const selectRentals = (state: RootState) => state.rental;
 
 export default rentalSlice.reducer;

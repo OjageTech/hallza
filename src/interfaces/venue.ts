@@ -30,6 +30,8 @@ interface Review {
 }
 
 export interface venue {
+  find: any;
+  _id: string,
   location: Location;
   owner: Owner;
   availability: Availability;
@@ -38,7 +40,7 @@ export interface venue {
   capacity: number;
   amenities: string[];
   photos: string[];
-  price_per_hour: number;
+  price_per_day: number;
   rating: number;
   reviews: Review[];
   created_at: string;

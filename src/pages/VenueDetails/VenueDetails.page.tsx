@@ -10,16 +10,17 @@ import {
   Divider,
   Flex,
 } from '@chakra-ui/react';
-import { ContentsData } from '../FindnBrowseVenues/FindnBrowseVenues.page';
+import { useAppSelector } from '../../app/hooks';
 
 const VenueDetails: React.FC = () => {
+  const { venues } = useAppSelector((state) => state.venues);
   // Get Venue id from the URL
   const { id } = useParams();
   let urlID = id || '';
   // Function to search for a venue by id
   const findVenueById = (venueId: string) => {
-    const venue = ContentsData.find(
-      (individualVenue) => individualVenue.id === venueId,
+    const venue = venues.find(
+      (individualVenue: { id: string; }) => individualVenue.id === venueId,
     );
     return venue;
   };
@@ -81,7 +82,7 @@ const VenueDetails: React.FC = () => {
         systems, catering facilities, and ample parking space.
       </Text>
       <Flex gap="1rem">
-        {foundVenue?.photos.map((photo) => (
+        {foundVenue?.photos.map((photo: string | undefined) => (
           <Image
             src={photo}
             alt="Venue Image"

@@ -25,7 +25,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineBackward } from 'react-icons/ai';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import { Venue } from '../../interfaces/venue';
+import { venue } from '../../interfaces/venue';
 import girl from '../../assets/images/Edge_Editorial.png';
 import lightBottle from '../../assets/images/lightBottle.jpg';
 import Packing from '../../assets/images/Packing.jpg';
@@ -34,6 +34,7 @@ import MainSearch from '../../components/common/MainSearch/MainSearch';
 import geometricPatterns from '../../assets/images/geometricPatterns.png';
 import Footer from '../../layouts/footers/Landing.footer';
 import './styles.css';
+import { useAppSelector } from '../../app/hooks';
 
 export function FilterBy() {
   const { isLoaded } = useLoadScript({
@@ -141,7 +142,7 @@ interface AllDetailsI {
   isOpen: boolean;
   onClose: () => void;
   onOpen: () => void;
-  data: Venue;
+  data: venue;
 }
 
 function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
@@ -188,315 +189,16 @@ function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
     </Modal>
   );
 }
-export const ContentsData: Venue[] = [
-  {
-    price_per_day: 68500,
-    id: 'hallza21820',
-    name: 'PurseHauz',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [Packing, lightBottle],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza12098',
-    name: 'The Hub',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, lightBottle],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza13809',
-    name: 'CrimiLounge',
-    description: 'Located off acien route',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, lightBottle],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza64720',
-    name: 'CasaDapapel',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, Packing],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza41509',
-    name: 'Nicksons',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, lightBottle],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza74140',
-    name: 'Lookattim',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, Packing],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza01482',
-    name: 'inficospace',
-    description: 'The inficospace',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [girl, lightBottle],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza60217',
-    name: 'Ig_Palace',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [lightBottle, girl],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza91703',
-    name: 'SaveDaDate',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [lightBottle, Packing],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza10293',
-    name: 'VachenX',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [lightBottle, girl],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza30291',
-    name: 'Club of friends',
-    description: 'The PursHauz',
-    location: {
-      address: 'Lala',
-      city: 'Mamfe',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [lightBottle, girl],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-  {
-    price_per_day: 68500,
-    id: 'hallza20819',
-    name: 'Miracle Center',
-    description: 'The Miracle no di tire Jesus',
-    location: {
-      address: 'Muea',
-      city: 'Buea',
-      state: 'SouthWest',
-      zip: '31',
-      country: 'Cameroon',
-      latitude: 93,
-      longitude: 12,
-    },
-    capacity: 400,
-    amenities: ['Projector', 'Flat Screen'],
-    photos: [lightBottle, Packing],
-    owner: {
-      id: '39281',
-      name: 'PurseMan',
-      email: 'pursehauz@gmail.com',
-    },
-    created_at: 'Indiog2nd',
-    updated_at: 'lightBottlenwee',
-  },
-];
 
 export const Contents = () => {
+  const { venues } = useAppSelector((state) => state.venues);
+  console.log(`Venues from state: ${venues}`);
   const [venueData, setVenueData] = useState([]);
   async function fetchData() {
     try {
       const response = await axios.get('http://localhost:3000/venues');
       setVenueData(response.data); // Do something with the retrieved data
+      console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -517,7 +219,7 @@ export const Contents = () => {
       flexDir="column"
       gap="1rem"
     >
-      {venueData.map((data: Venue) => (
+      {venueData.map((data: venue) => (
         <Flex
           key={data.name}
           borderRadius="10px"
@@ -525,7 +227,7 @@ export const Contents = () => {
           backgroundColor="white"
           boxShadow="md"
           w="70vw"
-          onClick={() => handleClickDetails(data.id)}
+          onClick={() => handleClickDetails(data._id)}
         >
           <Box
             h="25vh"
