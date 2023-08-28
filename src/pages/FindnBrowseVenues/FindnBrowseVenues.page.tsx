@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import {
   Box,
   Flex,
@@ -21,6 +21,7 @@ import {
   CheckboxGroup,
   Stack,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineBackward } from 'react-icons/ai';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
@@ -187,9 +188,9 @@ function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
     </Modal>
   );
 }
-
 export const ContentsData: Venue[] = [
   {
+    price_per_day: 68500,
     id: 'hallza21820',
     name: 'PurseHauz',
     description: 'The PursHauz',
@@ -214,6 +215,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza12098',
     name: 'The Hub',
     description: 'The PursHauz',
@@ -238,6 +240,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza13809',
     name: 'CrimiLounge',
     description: 'Located off acien route',
@@ -262,6 +265,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza64720',
     name: 'CasaDapapel',
     description: 'The PursHauz',
@@ -286,6 +290,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza41509',
     name: 'Nicksons',
     description: 'The PursHauz',
@@ -310,6 +315,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza74140',
     name: 'Lookattim',
     description: 'The PursHauz',
@@ -334,6 +340,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza01482',
     name: 'inficospace',
     description: 'The inficospace',
@@ -358,6 +365,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza60217',
     name: 'Ig_Palace',
     description: 'The PursHauz',
@@ -382,6 +390,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza91703',
     name: 'SaveDaDate',
     description: 'The PursHauz',
@@ -406,6 +415,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza10293',
     name: 'VachenX',
     description: 'The PursHauz',
@@ -430,6 +440,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza30291',
     name: 'Club of friends',
     description: 'The PursHauz',
@@ -454,6 +465,7 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
   {
+    price_per_day: 68500,
     id: 'hallza20819',
     name: 'Miracle Center',
     description: 'The Miracle no di tire Jesus',
@@ -478,50 +490,53 @@ export const ContentsData: Venue[] = [
     updated_at: 'lightBottlenwee',
   },
 ];
+
 export const Contents = () => {
+  const [venueData, setVenueData] = useState([]);
+  async function fetchData() {
+    try {
+      const response = await axios.get('http://localhost:3000/venues');
+      setVenueData(response.data); // Do something with the retrieved data
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   const navigate = useNavigate();
   const handleClickDetails = (id: string) => {
     navigate(`/venue-details/${id}`);
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Grid
+    <Flex
       borderRadius="28px"
       mt="4rem"
-      templateColumns={{
-        base: 'repeat(1,minmax(0,1fr))',
-        sm: 'repeat(2,minmax(0,1fr))',
-        lg: 'repeat(2,minmax(0,1fr))',
-        xl: 'repeat(3,minmax(0,1fr))',
-      }}
-      gap={{
-        sm: '.5rem',
-        md: '1.7rem',
-        lg: '3.9rem',
-        xl: '4.1rem',
-      }}
+      flexDir="column"
+      gap="1rem"
     >
-      {ContentsData.map((data: Venue) => (
-        <GridItem
+      {venueData.map((data: Venue) => (
+        <Flex
           key={data.name}
-          borderRadius="28px"
+          borderRadius="10px"
           h="fit-content"
-          w="19vw"
-          _hover={{
-            cursor: 'pointer',
-            boxShadow: '2xl',
-          }}
+          backgroundColor="white"
+          boxShadow="md"
+          w="70vw"
           onClick={() => handleClickDetails(data.id)}
         >
           <Box
             h="25vh"
+            w="20vw"
             boxShadow="lg"
             _hover={{
               cursor: 'pointer',
             }}
           >
             <Image
-              borderTopRadius="10px"
+              borderLeftRadius="10px"
               h="100%"
               w="100%"
               objectFit="cover"
@@ -531,23 +546,27 @@ export const Contents = () => {
           <Box pl=".5rem" pr=".5rem" mt=".7rem" textAlign="center">
             <Flex alignItems="center" justifyContent="space-between">
               <Flex alignItems="center" gap="5px">
-                <Box border=".5px solid" borderRadius="50%" h="20px" w="20px">
-                  <Image objectFit="cover" src={data.photos[1]} />
+                <Box border=".5px solid gainsboro" borderRadius="50%" h="20px" w="20px">
+                  <Image objectFit="cover" h="100%" w="100%" borderRadius="50%" src={data.photos[1]} />
                 </Box>
-                <Text>{data.name}</Text>
+                <Text fontWeight={700} fontSize="21px">{data.name}</Text>
+                <Text>{data.location.city}</Text>
               </Flex>
-              <Text>{data.location.city}</Text>
             </Flex>
             <Text mt=".7rem" fontSize="13px">
               Starting from
               {' '}
-              <strong>XAF 68,150</strong>
+              <strong>
+                XAF
+                {' '}
+                {data.price_per_day}
+              </strong>
               /day
             </Text>
           </Box>
-        </GridItem>
+        </Flex>
       ))}
-    </Grid>
+    </Flex>
   );
 };
 const FindnBrowseVenues = () => (
