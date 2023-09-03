@@ -1,30 +1,53 @@
 // venues-slice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { makeId } from '../../app/functions';
-import type { RootState } from '../../app/store';
+import { getVenues } from '../api';
 import { venue } from '../../interfaces/venue';
 
 // Define the initial state as an empty object
-const initialState: Record<string, venue> = {};
+const initialState = { data: {}, loading: false, error: '' };
 
 const venuesSlice = createSlice({
   name: 'venues',
   initialState,
   reducers: {
-    loadSuccess: (state, action) => {
-      console.log('jioi');
-      state.venue = action.payload; // Update the data with the preloaded data
-      // state.error = 'Error'; // Reset the error message
+    // Reducer for starting the job data fetch
+    fetchVenueDataStart: (state) => {
+      state.loading = true;
+      state.error = 'no error';
     },
-    loadFailure: (state, action) => {
-      // state.data = {}; // Reset the data
-      state.error = action.payload; // Update the error message with the failure message
+
+    // Reducer for successful venue data fetch
+    fetchVenueDataSuccess: (state, action: PayloadAction<venue>) => {
+      state.data = action.payload;
+      state.loading = false;
+    },
+
+    // Reducer for failed venue data fetch
+    fetchVenueDataFailure: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
     },
   },
 });
 
 const { actions } = venuesSlice;
+// Extract the action Creators
+export const {
+  fetchVenueDataStart,
+  fetchVenueDataSuccess,
+  fetchVenueDataFailure,
+} = actions;
 
-export const { loadSuccess, loadFailure } = actions;
+// Thunk action creator for fetching venues data
+export const fetchVenuesData = () => async (dispatch: any) => {
+  try {
+    dispatch(fetchVenueDataStart());
+    const venueData = await getVenues();
+    dispatch(fetchVenueDataSuccess(venueData));
+  } catch (error: any) {
+    dispatch(fetchVenueDataFailure(error.message));
+  }
+};
 
 export default venuesSlice.reducer;

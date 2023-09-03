@@ -35,6 +35,7 @@ import geometricPatterns from '../../assets/images/geometricPatterns.png';
 import Footer from '../../layouts/footers/Landing.footer';
 import './styles.css';
 import { useAppSelector } from '../../app/hooks';
+import { fetchVenuesData } from '../../features/venues/venues-slice';
 
 export function FilterBy() {
   const { isLoaded } = useLoadScript({
@@ -191,22 +192,24 @@ function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
 }
 
 export const Contents = () => {
-  const { venues } = useAppSelector((state) => state.venues);
-  console.log(`Venues from state: ${venues}`);
-  const [venueData, setVenueData] = useState([]);
-  async function fetchData() {
-    try {
-      const response = await axios.get('http://localhost:3000/venues');
-      setVenueData(response.data); // Do something with the retrieved data
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   useEffect(() => {
-    fetchData();
+    fetchVenuesData();
   }, []);
+  const { data: venues } = useAppSelector((state) => state.venues);
+  console.log(`Venues from state: ${venues}`);
+  // async function fetchData() {
+  //   try {
+  //     const response = await axios.get('http://localhost:3000/venues');
+  //     setVenueData(response.data); // Do something with the retrieved data
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
   const navigate = useNavigate();
   const handleClickDetails = (id: string) => {
     navigate(`/venue-details/${id}`);

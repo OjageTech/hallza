@@ -15,10 +15,7 @@ import { FaArrowDown } from 'react-icons/fa';
 import LandingHeader from '../../layouts/headers/Landing.header';
 import Card from '../../components/common/Card';
 import SearchBar from '../../components/common/searchbar/Searchbar';
-import FeaturedVenues, {
-  FeaturedVenue,
-  FeaturedVenueProps,
-} from '../../components/FeaturedVenues';
+
 import {
   selectRentals,
   addRental,

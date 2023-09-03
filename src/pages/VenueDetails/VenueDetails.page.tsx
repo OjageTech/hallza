@@ -11,9 +11,14 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import { useAppSelector } from '../../app/hooks';
+import { fetchVenuesData } from '../../features/venues/venues-slice';
 
 const VenueDetails: React.FC = () => {
-  const { venues } = useAppSelector((state) => state.venues);
+  React.useEffect(() => {
+    fetchVenuesData();
+  }, []);
+  const { data: venues } = useAppSelector((state) => state.venues);
+  console.log(`Venues data is ${venues}`);
   // Get Venue id from the URL
   const { id } = useParams();
   let urlID = id || '';
