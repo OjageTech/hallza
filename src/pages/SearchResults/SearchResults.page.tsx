@@ -53,22 +53,37 @@ const SearchResults = () => {
   const proxied = new Proxy({ foo: 'bar' }, handler);
   // console.log(proxied);
   const { preferredLocation, dateRange } = useParams();
-  let dateRangeString = dateRange?.replaceAll('[', '');
-  dateRangeString = dateRangeString?.replace(']', '');
-  dateRangeString = dateRangeString?.replaceAll('"', '');
-  const newDateRange = dateRangeString?.split(',');
-  let dateArr: Date[] = [];
-  if (newDateRange) {
-    // const parsedDate = JSON.parse(dateRangeString);
-    dateArr = newDateRange.map((item: any) => new Date(item));
+
+  let dateRangeA: Date[] = [];
+  let startDateString = '';
+  let endDateString = '';
+  if (dateRange) {
+    // Parse the date strings into Date objects
+    dateRangeA = JSON.parse(dateRange); // Convert the string to an array if necessary
+
+    if (Array.isArray(dateRangeA) && dateRangeA.length === 2) {
+      const startDate = new Date(dateRangeA[0]);
+      const endDate = new Date(dateRangeA[1]);
+
+      // Check if the parsed dates are valid Date objects
+      if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
+        // Format and display the dates to the user
+        startDateString = startDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const startTimeString = startDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        endDateString = endDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const endTimeString = endDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+        console.log(`Start Date: ${startDateString} ${startTimeString}`);
+        console.log(`End Date: ${endDateString} ${endTimeString}`);
+      } else {
+        console.error('Invalid date format in URL parameter');
+      }
+    } else {
+      console.error('Invalid URL parameter format');
+    }
+  } else {
+    console.warn('URL parameter not provided');
   }
-  const dispatch = useAppDispatch();
-  //   console.log('sraw');
-  //   useEffect(() => {
-  //     console.log('sra');
-  //     // Dispatch the fetchVenuesData action when the component mounts
-  //     dispatch(fetchVenuesData());
-  //   }, [dispatch]);
   const { data: venues } = useAppSelector((state) => state.venues);
   const [displayCount, setDisplayCount] = useState(12);
 
@@ -101,26 +116,26 @@ const SearchResults = () => {
           Search deals on hotel banquet halls, outdoor spaces and much more...
         </Text>
         <br />
-        <MainSearch preferredLocation={preferredLocation} dateRange={dateArr} />
+        <MainSearch preferredLocation={preferredLocation} dateRange={dateRangeA} />
         <Checkbox mt="1rem" color="white">I'm booking for my company</Checkbox>
       </Box>
       <Box ml="2.1rem" mt="2.1rem">
-        <Text fontSize="23px">
-          {preferredLocation}
-          : 20 event-spaces found available from
+        <Text fontSize="sm">
+          <b>
+            {preferredLocation}
+          </b>
           {' '}
-          {dateArr[0].getDate()}
-          /
-          {dateArr[0].getMonth()}
-          /
-          {dateArr[0].getFullYear()}
-          / to
+          : from
           {' '}
-          {dateArr[1].getDate()}
-          /
-          {dateArr[1].getMonth()}
-          /
-          {dateArr[1].getFullYear()}
+          <b>
+            {startDateString}
+          </b>
+          {' '}
+          to
+          {' '}
+          <b>
+            {endDateString}
+          </b>
         </Text>
         <Select
           mt=".5rem"
@@ -139,7 +154,7 @@ const SearchResults = () => {
       </Box>
       <Flex
         w="100%"
-        ml="2.1rem"
+        pl="2.1rem"
         mb="2.1rem"
       >
         <FilterContents
