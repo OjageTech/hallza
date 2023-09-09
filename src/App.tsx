@@ -1,18 +1,23 @@
 // import 'animate.css';
-import {
-  BrowserRouter, Route, Routes,
-} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import routes from './routes/routes';
+import { fetchVenuesData } from './features/venues/venues-slice';
+import { useAppDispatch } from './app/hooks';
 
 function App() {
-  // Setting page scroll to 0 (top) when changing route
+  const dispatch = useAppDispatch();
+
+  // Setting page scroll to 0 (top) when changing route and beginning data fetching
   useEffect(() => {
+    // Dispatch the fetchVenuesData action when the component mounts
+    dispatch(fetchVenuesData());
+
     document.documentElement.scrollTop = 0;
     if (document.scrollingElement) {
       document.scrollingElement.scrollTop = 0;
     }
-  }, [document.URL]);
+  }, [document.URL, dispatch]);
   return (
     <BrowserRouter>
       <Routes>

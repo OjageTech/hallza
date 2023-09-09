@@ -46,3 +46,14 @@ export interface venue {
   created_at: string;
   updated_at: string;
 }
+// Define the props for the Contents component
+export type ContentsProps = {
+  venues: venue[]; // Array of venue objects
+};
+
+// Define the props for the FilterContents HOC
+export type FilterContentsProps = {
+  data: venue[]; // Original venues data
+  nameFilter?: string | null; // Optional name filter
+  dateFilter?: string | null; // Optional date filter
+};

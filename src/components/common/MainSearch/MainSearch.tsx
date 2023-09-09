@@ -32,7 +32,6 @@ export default function MainSearch({
   function handleSearch(e: any): any {
     if (eventPrefferedLocation && selectedDates.toString() !== '') {
       const dateString: string = JSON.stringify(selectedDates);
-      console.log(dateString);
       navigate(`/search/${eventPrefferedLocation}/${dateString}`);
     }
   }

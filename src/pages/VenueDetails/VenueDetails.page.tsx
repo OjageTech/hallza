@@ -10,30 +10,31 @@ import {
   Divider,
   Flex,
 } from '@chakra-ui/react';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchVenuesData } from '../../features/venues/venues-slice';
 
 const VenueDetails: React.FC = () => {
+  const dispatch = useAppDispatch();
   React.useEffect(() => {
-    fetchVenuesData();
-  }, []);
+    // Dispatch the fetchVenuesData action when the component mounts
+    dispatch(fetchVenuesData());
+  }, [dispatch]);
   const { data: venues } = useAppSelector((state) => state.venues);
-  console.log(`Venues data is ${venues}`);
   // Get Venue id from the URL
   const { id } = useParams();
   let urlID = id || '';
   // Function to search for a venue by id
   const findVenueById = (venueId: string) => {
-    const venue = venues.find(
-      (individualVenue: { id: string; }) => individualVenue.id === venueId,
-    );
+    const venue = venues.find((indivenue) => indivenue._id === venueId);
     return venue;
   };
   if (id) {
     urlID = id;
   }
   const foundVenue = findVenueById(urlID);
-
+  if (!foundVenue) {
+    return <Box>Venue not found</Box>;
+  }
   return (
     <Box p={4}>
       <Flex gap="1rem">

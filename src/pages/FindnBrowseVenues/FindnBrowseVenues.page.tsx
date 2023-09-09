@@ -20,12 +20,13 @@ import {
   useDisclosure,
   CheckboxGroup,
   Stack,
+  Spinner,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineBackward } from 'react-icons/ai';
 import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
-import { venue } from '../../interfaces/venue';
+import { ContentsProps, venue } from '../../interfaces/venue';
 import girl from '../../assets/images/Edge_Editorial.png';
 import lightBottle from '../../assets/images/lightBottle.jpg';
 import Packing from '../../assets/images/Packing.jpg';
@@ -34,8 +35,10 @@ import MainSearch from '../../components/common/MainSearch/MainSearch';
 import geometricPatterns from '../../assets/images/geometricPatterns.png';
 import Footer from '../../layouts/footers/Landing.footer';
 import './styles.css';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchVenuesData } from '../../features/venues/venues-slice';
+import FilterContents from '../../components/FilterContents/FilterContents';
+import NotFound from '../../components/NotFound/NotFound';
 
 export function FilterBy() {
   const { isLoaded } = useLoadScript({
@@ -191,25 +194,7 @@ function AllDetails({ isOpen, onOpen, onClose, data }: AllDetailsI) {
   );
 }
 
-export const Contents = () => {
-  useEffect(() => {
-    fetchVenuesData();
-  }, []);
-  const { data: venues } = useAppSelector((state) => state.venues);
-  console.log(`Venues from state: ${venues}`);
-  // async function fetchData() {
-  //   try {
-  //     const response = await axios.get('http://localhost:3000/venues');
-  //     setVenueData(response.data); // Do something with the retrieved data
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+export const Contents = ({ venues }: ContentsProps) => {
   const navigate = useNavigate();
   const handleClickDetails = (id: string) => {
     navigate(`/venue-details/${id}`);
@@ -222,90 +207,101 @@ export const Contents = () => {
       flexDir="column"
       gap="1rem"
     >
-      {venueData.map((data: venue) => (
-        <Flex
-          key={data.name}
-          borderRadius="10px"
-          h="fit-content"
-          backgroundColor="white"
-          boxShadow="md"
-          w="70vw"
-          onClick={() => handleClickDetails(data._id)}
-        >
-          <Box
-            h="25vh"
-            w="20vw"
-            boxShadow="lg"
-            _hover={{
-              cursor: 'pointer',
-            }}
+      {
+      venues.length === 0 ? <NotFound />
+        : (venues.map((data: venue) => (
+          <Flex
+            key={data.name}
+            borderRadius="10px"
+            h="fit-content"
+            backgroundColor="white"
+            boxShadow="md"
+            w="70vw"
+            onClick={() => handleClickDetails(data._id)}
           >
-            <Image
-              borderLeftRadius="10px"
-              h="100%"
-              w="100%"
-              objectFit="cover"
-              src={data.photos[1]}
-            />
-          </Box>
-          <Box pl=".5rem" pr=".5rem" mt=".7rem" textAlign="center">
-            <Flex alignItems="center" justifyContent="space-between">
-              <Flex alignItems="center" gap="5px">
-                <Box border=".5px solid gainsboro" borderRadius="50%" h="20px" w="20px">
-                  <Image objectFit="cover" h="100%" w="100%" borderRadius="50%" src={data.photos[1]} />
-                </Box>
-                <Text fontWeight={700} fontSize="21px">{data.name}</Text>
-                <Text>{data.location.city}</Text>
+            <Box
+              h="25vh"
+              w="20vw"
+              boxShadow="lg"
+              _hover={{
+                cursor: 'pointer',
+              }}
+            >
+              <Image
+                borderLeftRadius="10px"
+                h="100%"
+                w="100%"
+                objectFit="cover"
+                src={data.photos[1]}
+              />
+            </Box>
+            <Box pl=".5rem" pr=".5rem" mt=".7rem" textAlign="center">
+              <Flex alignItems="center" justifyContent="space-between">
+                <Flex alignItems="center" gap="5px">
+                  <Box border=".5px solid gainsboro" borderRadius="50%" h="20px" w="20px">
+                    <Image objectFit="cover" h="100%" w="100%" borderRadius="50%" src={data.photos[1]} />
+                  </Box>
+                  <Text fontWeight={700} fontSize="21px">{data.name}</Text>
+                  <Text>{data.location.city}</Text>
+                </Flex>
               </Flex>
-            </Flex>
-            <Text mt=".7rem" fontSize="13px">
-              Starting from
-              {' '}
-              <strong>
-                XAF
+              <Text mt=".7rem" fontSize="13px">
+                Starting from
                 {' '}
-                {data.price_per_day}
-              </strong>
-              /day
-            </Text>
-          </Box>
-        </Flex>
-      ))}
+                <strong>
+                  XAF
+                  {' '}
+                  {data.price_per_day}
+                </strong>
+                /day
+              </Text>
+            </Box>
+          </Flex>
+        )))
+}
     </Flex>
   );
 };
-const FindnBrowseVenues = () => (
-  <Box maxW="100vw" h="100vh">
-    <LandingHeader />
-    <Box
-      mt="4rem"
-      backgroundImage={geometricPatterns}
-      backgroundPosition="right"
-      backgroundSize="cover"
-      pl="2.1rem"
-      pr="2.1rem"
-      h="30vh"
-      backgroundColor="teal.300"
-      pt="1rem"
-    >
-      <Text color="white" fontWeight={700} fontSize="40px">
-        Find the event space you need
-      </Text>
-      <Text color="white" fontSize="27px">
-        Search deals on hotel banquet halls, outdoor spaces and much more...
-      </Text>
-      <br />
-      <MainSearch />
-      <Checkbox colorScheme="teal" mt="1rem" color="white">
-        I'm booking for my company
-      </Checkbox>
+const FindnBrowseVenues = () => {
+  const dispatch = useAppDispatch();
+  const { data: venues } = useAppSelector((state) => state.venues);
+  const { loading } = useAppSelector((state) => state.venues);
+  return (
+    <Box maxW="100vw" h="100vh">
+      <LandingHeader />
+      <Box
+        mt="4rem"
+        backgroundImage={geometricPatterns}
+        backgroundPosition="right"
+        backgroundSize="cover"
+        pl="2.1rem"
+        pr="2.1rem"
+        h="30vh"
+        backgroundColor="teal.300"
+        pt="1rem"
+      >
+        <Text color="white" fontWeight={700} fontSize="40px">
+          Find the event space you need
+        </Text>
+        <Text color="white" fontSize="27px">
+          Search deals on hotel banquet halls, outdoor spaces and much more...
+        </Text>
+        <br />
+        <MainSearch />
+        <Checkbox colorScheme="teal" mt="1rem" color="white">
+          I'm booking for my company
+        </Checkbox>
+      </Box>
+      <Flex w="95vw" ml="2.1rem" mb="2.1rem" gap="1ch">
+        <FilterBy />
+        {
+          loading ? <Box m="0 auto" mt="4rem"><Spinner color="primary" size="xl" /></Box>
+            : <FilterContents data={venues} />
+      }
+      </Flex>
+      <Footer />
     </Box>
-    <Flex w="95vw" ml="2.1rem" mb="2.1rem" gap="1ch">
-      <FilterBy />
-      <Contents />
-    </Flex>
-    <Footer />
-  </Box>
-);
+  );
+};
 
 export default FindnBrowseVenues;

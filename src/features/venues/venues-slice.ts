@@ -5,7 +5,13 @@ import { getVenues } from '../api';
 import { venue } from '../../interfaces/venue';
 
 // Define the initial state as an empty object
-const initialState = { data: {}, loading: false, error: '' };
+interface VenueState {
+  data: venue[];
+  loading: boolean;
+  error: string;
+}
+
+const initialState:VenueState = { data: [], loading: false, error: '' };
 
 const venuesSlice = createSlice({
   name: 'venues',
@@ -18,7 +24,7 @@ const venuesSlice = createSlice({
     },
 
     // Reducer for successful venue data fetch
-    fetchVenueDataSuccess: (state, action: PayloadAction<venue>) => {
+    fetchVenueDataSuccess: (state, action: PayloadAction<venue[]>) => {
       state.data = action.payload;
       state.loading = false;
     },
@@ -40,6 +46,7 @@ export const {
 } = actions;
 
 // Thunk action creator for fetching venues data
+
 export const fetchVenuesData = () => async (dispatch: any) => {
   try {
     dispatch(fetchVenueDataStart());
@@ -49,5 +56,4 @@ export const fetchVenuesData = () => async (dispatch: any) => {
     dispatch(fetchVenueDataFailure(error.message));
   }
 };
-
 export default venuesSlice.reducer;

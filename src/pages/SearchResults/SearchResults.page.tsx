@@ -30,6 +30,7 @@ import geometricPatterns from '../../assets/images/geometricPatterns.png';
 import { Contents } from '../FindnBrowseVenues/FindnBrowseVenues.page';
 import Footer from '../../layouts/footers/Landing.footer';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import FilterContents from '../../components/FilterContents/FilterContents';
 
 const SearchResults = () => {
   // Proxy can be used to modify fundamental operations on objects.
@@ -50,7 +51,7 @@ const SearchResults = () => {
   };
 
   const proxied = new Proxy({ foo: 'bar' }, handler);
-  console.log(proxied);
+  // console.log(proxied);
   const { preferredLocation, dateRange } = useParams();
   let dateRangeString = dateRange?.replaceAll('[', '');
   dateRangeString = dateRangeString?.replace(']', '');
@@ -61,17 +62,14 @@ const SearchResults = () => {
     // const parsedDate = JSON.parse(dateRangeString);
     dateArr = newDateRange.map((item: any) => new Date(item));
   }
-  // const lowerCaseSearchTerm = preferredLocation
-  //   ? preferredLocation.toLowerCase()
-  //   : '';
-  // const rentals = useAppSelector(selectRentals);
-
-  // const filteredData = rentals.filter(
-  //   (item: FeaturedVenueProps) => item.name.toLowerCase().includes(lowerCaseSearchTerm)
-  //     || item.renterName.toLowerCase().includes(lowerCaseSearchTerm),
-  // );
-  // let Dates = [new Date(), new Date()];
-  // Dates.push(dateRange);
+  const dispatch = useAppDispatch();
+  //   console.log('sraw');
+  //   useEffect(() => {
+  //     console.log('sra');
+  //     // Dispatch the fetchVenuesData action when the component mounts
+  //     dispatch(fetchVenuesData());
+  //   }, [dispatch]);
+  const { data: venues } = useAppSelector((state) => state.venues);
   const [displayCount, setDisplayCount] = useState(12);
 
   const handleLoadMore = () => {
@@ -144,103 +142,13 @@ const SearchResults = () => {
         ml="2.1rem"
         mb="2.1rem"
       >
-        <Contents />
+        <FilterContents
+          data={venues}
+          nameFilter={preferredLocation}
+          dateFilter={dateRange}
+        />
       </Flex>
       <Footer />
-      {/* <Center>
-        <Box
-          fontWeight={700}
-          fontSize="33px"
-          mt={70}
-        >
-          {preferredLocation}
-        </Box>
-      </Center>
-      <Center mt={3}>
-        <Flex
-          gap={4}
-          as="dl"
-        >
-          <dt>Related:</dt>
-          <dd>Party</dd>
-          <dd>Celebration</dd>
-          <dd>Ocassion</dd>
-        </Flex>
-      </Center>
-      <Box h="2rem" />
-      <Box
-        margin="0 auto"
-        w="94%"
-      >
-        <Select
-          icon={<MdArrowDropDown />}
-          w="10vw"
-          fontWeight={300}
-        >
-          <option value="Popular">Popular</option>
-          <option value="Luxurious">Luxurious</option>
-          <option value="New & Noteworthy">New & Noteworthy3</option>
-        </Select>
-        <Box h="2rem" />
-        <Grid
-          mt="1rem"
-          templateColumns={{
-            base: 'repeat(1,minmax(0,1fr))',
-            sm: 'repeat(2,minmax(0,1fr))',
-            lg: 'repeat(3,minmax(0,1fr))',
-            xl: 'repeat(4,minmax(0,1fr))',
-          }}
-          gap={{
-            sm: '.6rem',
-            md: '.8rem',
-            lg: '1.5rem',
-            xl: '2.3rem',
-          }}
-        >
-          {filteredData
-            .slice(0, displayCount)
-            .map(
-              ({
-                id,
-                renterLogo,
-                capacity,
-                price,
-                rating,
-                name,
-                previewImage,
-                renterName,
-                loves,
-                views,
-              }: FeaturedVenueProps) => (
-                <FeaturedVenue
-                  id={id}
-                  renterLogo={renterLogo}
-                  capacity={capacity}
-                  price={price}
-                  rating={rating}
-                  name={name}
-                  previewImage={previewImage}
-                  renterName={renterName}
-                  loves={loves}
-                  views={views}
-                />
-              ),
-            )}
-        </Grid>
-        {displayCount < filteredData.length && (
-          <Box
-            mt="1rem"
-            textAlign="center"
-          >
-            <Button
-              variant="primaryOutline"
-              onClick={handleLoadMore}
-            >
-              Load More
-            </Button>
-          </Box>
-        )}
-      </Box> */}
     </div>
   );
 };
