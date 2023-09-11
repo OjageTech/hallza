@@ -29,6 +29,7 @@ import Activity from '../components/UserDashboard/Dashboard/Activity/Activity.co
 import News from '../components/UserDashboard/Dashboard/News/News.component';
 import BrowseHallByType from '../pages/BrowseHallByType/BrowseHallByType.page';
 import Auth from '../pages/auth/VenueAuth/Auth.page';
+import Booking from '../pages/Booking/Booking.page';
 
 const routes: IRoute[] = [
   {
@@ -94,13 +95,20 @@ const routes: IRoute[] = [
     exact: false,
     selected: false,
   },
+  {
+    path: ROUTE.BOOKING_SYSTEM,
+    name: 'Secure book',
+    element: Booking,
+    exact: true,
+    selected: false,
+  },
 ];
 export const navRoutes: IRoute[] = [
   // @TODO Change the element to the correct one!
   {
     path: ROUTE.BOOKING_SYSTEM,
-    name: 'Find Venues',
-    element: SignUp,
+    name: 'Secure book',
+    element: Booking,
     exact: true,
     selected: false,
   },

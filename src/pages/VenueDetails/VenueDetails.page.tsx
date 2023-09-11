@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
   Box,
   Heading,
@@ -106,7 +106,7 @@ const VenueDetails: React.FC = () => {
           Parking Space
         </Badge>
       </Box>
-      <Button colorScheme="green" size="lg">
+      <Button colorScheme="green" size="lg" as={Link} to="/login">
         Book This Venue
       </Button>
     </Box>

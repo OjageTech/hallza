@@ -1,15 +1,17 @@
 /* eslint-disable class-methods-use-this */
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/api/auth/';
+// const API_URL = 'https://hallza-api.cyclic.cloud/auth/';
+const API_URL = 'http://localhost:3000/auth/';
 
 class AuthService {
   async login(username: string, password: string) {
-    const response = await axios.post(`${API_URL}signin`, {
+    const response = await axios.post(`${API_URL}login`, {
       username,
       password,
     });
-    if (response.data.accessToken) {
+    console.log(response.data);
+    if (response.data.token) {
       localStorage.setItem('user', JSON.stringify(response.data));
     }
     return response.data;
@@ -35,6 +37,7 @@ class AuthService {
 
   getCurrentUser() {
     const userStr = localStorage.getItem('user');
+    console.log(userStr);
     if (userStr) return JSON.parse(userStr);
     return null;
   }
