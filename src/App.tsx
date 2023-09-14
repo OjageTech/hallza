@@ -1,5 +1,6 @@
 // import 'animate.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
 import routes from './routes/routes';
 import { fetchVenuesData } from './features/venues/venues-slice';
@@ -18,17 +19,22 @@ function App() {
       document.scrollingElement.scrollTop = 0;
     }
   }, [document.URL, dispatch]);
+  const helmetContext = {};
+
   return (
     <BrowserRouter>
-      <Routes>
-        {routes.map((route) => (
-          <Route
-            key={route.path}
-            path={route.path}
-            element={<route.element />}
-          />
-        ))}
-      </Routes>
+      <HelmetProvider context={helmetContext}>
+
+        <Routes>
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              element={<route.element />}
+            />
+          ))}
+        </Routes>
+      </HelmetProvider>
     </BrowserRouter>
   );
 }

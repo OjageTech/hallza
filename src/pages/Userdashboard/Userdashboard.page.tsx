@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { VStack, Flex, Container } from '@chakra-ui/react';
+import { Helmet } from 'react-helmet-async';
 import DashboardHeader from '../../layouts/headers/Userdashboard/Userdashboard.header';
 import DashboardSidebar from '../../layouts/sidebars/UserDashboard/UserDashboard.sidebar';
 import { nestRoutes } from '../../routes/routes';
@@ -11,10 +12,8 @@ const Userdashboard = () => {
   const [redirect, setRedirect] = useState<string | null>(null);
   const [userReady, setUserReady] = useState<boolean>(false);
   const currentUser: user = authService.getCurrentUser();
-  // const [currentUser, setCurrentUser] = useState<user>();
 
   useEffect(() => {
-    // setCurrentUser(authService.getCurrentUser());
     if (!currentUser) {
       setRedirect('/');
     }
@@ -24,14 +23,19 @@ const Userdashboard = () => {
   if (redirect) {
     return <Navigate to={redirect} />;
   }
+
   return (
     <div className="userDashboard">
-      {/*
-    -SIDBAR [LEFT - RIGHT]
-    -HEADER
-    -CONTENT
+      <Helmet>
+        <title>Hallza - User Dashboard</title>
+        <meta name="description" content="Welcome to the Hallza User Dashboard. Access your account and manage your booked event spaces." />
+      </Helmet>
 
-    */}
+      {/*
+        - SIDEBAR [LEFT - RIGHT]
+        - HEADER
+        - CONTENT
+      */}
       {userReady && (
         <Flex justify="start" alignItems="flex-start">
           <VStack justify="start" alignItems="flex-start">
@@ -54,4 +58,5 @@ const Userdashboard = () => {
     </div>
   );
 };
+
 export default Userdashboard;

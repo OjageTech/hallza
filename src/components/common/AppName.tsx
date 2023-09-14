@@ -24,14 +24,12 @@ function AppName({ txtDecoration }: any) {
     }
   }, [controls, inView]);
   return (
-    <Flex h="70px" alignItems="center">
-      <Image h="100%" src={logo} alt="Hallza" />
+    <Flex h="40px" alignItems="center">
+      <Image transform="scale(1.7)" h="100%" src={logo} alt="Hallza" />
       <Text
-        className="animate__backInDown"
         textDecoration={txtDecoration}
         fontWeight={700}
         fontSize="xl"
-        textUnderlineOffset="1rem"
         textDecorationColor="#e5e7eb"
         sx={{
         // /* Fallback: Set a background color. */
