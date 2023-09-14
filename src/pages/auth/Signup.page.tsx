@@ -9,6 +9,7 @@ import {
   Text,
   Image,
   useMediaQuery,
+  useToast,
 } from '@chakra-ui/react';
 import {
   Formik, Field, Form, ErrorMessage,
@@ -102,7 +103,7 @@ const Signup = () => {
       setRedirect('/profile');
     }
   }, []);
-
+  const toast = useToast();
   const validationSchema = () => Yup.object().shape({
     fullname: Yup.string()
       .test(
@@ -143,8 +144,13 @@ const Signup = () => {
     setLoading(true);
     AuthService.signup(fullname, username, email, password).then(
       (response) => {
-        setMessage(response.data.message);
-        setSuccessful(true);
+        toast({
+          title: 'Account created.',
+          description: "We've created your account for you.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        });
       },
       (error) => {
         // Handle error

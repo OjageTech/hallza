@@ -10,10 +10,11 @@ import { IUser, user } from '../../interfaces/user';
 const Userdashboard = () => {
   const [redirect, setRedirect] = useState<string | null>(null);
   const [userReady, setUserReady] = useState<boolean>(false);
-  const [currentUser, setCurrentUser] = useState<user>();
+  const currentUser: user = authService.getCurrentUser();
+  // const [currentUser, setCurrentUser] = useState<user>();
 
   useEffect(() => {
-    setCurrentUser(authService.getCurrentUser());
+    // setCurrentUser(authService.getCurrentUser());
     if (!currentUser) {
       setRedirect('/');
     }
@@ -31,26 +32,24 @@ const Userdashboard = () => {
     -CONTENT
 
     */}
-      {userReady
-      && (
-      <Flex justify="start" alignItems="flex-start">
-        {currentUser?.username}
-        <VStack justify="start" alignItems="flex-start">
-          <DashboardHeader />
-          <Container ml="40vh">
-            <Routes>
-              {nestRoutes.map((routes) => (
-                <Route
-                  key={routes.path}
-                  path={routes.path}
-                  element={<routes.element />}
-                />
-              ))}
-            </Routes>
-          </Container>
-        </VStack>
-        <DashboardSidebar />
-      </Flex>
+      {userReady && (
+        <Flex justify="start" alignItems="flex-start">
+          <VStack justify="start" alignItems="flex-start">
+            <DashboardHeader />
+            <Container ml="40vh">
+              <Routes>
+                {nestRoutes.map((routes) => (
+                  <Route
+                    key={routes.path}
+                    path={routes.path}
+                    element={<routes.element />}
+                  />
+                ))}
+              </Routes>
+            </Container>
+          </VStack>
+          <DashboardSidebar />
+        </Flex>
       )}
     </div>
   );

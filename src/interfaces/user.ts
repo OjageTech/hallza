@@ -2,9 +2,8 @@ export interface user {
     username: string;
     email: string;
     fullname: string;
-    id: string;
-    roles: string[];
-    accessToken: string;
+    _id: string;
+    password: string;
 }
 
 export interface IUser {

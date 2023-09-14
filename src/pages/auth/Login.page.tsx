@@ -8,6 +8,7 @@ import {
   Image,
   Text,
   useMediaQuery,
+  useToast,
 } from '@chakra-ui/react';
 import {
   Formik, Field, Form, ErrorMessage,
@@ -25,7 +26,7 @@ const Login = () => {
   const [message, setMessage] = useState('');
   const [isMobileDevices] = useMediaQuery('(max-width: 767px)');
   const [baseTablet] = useMediaQuery('(min-width: 798px)');
-
+  const toast = useToast();
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
     if (currentUser) {
@@ -45,7 +46,13 @@ const Login = () => {
 
     try {
       await AuthService.login(username, password);
-      setMessage('Login Success');
+      toast({
+        title: 'Logged In',
+        description: "You've logged in successfully.",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      });
       setRedirect('/userDashboard');
     } catch (error) {
       setMessage('Login failed. Please check your credentials.');
