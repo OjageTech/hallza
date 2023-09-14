@@ -20,6 +20,7 @@ import AppName from '../../components/common/AppName';
 import AuthService from '../../services/auth.service';
 import avatarMann from '../../assets/images/avatarMann.svg';
 import ShapesTri from '../../assets/images/ShapesTri.png';
+import { user } from '../../interfaces/user';
 
 interface BannerRightProps {
   ShapesTria: string;
@@ -98,9 +99,9 @@ const Signup = () => {
   const [baseTablet] = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
-    const currentUser = AuthService.getCurrentUser();
+    const currentUser: user = AuthService.getCurrentUser();
     if (currentUser) {
-      setRedirect('/profile');
+      setRedirect('/userDashboard');
     }
   }, []);
   const toast = useToast();
@@ -151,6 +152,7 @@ const Signup = () => {
           duration: 9000,
           isClosable: true,
         });
+        setRedirect('/userDashboard');
       },
       (error) => {
         // Handle error
