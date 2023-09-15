@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Image, Text, Flex } from '@chakra-ui/react';
 import {
   useAnimation,
@@ -24,7 +25,7 @@ function AppName({ txtDecoration }: any) {
     }
   }, [controls, inView]);
   return (
-    <Flex h="40px" alignItems="center">
+    <Flex h="40px" alignItems="center" as={Link} to="/">
       <Image transform="scale(1.7)" h="100%" src={logo} alt="Hallza" />
       <Text
         textDecoration={txtDecoration}

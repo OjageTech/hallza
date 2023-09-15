@@ -8,6 +8,7 @@ import {
   AiOutlineDownCircle,
   AiOutlineUpCircle,
   AiOutlineRight,
+  AiOutlineProfile,
 } from 'react-icons/ai';
 import {
   VStack,
@@ -28,13 +29,19 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  Select,
 } from '@chakra-ui/react';
+import { AddIcon, CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { BsCurrencyExchange } from 'react-icons/bs';
+import { MdOutlineLanguage } from 'react-icons/md';
 import Box from '../../components/common/Box';
 import HeaderGrid from '../../components/common/HeaderGrid';
 import AppName from '../../components/common/AppName';
 import US from '../../assets/images/US.png';
 import { navRoutes } from '../../routes/routes';
 import MainSearch from '../../components/common/MainSearch/MainSearch';
+import authService from '../../services/auth.service';
+import { user } from '../../interfaces/user';
 
 interface PopItemProps {
   name: string;
@@ -48,29 +55,158 @@ const PopItem = ({ name }: PopItemProps) => (
     }}
     borderRadius="0"
     borderBottom="1px solid #e5e5e5"
-    width="200px"
+    width="100%"
   >
-    <Grid templateColumns="repeat(5, 1fr)" gap={4}>
-      <GridItem colSpan={4}>
+    <Flex alignItems="center" justifyContent="space-between">
+      <Box>
         <Text>{name}</Text>
-      </GridItem>
-      <GridItem
-        colStart={5}
-        colEnd={6}
+      </Box>
+      <Box
         _hover={{
           transform: 'translateX(0.5rem)',
         }}
         color="primary"
       >
         <AiOutlineRight />
-      </GridItem>
-    </Grid>
+      </Box>
+    </Flex>
   </Box>
 );
 
+function MobileNav() {
+  const currentUser: user = authService.getCurrentUser();
+  const { isOpen, onToggle } = useDisclosure();
+  return (
+    <Stack
+      p={4}
+      display={{
+        md: 'none',
+      }}
+    >
+      <Box>
+        <Box w="97%">
+
+          {
+    /* Currency Change */
+  }
+          <Select variant="flushed" placeholder="Change Currency" icon={<BsCurrencyExchange />}>
+            <option value="option1">XAF</option>
+            <option value="option2">USD</option>
+            <option value="option3">Euro</option>
+          </Select>
+          {
+    /* Language change */
+  }
+          <Select variant="flushed" placeholder="Change Language" icon={<MdOutlineLanguage />}>
+            <option value="option1">English</option>
+            <option value="option2">French</option>
+            <option value="option3">Japanese</option>
+          </Select>
+        </Box>
+        {
+    /* Ability to login */
+  }
+        {
+    !currentUser
+      ? (
+        <Box
+          w="95%"
+          onClick={onToggle}
+          _hover={{ cursor: 'pointer' }}
+        >
+          <Flex
+            py={4}
+            boxSizing="border-box"
+            color="primary"
+            justifyContent="space-between"
+            gap="1.5rem"
+            alignItems="center"
+            flexWrap="wrap"
+          >
+            <Text>Login</Text>
+            <AiOutlineDownCircle color="inherit" />
+          </Flex>
+        </Box>
+      )
+      : (
+        <>
+          <br />
+          <Button as={RouteLink} to="/userDashboard" variant="primary" leftIcon={<AiOutlineProfile />} borderColor="primary">Go to Profile</Button>
+          <br />
+          <br />
+        </>
+      )
+        }
+
+        <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
+          <Stack
+            mt={2}
+            pl={4}
+            borderLeft={1}
+            borderStyle="solid"
+            borderColor={useColorModeValue('gray.200', 'gray.700')}
+            align="start"
+          >
+            <VStack
+              width="100%"
+              gap="20px"
+              textAlign="left"
+              alignItems="left"
+              justifyContent="left"
+            >
+              <VStack
+                textAlign="left"
+                alignItems="left"
+                justifyContent="left"
+                w="95%"
+                gap="1rem"
+              >
+                <Text fontWeight={500} as="h4">
+                  Client
+                </Text>
+                <Box
+                  as={RouteLink}
+                  to="/Login"
+                >
+                  <PopItem name="Login" />
+
+                </Box>
+                <Box
+                  as={RouteLink}
+                  to="/signup"
+                >
+                  <PopItem name="Create an Account" />
+                </Box>
+              </VStack>
+              <VStack
+                textAlign="left"
+                alignItems="left"
+                justifyContent="left"
+                width="95%"
+                gap="1rem"
+              >
+                <Text fontWeight={500} as="h4">
+                  Venue
+                </Text>
+                <Box as={RouteLink} to="/venue-auth">
+                  <PopItem name="Login" />
+                </Box>
+                <PopItem name="Book a Call" />
+              </VStack>
+            </VStack>
+          </Stack>
+        </Collapse>
+        <Button variant="primaryOutline" leftIcon={<AddIcon />} borderColor="primary">Add your venue</Button>
+      </Box>
+
+    </Stack>
+  );
+}
 const LandingHeader: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onToggle } = useDisclosure();
   const [hovered, setHovered] = useState(false);
+  const currentUser: user = authService.getCurrentUser();
 
   const handleHover = () => {
     setHovered(!hovered);
@@ -114,10 +250,24 @@ const LandingHeader: React.FC = () => {
       {/* <GridItem rowSpan={3} colSpan={1} /> */}
       <GridItem colStart={6} colSpan={3}>
         <Flex justify="space-between" alignItems="center">
-          <Text as={RouteLink} to="/">
-            <AppName txtDecoration="none" />
-          </Text>
           <Flex
+            flex={{ base: 1, md: 'auto' }}
+            ml={{ base: -2 }}
+            display={{ base: 'flex', md: 'none' }}
+          >
+            <IconButton
+              onClick={onToggle}
+              icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />}
+              variant="ghost"
+              aria-label="Toggle Navigation"
+            />
+          </Flex>
+          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }} as={RouteLink} to="/">
+            <AppName txtDecoration="none" />
+          </Flex>
+          {/* Desktop display this . . . */}
+          <Flex
+            display={{ base: 'none', md: 'flex' }}
             pr="1rem"
             mr="1.5rem"
             boxSizing="border-box"
@@ -139,26 +289,31 @@ const LandingHeader: React.FC = () => {
             {/* Ability to list your venue */}
             <Button variant="outline" borderColor="primary">Add your venue</Button>
             {/* Already logged in OR is already a member? then go to profile */}
-            {/* <Button variant="primary">Go to profile</Button> */}
-            {/* Login Options */}
-            <Box
-              _hover={{ cursor: 'pointer' }}
-              display={hovered ? 'none' : 'block'}
-              color="primary"
-              onMouseOver={handleHover}
-            >
-              <Flex
-                boxSizing="border-box"
-                gap="1.5rem"
-                justifyContent="center"
-                textAlign="center"
-                alignItems="center"
-                flexWrap="wrap"
-              >
-                <Text>Login</Text>
-                <AiOutlineDownCircle color="inherit" />
-              </Flex>
-            </Box>
+            {
+              currentUser
+                ? <Button as={RouteLink} to="/userDashboard" variant="primary">Go to profile</Button>
+                : (
+              // {/* Login Options */}
+                  <Box
+                    _hover={{ cursor: 'pointer' }}
+                    display={hovered ? 'none' : 'block'}
+                    color="primary"
+                    onMouseOver={handleHover}
+                  >
+                    <Flex
+                      boxSizing="border-box"
+                      gap="1.5rem"
+                      justifyContent="center"
+                      textAlign="center"
+                      alignItems="center"
+                      flexWrap="wrap"
+                    >
+                      <Text>Login</Text>
+                      <AiOutlineDownCircle color="inherit" />
+                    </Flex>
+                  </Box>
+                )
+}
             <Box
               _hover={{ cursor: 'pointer' }}
               display={hovered ? 'block' : 'none'}
@@ -246,8 +401,27 @@ const LandingHeader: React.FC = () => {
               onClick={toggleColorMode}
             />
           </Flex>
+
+          <Stack
+            display={{ base: 'flex', md: 'none' }}
+            flex={{ base: 1, md: 0 }}
+            justify="flex-end"
+            pr="2.1rem"
+            direction="row"
+            spacing={6}
+          >
+            {/* Toggle Light/dark mode */}
+            <IconButton
+              aria-label="Toggle dark mode"
+              icon={colorMode === 'dark' ? <FaSun /> : <RiMoonLine />}
+              onClick={toggleColorMode}
+            />
+          </Stack>
         </Flex>
       </GridItem>
+      <Collapse in={isOpen} animateOpacity>
+        <MobileNav />
+      </Collapse>
     </HeaderGrid>
   );
 };
