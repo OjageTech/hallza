@@ -117,20 +117,25 @@ function Hero({ sectionId }: HeroInterface) {
       pr="1rem"
       boxSizing="border-box"
     >
-      <Grid gap={57}>
-        <GridItem colSpan={2}>
+      <Flex
+        w={{ base: '100%', md: '66%' }}
+        justifyContent="space-between"
+      >
+        <Box
+          h={375}
+          display={{ base: 'none', md: 'block' }}
+          // w={493}
+        >
           <Image
-            w={493}
-            h={375}
+            w="100%"
+            h="100%"
             src={rentApart}
           />
-        </GridItem>
-        <GridItem
-          w={575}
-          colStart={4}
-          colEnd={6}
+        </Box>
+        <Box
+          w={{ base: '100%', md: 575 }}
         >
-          <Box pt="4rem">
+          <Box pt={{ base: '0', md: '4rem' }}>
             <Text
               as="h2"
               fontSize="2.5rem"
@@ -140,14 +145,14 @@ function Hero({ sectionId }: HeroInterface) {
               Online
               {' '}
               <UnderlineDecor
-                color="#eab308"
+                color="secondary"
                 text="Booking"
               />
               {' '}
               and
               {' '}
               <UnderlineDecor
-                color="#eab308"
+                color="secondary"
                 text="Invoicing"
               />
               {' '}
@@ -171,8 +176,8 @@ function Hero({ sectionId }: HeroInterface) {
             <MainSearch />
           </Box>
           <Checkbox mt="1rem">I'm booking for my company</Checkbox>
-        </GridItem>
-      </Grid>
+        </Box>
+      </Flex>
       <ProminentCanDos />
     </VStack>
   );
