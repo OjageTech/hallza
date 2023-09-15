@@ -20,6 +20,7 @@ const BannerItem = ({ title, subtitle, path }: BannerItemI) => (
 );
 const HallzaBanner = () => (
   <Flex
+    display={{ base: 'none', md: 'flex' }}
     h="14vh"
     pl="4pc"
     pr="4pc"

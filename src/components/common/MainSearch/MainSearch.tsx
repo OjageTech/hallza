@@ -9,6 +9,7 @@ import {
   useColorMode,
 } from '@chakra-ui/react';
 import React, { useState, useEffect } from 'react';
+import { Search2Icon } from '@chakra-ui/icons';
 import { RangeDatepicker } from 'chakra-dayzed-datepicker';
 import { FaCity } from 'react-icons/fa';
 import CM_CITIES from './CM_CITIES.json';
@@ -62,7 +63,7 @@ export default function MainSearch({
     inputProps: {
       height: '100%',
       border: 'none',
-      width: '16vw',
+      width: '100%',
     },
     popoverCompProps: {
       popoverContentProps: {
@@ -76,20 +77,24 @@ export default function MainSearch({
       boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
       gap=".7rem"
       backgroundColor={colorMode === 'light' ? 'white' : 'cardColor'}
-      h="50px"
-      alignItems="center"
+      h={{ base: '100px', md: '50px' }}
+      alignItems="left"
       borderRadius={5}
-      w="fit-content"
+      justifyContent="flex-start"
+      w={{ base: '90%', md: 'fit-content' }}
+      fontSize={{ base: 'xs', md: 'inherit' }}
+      flexDirection={{ base: 'column', md: 'row' }}
     >
       <Select
         variant="filled"
-        size="lg"
+        size={{ base: 'md', md: 'lg' }}
         colorScheme="teal"
         borderColor="teal.500"
         focusBorderColor="teal.500"
         _hover={{ borderColor: 'teal.500' }}
-        width="20vw"
+        width="100%"
         border="none"
+        fontSize="inherit"
         icon={<FaCity />}
         placeholder={preferredLocation || 'Event location preference'}
         onChange={(e) => setEventPrefferedLoacation(e.target.value)}
@@ -111,12 +116,14 @@ export default function MainSearch({
         as={Flex}
         _hover={{ cursor: 'pointer', backgroundColor: 'teal' }}
         color="white"
-        // borderRightRadius={5}
+        borderTopRadius={{ base: 0, md: 'inherit' }}
         justify="center"
+        leftIcon={<Search2Icon />}
         alignItems="center"
         // p="0.3rem"
         variant="primary"
         h="100%"
+        w={{ base: '100%', md: 'fit-content' }}
         onClick={(e) => handleSearch(e)}
       >
         Search

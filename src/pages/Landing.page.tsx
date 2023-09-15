@@ -197,16 +197,15 @@ const Landing = () => {
         <Offers />
         <BrowseByType />
         <HallzaBanner />
-        <CallToFindVenues />
+        {/* <CallToFindVenues /> */}
         {/* <CallToAddVenues /> */}
-        <CallToViewAllServices />
+        {/* <CallToViewAllServices /> */}
         {/* <Box h="2rem" /> */}
-        <Box borderRadius={0} backgroundColor="transparent" pt="2rem"><Newsletter /></Box>
+        <Newsletter />
         {/* <SearchSection /> */}
         {/* <FeaturedVenues /> */}
         {/* <Box h="2rem" />
         <ProminentFeatures /> */}
-        <Box backgroundColor="transparent" h="6rem" />
         <Footer />
       </Container>
     </div>

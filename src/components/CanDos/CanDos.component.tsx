@@ -11,6 +11,7 @@ import Badger from '../../layouts/sidebars/UserDashboard/Badger';
 import hand from '../../assets/images/hand.png';
 import comp from '../../assets/images/comp.png';
 import edgeEditorial from '../../assets/images/Edge_Editorial.png';
+import CaptionCarousel from '../Carousel/CarouselWithCaption';
 
 const handleClick = () => {
   const inputElement = document.querySelector('input[type="text"]'); // not found
@@ -82,6 +83,11 @@ const CanDo = ({
   path,
 }: CanDoProps) => (
   <GridItem>
+    {/* <Box
+      display={{ base: 'block', md: 'none' }}
+    >
+      <CaptionCarousel />
+    </Box> */}
     <Card
       title={title === 'Hallza Bills' || title === 'Hallza Catering' ? 'Coming soon' : title}
       as={RouteLink}
@@ -120,11 +126,10 @@ const CanDo = ({
           }}
           fontWeight={600}
           fontSize={{
-            base: '.55rem',
-            sm: '.6rem',
-            md: '.8rem',
-            lg: '1rem',
-            xl: '1.2rem',
+            base: '1.1rem',
+            md: '0.9rem',
+            lg: '1.1rem',
+            xl: '1.0rem',
           }}
         >
           {title}
@@ -146,10 +151,10 @@ const CanDo = ({
         fontWeight={300}
         lineHeight="1rem"
         fontSize={{
-          base: '.5rem',
-          md: '.6rem',
-          lg: '.6rem',
-          xl: '.9rem',
+          base: '1.1rem',
+          md: '0.9rem',
+          lg: '1.1rem',
+          xl: '1.0rem',
         }}
       >
         {subtitle}
@@ -160,11 +165,25 @@ const CanDo = ({
 
 const ProminentCanDos = () => (
   <Box margin="0 auto" w="95vw">
+    <Box
+      display={{ base: 'inherit', md: 'none' }}
+    >
+      <CanDo
+        title={CanDosData[0].title}
+        subtitle={CanDosData[0].subtitle}
+        img={CanDosData[0].img}
+        newBadge={CanDosData[0].newBadge}
+        color={CanDosData[0].color}
+        path={CanDosData[0].path}
+        // onClick={onClick}
+      />
+    </Box>
     <Grid
+      display={{ base: 'none', md: 'grid' }}
       mt="1rem"
       templateColumns={{
         base: 'repeat(1,minmax(0,1fr))',
-        sm: 'repeat(3,minmax(0,1fr))',
+        md: 'repeat(3,minmax(0,1fr))',
         lg: 'repeat(4,minmax(0,1fr))',
       }}
       gap={{
