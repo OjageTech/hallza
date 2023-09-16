@@ -138,9 +138,9 @@ function Hero({ sectionId }: HeroInterface) {
           <Box pt={{ base: '0', md: '4rem' }}>
             <Text
               as="h2"
-              fontSize="2.5rem"
+              fontSize={{ base: '2rem', md: '2.5rem' }}
+              fontWeight={{ base: '500', md: '400' }}
               lineHeight="1"
-              fontWeight={400}
             >
               Online
               {' '}
@@ -160,8 +160,8 @@ function Hero({ sectionId }: HeroInterface) {
             </Text>
             <Text
               as="p"
-              fontSize="1.25rem"
-              lineHeight="1.75rem"
+              fontSize={{ base: '1rem', md: '1.25rem' }}
+              lineHeight={{ base: 'auto', md: '1.75rem' }}
               opacity=".9"
               fontWeight={300}
             >
@@ -175,7 +175,7 @@ function Hero({ sectionId }: HeroInterface) {
           >
             <MainSearch />
           </Box>
-          <Checkbox mt="1rem">I'm booking for my company</Checkbox>
+          <Checkbox mt="1rem" colorScheme="teal">I'm booking for my company</Checkbox>
         </Box>
       </Flex>
       <ProminentCanDos />

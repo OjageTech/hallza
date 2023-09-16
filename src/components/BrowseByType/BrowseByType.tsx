@@ -38,14 +38,14 @@ const typeCategory = [
 
 function BrowseByType() {
   return (
-    <Box mb="1rem" mt="2rem" mr="2.1rem" ml="2.1rem" w="95.7%">
+    <Box mb="1rem" mt="2rem" ml={{ base: '0.5rem', md: '2.1rem' }} mr={{ base: '0.5', md: '2.1rem' }} w={{ base: '100%', md: '95.7%' }}>
       <Text fontWeight={700} fontSize="22px">Browse by hall type</Text>
       {/* <CaptionCarousel category={typeCategory} /> */}
       <Flex flexDir={{ base: 'column', md: 'row' }} mt=".9rem" justifyContent="space-between">
         {
           typeCategory.map((property) => (
             <Box as={Link} to={property.to}>
-              <Box h="26vh" w={{ base: '87vw', md: '20vw' }}><Image borderRadius={7} h="100%" w="100%" objectFit="cover" src={property.coverImage} /></Box>
+              <Box h={{ base: '32vh', md: '26vh' }} w={{ base: '87vw', md: '20vw' }}><Image borderRadius={7} h="100%" w="100%" objectFit="cover" src={property.coverImage} /></Box>
               <Text fontWeight={600}>{property.type}</Text>
               <Text>
                 {property.number}

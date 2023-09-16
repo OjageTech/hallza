@@ -77,8 +77,8 @@ export default function MainSearch({
       boxShadow="rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
       gap=".7rem"
       backgroundColor={colorMode === 'light' ? 'white' : 'cardColor'}
-      h={{ base: '100px', md: '50px' }}
-      alignItems="left"
+      h={{ base: '120px', md: '50px' }}
+      alignItems="bottom"
       borderRadius={5}
       justifyContent="flex-start"
       w={{ base: '90%', md: 'fit-content' }}
@@ -122,7 +122,7 @@ export default function MainSearch({
         alignItems="center"
         // p="0.3rem"
         variant="primary"
-        h="100%"
+        h={{ base: '120px', md: '100%' }}
         w={{ base: '100%', md: 'fit-content' }}
         onClick={(e) => handleSearch(e)}
       >
