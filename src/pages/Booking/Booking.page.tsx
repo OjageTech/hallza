@@ -2,6 +2,7 @@
 
 'use client';
 
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import {
   Progress,
@@ -22,15 +23,26 @@ import {
   FormHelperText,
   InputRightElement,
   useToast,
+  Container,
+  Text,
+  Image,
+  Stack,
 } from '@chakra-ui/react';
+import LandingHeader from '../../layouts/headers/Landing.header';
+import { useAppSelector } from '../../app/hooks';
 
 const Form1 = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   return (
     <>
-      <Heading w="100%" textAlign="center" fontWeight="normal" mb="2%">
-        User Registration
+      <Heading w="50%" textAlign="center" fontWeight="normal" mb="2%">
+        <Flex justifyContent="space-between">
+          <Flex borderRadius="50%" h="40px" w="40px" border="1px solid grey" alignItems="center" justifyContent="center">2</Flex>
+          <Text>
+            User Registration
+          </Text>
+        </Flex>
       </Heading>
       <Flex>
         <FormControl mr="5%">
@@ -289,8 +301,8 @@ function Multistep() {
   return (
     <Box
       borderWidth="1px"
-      rounded="lg"
-      shadow="1px 1px 3px rgba(0,0,0,0.3)"
+      rounded="md"
+      shadow="sm"
       maxWidth={800}
       p={6}
       m="10px auto"
@@ -333,20 +345,20 @@ function Multistep() {
           </Flex>
           {step === 3 ? (
             <Button
-              w="7rem"
-              colorScheme="red"
+              w="fit-content"
+              colorScheme="whatsapp"
               variant="solid"
               onClick={() => {
                 toast({
-                  title: 'Account created.',
-                  description: "We've created your account for you.",
+                  title: 'Paid.',
+                  description: "You've paid!!!",
                   status: 'success',
                   duration: 3000,
                   isClosable: true,
                 });
               }}
             >
-              Submit
+              Continue to payment
             </Button>
           ) : null}
         </Flex>
@@ -356,7 +368,68 @@ function Multistep() {
 }
 
 export default function Booking() {
+  const { data: venues } = useAppSelector((state) => state.venues);
+  const { id } = useParams();
+  const urlID = id || '';
+  const findVenueById = (venueId: string) => venues.find((indivenue) => indivenue._id === venueId);
+
+  const foundVenue = findVenueById(urlID);
+
+  if (!foundVenue) {
+    return <Box>Venue not found</Box>;
+  }
   return (
-    <Multistep />
+    <>
+      <LandingHeader />
+      <Flex mt="5rem" ml="2.1rem" w="80%" justifyContent="space-between">
+        <Box>
+          <Flex mb="1rem" gap="1rem" alignItems="center">
+            <Flex borderRadius="50%" h="40px" w="40px" border="1px solid grey" alignItems="center" justifyContent="center">1</Flex>
+            <Heading fontWeight="normal" as="h1"> Review your itinerary</Heading>
+          </Flex>
+          <Box mt="1rem" h={{ base: '100%', md: '20vh' }} w={{ base: '100%', md: '40vw' }} boxShadow="xs" borderRadius="md">
+            <Flex h="100%" w={{ base: '100%', md: '33vw' }} justifyContent="space-between" p=".5rem" alignItems="center">
+              <Image h="100%" src={foundVenue?.photos[1]} alt={`${foundVenue?.name}-display image`} objectFit="cover" />
+              <Box>
+                <Text fontSize="2xl">{foundVenue?.name}</Text>
+                <Text>
+                  {foundVenue?.location.country}
+                  ,
+                  {' '}
+                  {foundVenue?.location.city}
+                </Text>
+              </Box>
+            </Flex>
+            <Box mt="2rem">
+              <Heading>Availability</Heading>
+              <Flex w="60%" alignItems="center" justify="space-between">
+                <Stack>
+                  <Text fontSize="sm">From</Text>
+                  <Text fontSize="lg" fontWeight="bold">{foundVenue?.availability.start_date}</Text>
+                </Stack>
+                <Text fontWeight="semibold" fontSize="sm">24/7</Text>
+                <Stack>
+                  <Text fontSize="sm">To</Text>
+                  <Text fontSize="lg" fontWeight="bold">{foundVenue?.availability.end_date}</Text>
+                </Stack>
+              </Flex>
+            </Box>
+          </Box>
+          <Box mt="10rem">
+            <Multistep />
+          </Box>
+        </Box>
+        <Box boxShadow="xs" borderRadius="sm">
+          <Flex gap="2px">
+            <Text>Total Price:</Text>
+            <Text>cost in XAF</Text>
+          </Flex>
+        </Box>
+      </Flex>
+
+      {/* <Button variant="primary">
+        Continue to payment
+      </Button> */}
+    </>
   );
 }

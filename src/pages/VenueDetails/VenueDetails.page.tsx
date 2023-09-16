@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Box,
@@ -20,12 +20,25 @@ import {
 } from '@chakra-ui/react';
 import { MdLocalShipping } from 'react-icons/md';
 
+import { GoogleMap, Marker, useLoadScript } from '@react-google-maps/api';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchVenuesData } from '../../features/venues/venues-slice';
 import LandingHeader from '../../layouts/headers/Landing.header';
+import authService from '../../services/auth.service';
+import { user } from '../../interfaces/user';
+import CaptionCarousel from '../../components/Carousel/CarouselWithCaption';
 
 const VenueDetails: React.FC = () => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyDCuLK99VxIqDi9_RsKVLILpE_lXi6omeo',
+  });
+
+  const center = useMemo(
+    () => ({ lat: 4.148398399353027, lng: 9.243124008178711 }),
+    [],
+  );
   const dispatch = useAppDispatch();
+  const currentUser: user = authService.getCurrentUser();
   const { data: venues } = useAppSelector((state) => state.venues);
   const { id } = useParams();
   const urlID = id || '';
@@ -130,16 +143,11 @@ const VenueDetails: React.FC = () => {
           spacing={{ base: 8, md: 10 }}
           py={{ base: 18, md: 24 }}
         >
-          <Flex>
-            <Image
-              rounded="md"
-              alt="Venue"
-              src={foundVenue?.photos[1]}
-              fit="cover"
-              align="center"
-              w="100%"
-              h={{ base: '100%', sm: '400px', lg: '500px' }}
-            />
+          <Flex
+            w="100%"
+            h={{ base: '100%', sm: '400px', lg: '500px' }}
+          >
+            <CaptionCarousel photos={foundVenue?.photos} />
           </Flex>
           <Stack spacing={{ base: 6, md: 10 }}>
             <Box as="header">
@@ -243,6 +251,45 @@ const VenueDetails: React.FC = () => {
                   </ListItem>
                 </List>
               </Box>
+              <Box>
+                <Text
+                  fontSize={{ base: '16px', lg: '18px' }}
+                  color={useColorModeValue('teal.500', 'teal.300')}
+                  fontWeight="500"
+                  textTransform="uppercase"
+                  mb="4"
+                >
+                  location
+                </Text>
+                <Box
+                  mt="1rem"
+                  mr="6px"
+                  p="6px"
+                  h="20vh"
+                  sx={{
+                    background: 'rgba(255, 255, 255, 0.2)',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+                    backdropFilter: 'blur(5px)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                  }}
+                  w="100%"
+                >
+                  {!isLoaded ? (
+                    <h1>Loading...</h1>
+                  ) : (
+                    <GoogleMap
+                      mapContainerClassName="map-container"
+                      center={center}
+                      zoom={14}
+                    >
+                      <Marker
+                        position={{ lat: 4.148398399353027, lng: 9.243124008178711 }}
+                      />
+                    </GoogleMap>
+                  )}
+                </Box>
+              </Box>
             </Stack>
 
             <Button
@@ -253,6 +300,8 @@ const VenueDetails: React.FC = () => {
               py="7"
             // bg={useColorModeValue('gray.900', 'gray.50')}
             // color={useColorModeValue('white', 'gray.900')}
+              as={Link}
+              to={currentUser ? `/secure-book/${foundVenue?._id}/info` : '/login'}
               textTransform="uppercase"
               _hover={{
                 transform: 'translateY(2px)',

@@ -2,7 +2,7 @@
 
 export enum ROUTE {
   LANDING = '/',
-  BOOKING_SYSTEM = '/secure-book/',
+  BOOKING_SYSTEM = '/secure-book/:id/info',
   PRICING = '/pricing/',
   CONTACT = '/contact/',
   LOGIN = '/login',

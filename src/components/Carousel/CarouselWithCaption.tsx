@@ -34,7 +34,7 @@ const settings = {
   slidesToScroll: 1,
 };
 
-export default function CaptionCarousel(category: any) {
+export default function CaptionCarousel(photos: any) {
   // As we have used custom buttons, we need a reference variable to
   // change the state
   const [slider, setSlider] = React.useState<Slider | null>(null);
@@ -43,10 +43,9 @@ export default function CaptionCarousel(category: any) {
   // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '50%' });
   const side = useBreakpointValue({ base: '30%', md: '40px' });
-
-  const typeCategory = category.category;
+  const thePhotos = photos.photos;
   return (
-    <Box borderRadius={7} position="relative" height="300px" width="full" overflow="hidden">
+    <Box borderRadius={7} position="relative" height="100%" width="full" overflow="hidden">
       {/* CSS files for react-slick */}
       <link
         rel="stylesheet"
@@ -67,7 +66,7 @@ export default function CaptionCarousel(category: any) {
         top={top}
         _hover={{ backgroundColor: 'primary' }}
         transform="translate(0%, -50%)"
-        background="rgba(26, 186, 189, 0.4)"
+        background="rgba(26, 186, 189, 0.1)"
         boxShadow="0 4px 30px rgba(0, 0, 0, 0.1)"
         backdropFilter="blur(5px)"
         color="white"
@@ -81,7 +80,7 @@ export default function CaptionCarousel(category: any) {
         aria-label="right-arrow"
         variant="ghost"
         position="absolute"
-        background="rgba(26, 186, 189, 0.4)"
+        background="rgba(26, 186, 189, 0.1)"
         boxShadow="0 4px 30px rgba(0, 0, 0, 0.1)"
         backdropFilter="blur(5px)"
         right={side}
@@ -96,17 +95,15 @@ export default function CaptionCarousel(category: any) {
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider: any) => setSlider(slider)}>
-        {typeCategory.map(({
-          type, number, coverImage, to, index,
-        }: any) => (
+        {thePhotos.map((photo: string) => (
           <Box
-            key={type}
-            height="300px"
+            key={photo}
+            height="100%"
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={coverImage}
+            backgroundImage={photo}
           >
             {/* This is the block you need to change, to customize the caption */}
             <Container size="container.lg" height="600px" position="relative">
@@ -122,34 +119,10 @@ export default function CaptionCarousel(category: any) {
                 top="10%"
                 transform="translate(0, -50%)"
               >
-                <Heading color="white" fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
-                  {type}
+                {/* <Heading color="white" fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
                 </Heading>
                 <Text fontSize={{ base: 'md', lg: 'lg' }} color="white">
-                  {number}
-                  {' '}
-                  {(() => {
-                    switch (type) {
-                      case 'Hotels':
-                        return 'hotels';
-                      case 'Resorts':
-                        return 'resorts';
-                      case 'Churches':
-                        return 'churches';
-                      case 'The Outdoors':
-                        return 'spaces';
-                      default:
-                        return null;
-                    }
-                  })()}
-                </Text>
-                <Button
-                  as={Link}
-                  to={to}
-                >
-                  Go
-
-                </Button>
+                </Text> */}
               </Stack>
             </Container>
 
