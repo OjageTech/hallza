@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import {
-  Box, Text, Flex, Image, Button,
+  Box, Text, Flex, Image, Button, useToast,
 } from '@chakra-ui/react';
 import React from 'react';
 import ConfHall from '../../assets/images/mologo_compressed-asia-culturecenter-COWf-5ZtZ6w-unsplash.jpg';
 import ConfHall2 from '../../assets/images/Beach.jpeg';
 
 function Offers() {
+  const toast = useToast();
   return (
     <Box ml={{ base: '0.5rem', md: '2.1rem' }} mr={{ base: '0.5rem', md: '2.1rem' }} mb=".9rem" mt={{ base: '15rem', md: '2rem' }} w={{ base: '95.8%', md: 'inherit' }}>
       <Text fontWeight={700} fontSize="26px" className="title" as="h2">Offers</Text>
@@ -24,7 +25,19 @@ function Offers() {
           <Box p="1rem" fontSize="xs" borderRadius={7} display={{ base: 'block', md: 'none' }} h="100%" w="100%" backgroundImage="url(https://img.freepik.com/free-vector/fashion-model-with-summer-outfit_79603-528.jpg?size=626&ext=jpg&ga=GA1.1.513754652.1688231868&semt=ais)">
             <Text fontWeight={600}>The beginning of something</Text>
             <Text mb="1rem">Save at least 15% on event spaces nationwide, from halls for birthdays to grand stadiums for concerts</Text>
-            <Button variant="primary">Find Conference deals</Button>
+            <Button
+              onClick={() => toast({
+                title: 'No deals yet!',
+                description: 'We are sorry but there are no deals available at this time, try again later.',
+                status: 'info',
+                duration: 9000,
+                isClosable: true,
+              })}
+              variant="primary"
+            >
+              Find Conference deals
+
+            </Button>
           </Box>
           <Box display={{ base: 'none', md: 'block' }} borderRadius={7} zIndex="-1" position={{ base: 'inherit', md: 'absolute' }} top="0" left="0" h="100%" w="100%" backgroundImage="url(https://img.freepik.com/free-vector/fashion-model-with-summer-outfit_79603-528.jpg?size=626&ext=jpg&ga=GA1.1.513754652.1688231868&semt=ais)" transform="rotateY(180deg)" />
 
@@ -40,7 +53,19 @@ function Offers() {
           >
             <Text fontWeight={600}>The beginning of something</Text>
             <Text mb={{ base: '0.4rem', md: '1rem' }}>Save at least 15% on event spaces nationwide, from halls for birthdays to grand stadiums for concerts</Text>
-            <Button variant="primary">Find Conference deals</Button>
+            <Button
+              onClick={() => toast({
+                title: 'No deals yet!',
+                description: 'We are sorry but there are no deals available at this time, try again later.',
+                status: 'info',
+                duration: 9000,
+                isClosable: true,
+              })}
+              variant="primary"
+            >
+              Find Conference deals
+
+            </Button>
           </Box>
 
         </Box>

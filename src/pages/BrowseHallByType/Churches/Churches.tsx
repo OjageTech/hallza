@@ -1,5 +1,5 @@
 import {
-  Box, Checkbox, Text, Image, Flex, useColorMode,
+  Box, Checkbox, Text, Image, Flex, useColorMode, Spinner,
 } from '@chakra-ui/react';
 import React from 'react';
 import { ChurchSite } from './ChurchSite';
@@ -10,9 +10,13 @@ import BueaTownStadium from '../../../assets/images/BueaTownStadium.jpeg';
 import CrossAndBible from '../../../assets/images/Cross and Bible Wallpaper Download.jpg';
 import Cross from '../../../assets/images/Cross.jpg';
 import Stairs from '../../../assets/images/Stairs.jpg';
+import { useAppSelector } from '../../../app/hooks';
+import FilterContents from '../../../components/FilterContents/FilterContents';
+import { FilterBy } from '../../FindnBrowseVenues/FindnBrowseVenues.page';
 
 export default function Churches() {
-  const { colorMode } = useColorMode();
+  const { data: venues } = useAppSelector((state) => state.venues);
+  const { loading } = useAppSelector((state) => state.venues);
   return (
     <Box>
       <Box
@@ -25,28 +29,33 @@ export default function Churches() {
         backgroundColor="teal.50"
         pt="1rem"
       >
-        <Text color="white" fontWeight={700} fontSize="27px">
+        <Text color="white" fontWeight={{ base: 600, md: 700 }} fontSize={{ base: '25px', md: '40px' }}>
           Find the perfect Church for your event Hallza
         </Text>
-        <Text color="white" fontWeight={600}>
+        <Text color="white" fontWeight={600} fontSize={{ base: 'sm', md: '27px' }}>
           Be spirity with hallza and book a Church hall today
         </Text>
         <br />
         <MainSearch />
-        <Checkbox mt="1rem" color="white">I'm booking for my company</Checkbox>
+        <Checkbox colorScheme="teal" mt="1rem" size={{ base: 'sm', md: 'auto' }}>
+          I'm booking for my company
+        </Checkbox>
       </Box>
-      <Box ml="2.1rem" mt="2rem" mr="2.1rem">
-        <Flex justifyContent="space-between" mb="1rem">
-          <ChurchSite hallx={CrossAndBible} />
-          <ChurchSite hallx={Stairs} />
-          <ChurchSite hallx={Cross} />
-        </Flex>
-        <Flex mt="5rem" justifyContent="space-between">
-          <ChurchSite hallx={Stairs} />
-          <ChurchSite hallx={wave} />
-          <ChurchSite hallx={CrossAndBible} />
-        </Flex>
-      </Box>
+      <Flex w={{ base: '100%', md: '95vw' }} ml={{ base: '0', md: '2.1rem' }} mb="2.1rem" gap="1ch">
+        <Box display={{ base: 'none', md: 'block' }}>
+          <FilterBy />
+        </Box>
+        {
+          loading ? <Box m="0 auto" mt="4rem"><Spinner color="primary" size="xl" /></Box>
+            : (
+              <Box
+                mt={{ base: '11.5rem', md: '4rem' }}
+              >
+                <FilterContents data={venues} />
+              </Box>
+            )
+      }
+      </Flex>
     </Box>
   );
 }

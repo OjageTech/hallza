@@ -21,6 +21,7 @@ import {
   CheckboxGroup,
   Stack,
   Spinner,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -203,7 +204,6 @@ export const Contents = ({ venues }: ContentsProps) => {
   return (
     <Flex
       borderRadius="28px"
-      mt="4rem"
       flexDir="column"
       gap="1rem"
     >
@@ -214,14 +214,14 @@ export const Contents = ({ venues }: ContentsProps) => {
             key={data.name}
             borderRadius="10px"
             h="fit-content"
-            backgroundColor="white"
+            backgroundColor={useColorModeValue('white', 'cardColor')}
             boxShadow="md"
-            w="70vw"
+            w={{ base: '100%', md: '70vw' }}
             onClick={() => handleClickDetails(data._id)}
           >
             <Box
               h="25vh"
-              w="20vw"
+              w={{ base: '50%', md: '20vw' }}
               boxShadow="lg"
               _hover={{
                 cursor: 'pointer',
@@ -277,26 +277,34 @@ const FindnBrowseVenues = () => {
         pl="2.1rem"
         pr="2.1rem"
         h="30vh"
-        backgroundColor="teal.300"
+        backgroundColor="teal.500"
         pt="1rem"
       >
-        <Text color="white" fontWeight={700} fontSize="40px">
+        <Text color="white" fontWeight={{ base: 600, md: 700 }} fontSize={{ base: '30px', md: '40px' }}>
           Find the event space you need
         </Text>
-        <Text color="white" fontSize="27px">
+        <Text color="white" fontSize={{ base: 'sm', md: '27px' }}>
           Search deals on hotel banquet halls, outdoor spaces and much more...
         </Text>
         <br />
         <MainSearch />
-        <Checkbox colorScheme="teal" mt="1rem" color="white">
+        <Checkbox colorScheme="teal" mt="1rem" size={{ base: 'sm', md: 'auto' }}>
           I'm booking for my company
         </Checkbox>
       </Box>
-      <Flex w="95vw" ml="2.1rem" mb="2.1rem" gap="1ch">
-        <FilterBy />
+      <Flex w={{ base: '100%', md: '95vw' }} ml={{ base: '0', md: '2.1rem' }} mb="2.1rem" gap="1ch">
+        <Box display={{ base: 'none', md: 'block' }}>
+          <FilterBy />
+        </Box>
         {
           loading ? <Box m="0 auto" mt="4rem"><Spinner color="primary" size="xl" /></Box>
-            : <FilterContents data={venues} />
+            : (
+              <Box
+                mt={{ base: '9.5rem', md: '4rem' }}
+              >
+                <FilterContents data={venues} />
+              </Box>
+            )
       }
       </Flex>
       <Footer />

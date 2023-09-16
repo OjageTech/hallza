@@ -124,7 +124,7 @@ const VenueDetails: React.FC = () => {
     <>
       <LandingHeader />
 
-      <Container maxW="7xl">
+      <Container maxW="7xl" mt="4rem">
         <SimpleGrid
           columns={{ base: 1, lg: 2 }}
           spacing={{ base: 8, md: 10 }}

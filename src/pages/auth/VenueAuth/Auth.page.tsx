@@ -59,14 +59,11 @@ const Login = () => {
   };
   return (
     <Box className="Login">
-      <Flex w="100%" alignItems="center" h="100vh" p="1rem" overflow="hidden">
-        <Box w="45%" p=".5rem 6rem">
+      <Flex w="100vw" alignItems="center" h="100vh" p={{ base: '.1rem', md: '1rem' }} overflowX="hidden">
+        <Box w={{ base: '100vw', md: '45%' }} p=".5rem 6rem" pl={{ base: '1', md: '6rem' }} pt={{ base: '9rem', md: '0' }}>
           {' '}
-          <br />
-          <Box w={isMobileDevices || baseTablet ? '97vw' : 'inherit'}>
-            <Box as={Link} to="/">
-              <AppName />
-            </Box>
+          <Box w={{ base: '100vw', md: '97vw' }}>
+            <AppName />
             <Text as="h1" fontWeight={700} fontSize="40px">Login</Text>
             <Formik
               initialValues={initialValues}
@@ -78,7 +75,7 @@ const Login = () => {
                   {rootEmail === ''
                     ? (
                       <>
-                        <Box p="1rem" minH="10vh" w="430px" border="1px solid gainsboro">
+                        <Box p={{ base: '1rem .1rem', md: '1rem' }} minH="10vh" w={{ base: '95%', md: '430px' }} border="1px solid gainsboro">
                           <Checkbox>
                             <strong>Root user</strong>
                             <br />
@@ -87,7 +84,7 @@ const Login = () => {
                             <Text as={Link} color="primary" to="/about-rootUser"> Learn more</Text>
                           </Checkbox>
                         </Box>
-                        <Box mb="1rem" p="1rem" mt=".5rem" minH="10vh" w="430px" border="1px solid gainsboro">
+                        <Box mb="1rem" p="1rem" mt=".5rem" minH="10vh" w={{ base: '95%', md: '430px' }} border="1px solid gainsboro">
                           <Checkbox>
                             <strong>IAM user</strong>
                             <br />
@@ -98,7 +95,7 @@ const Login = () => {
                         </Box>
                         <Text fontWeight={500} as="label" htmlFor="email">Root user email address</Text>
                         <br />
-                        <Box width="430px" height="40px" mt=".6rem" border="1px solid gainsboro" borderRadius="7" p=".2rem .6rem" name="email" type="text" as={Field} />
+                        <Box w={{ base: '96%', md: '430px' }} height="40px" mt=".6rem" border="1px solid gainsboro" borderRadius="7" p=".2rem .6rem" name="email" type="text" as={Field} />
                         <Text
                           fontSize="12px"
                           as={ErrorMessage}
@@ -128,7 +125,7 @@ const Login = () => {
                   <Button type="submit" variant="primary">Next</Button>
                 </Box>
 
-                <Box h="12vh" w="430px" mt="3rem">
+                <Box h="12vh" w={{ base: '95%', md: '430px' }} mt="3rem">
                   <Text fontSize="12px">
                     By continuing, you agree to the
                     {' '}
@@ -143,12 +140,12 @@ const Login = () => {
                     <Text as={Link} to="/cookie-notice" color="primary"> for more information</Text>
                   </Text>
                 </Box>
-                <Flex color="secondary" mt="1.5rem" w="430px" justifyContent="space-between" alignItems="center">
+                <Flex color="secondary" mt="1.5rem" w={{ base: '95%', md: '430px' }} justifyContent="space-between" alignItems="center">
                   <Box h="1px" backgroundColor="secondary" w="30%" />
                   <Text>New to Hallza?</Text>
                   <Box h="1px" w="30%" backgroundColor="secondary" />
                 </Flex>
-                <Box w="430px" mt=".5rem">
+                <Box w={{ base: '95%', md: '430px' }} mt=".5rem">
                   <Button w="100%" type="submit" variant="secondary">Create a new Hallza Venue Account</Button>
                 </Box>
                 {/* <Box mt="3rem">

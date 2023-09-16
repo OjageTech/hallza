@@ -183,6 +183,8 @@ const Signup = () => {
         <Box maxW="40%" pl={isMobileDevices ? 'inherit' : '6rem'}>
           {' '}
           <br />
+          <AppName />
+
           <Box w={isMobileDevices || baseTablet ? '97vw' : 'inherit'}>
             <Text as="h1" fontWeight={700} fontSize="40px">
               Signup

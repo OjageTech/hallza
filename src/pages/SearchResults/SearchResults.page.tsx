@@ -106,20 +106,22 @@ const SearchResults = () => {
         pl="2.1rem"
         pr="2.1rem"
         h="30vh"
-        backgroundColor="teal.300"
+        backgroundColor={{ base: 'teal.500', md: 'teal.300' }}
         pt="1rem"
       >
-        <Text color="white" fontWeight={700} fontSize="40px">
+        <Text color="white" fontWeight={{ base: 600, md: 700 }} fontSize={{ base: '30px', md: '40px' }}>
           Find the event space you need
         </Text>
-        <Text color="white" fontSize="27px">
+        <Text color="white" fontSize={{ base: 'sm', md: '27px' }}>
           Search deals on hotel banquet halls, outdoor spaces and much more...
         </Text>
         <br />
         <MainSearch preferredLocation={preferredLocation} dateRange={dateRangeA} />
-        <Checkbox mt="1rem" color="white">I'm booking for my company</Checkbox>
+        <Checkbox colorScheme="teal" mt="1rem" size={{ base: 'sm', md: 'lg' }}>
+          I'm booking for my company
+        </Checkbox>
       </Box>
-      <Box ml="2.1rem" mt="2.1rem">
+      <Box ml="2.1rem" mt={{ base: '10rem', md: '2.1rem' }}>
         <Text fontSize="sm">
           <b>
             {preferredLocation}
@@ -140,13 +142,13 @@ const SearchResults = () => {
         <Select
           mt=".5rem"
           variant="outline"
-          size="lg"
+          size={{ base: 'sm', md: 'lg' }}
           fontWeight={300}
           colorScheme="teal"
           borderColor="teal.500"
           focusBorderColor="teal.500"
           _hover={{ borderColor: 'primary' }}
-          width="20vw"
+          width={{ base: '80%', md: '20vw' }}
           icon={<MdArrowDropDown />}
         >
           <option value="Our Top Picks">Our Top Picks</option>
@@ -154,7 +156,8 @@ const SearchResults = () => {
       </Box>
       <Flex
         w="100%"
-        pl="2.1rem"
+        pt={{ base: '1rem', md: '.5rem' }}
+        pl={{ base: '0', md: '2.1rem' }}
         mb="2.1rem"
       >
         <FilterContents

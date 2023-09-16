@@ -73,8 +73,9 @@ const Login = () => {
   return (
     <Box className="Login">
       <Flex w="100%" h="100vh" p="1rem" overflow="hidden">
-        <Box w="40%" p="4rem 6rem">
+        <Box w="40%" p="4rem 6rem" pl={{ base: '1', md: '6rem' }}>
           <Box w={isMobileDevices || baseTablet ? '97vw' : 'inherit'}>
+            <AppName />
             <Text as="h1" fontWeight={700} fontSize="40px">
               Login
             </Text>
