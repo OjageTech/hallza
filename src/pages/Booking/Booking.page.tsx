@@ -38,52 +38,35 @@ const Form1 = () => {
     <>
       <Heading w="50%" textAlign="center" fontWeight="normal" mb="2%">
         <Flex justifyContent="space-between">
-          <Flex borderRadius="50%" h="40px" w="40px" border="1px solid grey" alignItems="center" justifyContent="center">2</Flex>
-          <Text>
-            User Registration
-          </Text>
+          <Flex
+            borderRadius="50%"
+            h="40px"
+            w="40px"
+            border="1px solid grey"
+            alignItems="center"
+            justifyContent="center"
+          >
+            2
+          </Flex>
+          <Text>User Registration</Text>
         </Flex>
       </Heading>
       <Flex>
         <FormControl mr="5%">
           <FormLabel htmlFor="first-name" fontWeight="normal">
-            First name
+            First name*
           </FormLabel>
           <Input id="first-name" placeholder="First name" />
         </FormControl>
 
         <FormControl>
           <FormLabel htmlFor="last-name" fontWeight="normal">
-            Last name
+            Last name*
           </FormLabel>
           <Input id="last-name" placeholder="First name" />
         </FormControl>
       </Flex>
-      <FormControl mt="2%">
-        <FormLabel htmlFor="email" fontWeight="normal">
-          Email address
-        </FormLabel>
-        <Input id="email" type="email" />
-        <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-      </FormControl>
 
-      <FormControl>
-        <FormLabel htmlFor="password" fontWeight="normal" mt="2%">
-          Password
-        </FormLabel>
-        <InputGroup size="md">
-          <Input
-            pr="4.5rem"
-            type={show ? 'text' : 'password'}
-            placeholder="Enter password"
-          />
-          <InputRightElement width="4.5rem">
-            <Button h="1.75rem" size="sm" onClick={handleClick}>
-              {show ? 'Hide' : 'Show'}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
     </>
   );
 };
@@ -384,12 +367,41 @@ export default function Booking() {
       <Flex mt="5rem" ml="2.1rem" w="80%" justifyContent="space-between">
         <Box>
           <Flex mb="1rem" gap="1rem" alignItems="center">
-            <Flex borderRadius="50%" h="40px" w="40px" border="1px solid grey" alignItems="center" justifyContent="center">1</Flex>
-            <Heading fontWeight="normal" as="h1"> Review your itinerary</Heading>
+            <Flex
+              borderRadius="50%"
+              h="40px"
+              w="40px"
+              border="1px solid grey"
+              alignItems="center"
+              justifyContent="center"
+            >
+              1
+            </Flex>
+            <Heading fontWeight="normal" as="h1">
+              {' '}
+              Review your itinerary
+            </Heading>
           </Flex>
-          <Box mt="1rem" h={{ base: '100%', md: '20vh' }} w={{ base: '100%', md: '40vw' }} boxShadow="xs" borderRadius="md">
-            <Flex h="100%" w={{ base: '100%', md: '33vw' }} justifyContent="space-between" p=".5rem" alignItems="center">
-              <Image h="100%" src={foundVenue?.photos[1]} alt={`${foundVenue?.name}-display image`} objectFit="cover" />
+          <Box
+            mt="1rem"
+            h={{ base: '100%', md: '20vh' }}
+            w={{ base: '100%', md: '40vw' }}
+            boxShadow="xs"
+            borderRadius="md"
+          >
+            <Flex
+              h="100%"
+              w={{ base: '100%', md: '33vw' }}
+              justifyContent="space-between"
+              p=".5rem"
+              alignItems="center"
+            >
+              <Image
+                h="100%"
+                src={foundVenue?.photos[1]}
+                alt={`${foundVenue?.name}-display image`}
+                objectFit="cover"
+              />
               <Box>
                 <Text fontSize="2xl">{foundVenue?.name}</Text>
                 <Text>
@@ -405,12 +417,18 @@ export default function Booking() {
               <Flex w="60%" alignItems="center" justify="space-between">
                 <Stack>
                   <Text fontSize="sm">From</Text>
-                  <Text fontSize="lg" fontWeight="bold">{foundVenue?.availability.start_date}</Text>
+                  <Text fontSize="lg" fontWeight="bold">
+                    {foundVenue?.availability.start_date}
+                  </Text>
                 </Stack>
-                <Text fontWeight="semibold" fontSize="sm">24/7</Text>
+                <Text fontWeight="semibold" fontSize="sm">
+                  24/7
+                </Text>
                 <Stack>
                   <Text fontSize="sm">To</Text>
-                  <Text fontSize="lg" fontWeight="bold">{foundVenue?.availability.end_date}</Text>
+                  <Text fontSize="lg" fontWeight="bold">
+                    {foundVenue?.availability.end_date}
+                  </Text>
                 </Stack>
               </Flex>
             </Box>
@@ -419,10 +437,14 @@ export default function Booking() {
             <Multistep />
           </Box>
         </Box>
-        <Box boxShadow="xs" borderRadius="sm">
-          <Flex gap="2px">
+        <Box p="1rem" background="white" boxShadow="xs" borderRadius="md" pos="fixed" right="2.5rem">
+          <Flex fontSize="2xl" gap="2px">
             <Text>Total Price:</Text>
-            <Text>cost in XAF</Text>
+            <Text>
+              XAF
+              {' '}
+              {foundVenue?.price_per_day}
+            </Text>
           </Flex>
         </Box>
       </Flex>

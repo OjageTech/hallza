@@ -1,5 +1,6 @@
 import React, { useState, RefObject } from 'react';
 import { Link as RouteLink } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import 'animate.css';
 import {
   Button,
@@ -187,6 +188,11 @@ const Landing = () => {
   const [sectionId, setSectionId] = useState('heroSection');
   return (
     <div className="Landing">
+      <Helmet>
+        <title>Hallza - Your Ultimate Event Space Booking Platform</title>
+        <meta name="description" content="Discover and Book the Perfect Event Space with OJAGETECHNOLOGIES" />
+        <meta name="keywords" content="event space, venue booking, hall rental, event planning, Cameroon OJAGETECHNOLOGIES" />
+      </Helmet>
       <Container
         minW="100vw"
         minH="100vh"
