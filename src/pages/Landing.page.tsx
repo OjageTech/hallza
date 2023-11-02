@@ -121,6 +121,7 @@ function Hero({ sectionId }: HeroInterface) {
       <Flex
         w={{ base: '100%', md: '66%' }}
         justifyContent="space-between"
+        gap="4rem"
       >
         <Box
           h={375}

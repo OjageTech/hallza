@@ -126,9 +126,9 @@ const CanDo = ({
           }}
           fontWeight={600}
           fontSize={{
-            base: '1.1rem',
+            base: '.7rem',
             md: '0.9rem',
-            lg: '1.1rem',
+            lg: '.7rem',
             xl: '1.0rem',
           }}
         >
@@ -147,14 +147,13 @@ const CanDo = ({
               ? 'gainsboro'
               : 'inherit'
           }
-        mt=".5rem"
         fontWeight={300}
         lineHeight="1rem"
         fontSize={{
-          base: '1.1rem',
-          md: '0.9rem',
-          lg: '1.1rem',
-          xl: '1.0rem',
+          base: '10px',
+          md: '12px',
+          lg: '13px',
+          xl: '14px',
         }}
       >
         {subtitle}

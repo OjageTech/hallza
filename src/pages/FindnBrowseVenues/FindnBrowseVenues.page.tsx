@@ -1,4 +1,5 @@
 /* eslint-disable object-curly-newline */
+import { Helmet } from 'react-helmet-async';
 import { useMemo, useEffect, useState } from 'react';
 import {
   Box,
@@ -268,6 +269,11 @@ const FindnBrowseVenues = () => {
   const { loading } = useAppSelector((state) => state.venues);
   return (
     <Box maxW="100vw" h="100vh">
+      <Helmet>
+        <title>Find Venues | Hallza - Your Ultimate Event Space Booking Platform</title>
+        <meta name="description" content="Discover and Book the Perfect Event Space with OJAGETECHNOLOGIES" />
+        <meta name="keywords" content="event space, venue booking, hall rental, event planning, Cameroon OJAGETECHNOLOGIES" />
+      </Helmet>
       <LandingHeader />
       <Box
         mt="4rem"

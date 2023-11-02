@@ -67,8 +67,8 @@ export default function MainSearch({
     },
     popoverCompProps: {
       popoverContentProps: {
-        background: 'white',
-        color: 'black',
+        background: colorMode === 'light' ? 'white' : 'cardColor',
+        color: colorMode === 'light' ? 'black' : 'white',
       },
     },
   };
@@ -103,7 +103,7 @@ export default function MainSearch({
           <option value={city.city}>{city.city}</option>
         ))}
       </Select>
-      <Box>
+      <Box w="26vw">
         <RangeDatepicker
           id="range-date-picker"
           selectedDates={selectedDates}
@@ -120,7 +120,7 @@ export default function MainSearch({
         justify="center"
         leftIcon={<Search2Icon />}
         alignItems="center"
-        // p="0.3rem"
+        px="2.3rem"
         variant="primary"
         h={{ base: '120px', md: '100%' }}
         w={{ base: '100%', md: 'fit-content' }}
