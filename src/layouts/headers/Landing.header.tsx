@@ -43,6 +43,9 @@ import MainSearch from '../../components/common/MainSearch/MainSearch';
 import authService from '../../services/auth.service';
 import { user } from '../../interfaces/user';
 
+const currenciesAllowed = [
+  'XAF', 'USD', 'Euro',
+];
 interface PopItemProps {
   name: string;
 }
@@ -87,16 +90,16 @@ function MobileNav() {
         <Box w="97%">
 
           {
-    /* Currency Change */
-  }
+            /* Currency Change */
+          }
           <Select variant="flushed" placeholder="Change Currency" icon={<BsCurrencyExchange />}>
-            <option value="option1">XAF</option>
-            <option value="option2">USD</option>
-            <option value="option3">Euro</option>
+            <option value="xaf">XAF</option>
+            <option value="usd">USD</option>
+            <option value="euro">Euro</option>
           </Select>
           {
-    /* Language change */
-  }
+            /* Language change */
+          }
           <Select variant="flushed" placeholder="Change Language" icon={<MdOutlineLanguage />}>
             <option value="option1">English</option>
             <option value="option2">French</option>
@@ -104,38 +107,38 @@ function MobileNav() {
           </Select>
         </Box>
         {
-    /* Ability to login */
-  }
+          /* Ability to login */
+        }
         {
-    !currentUser
-      ? (
-        <Box
-          w="95%"
-          onClick={onToggle}
-          _hover={{ cursor: 'pointer' }}
-        >
-          <Flex
-            py={4}
-            boxSizing="border-box"
-            color="primary"
-            justifyContent="space-between"
-            gap="1.5rem"
-            alignItems="center"
-            flexWrap="wrap"
-          >
-            <Text>Login</Text>
-            <AiOutlineDownCircle color="inherit" />
-          </Flex>
-        </Box>
-      )
-      : (
-        <>
-          <br />
-          <Button as={RouteLink} to="/userDashboard" variant="primary" leftIcon={<AiOutlineProfile />} borderColor="primary">Go to Profile</Button>
-          <br />
-          <br />
-        </>
-      )
+          !currentUser
+            ? (
+              <Box
+                w="95%"
+                onClick={onToggle}
+                _hover={{ cursor: 'pointer' }}
+              >
+                <Flex
+                  py={4}
+                  boxSizing="border-box"
+                  color="primary"
+                  justifyContent="space-between"
+                  gap="1.5rem"
+                  alignItems="center"
+                  flexWrap="wrap"
+                >
+                  <Text>Login</Text>
+                  <AiOutlineDownCircle color="inherit" />
+                </Flex>
+              </Box>
+            )
+            : (
+              <>
+                <br />
+                <Button as={RouteLink} to="/userDashboard" variant="primary" leftIcon={<AiOutlineProfile />} borderColor="primary">Go to Profile</Button>
+                <br />
+                <br />
+              </>
+            )
         }
 
         <Collapse in={isOpen} animateOpacity style={{ marginTop: '0!important' }}>
@@ -206,6 +209,8 @@ const LandingHeader: React.FC = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onToggle } = useDisclosure();
   const [hovered, setHovered] = useState(false);
+  const [defaultCur, setDefaultCur] = useState('XAF');
+  const [wannaChangeCurrency, setWannaChangeCurrency] = useState(false);
   const currentUser: user = authService.getCurrentUser();
 
   const handleHover = () => {
@@ -224,7 +229,7 @@ const LandingHeader: React.FC = () => {
     }
   };
 
-  /** This commented out code, would run handleScroll on the scroll event only on (re)-render of component */
+  /** This commented out code, would have run handleScroll on the scroll event only on (re)-render of component */
   // useEffect(() => {
   //   window.addEventListener('scroll', handleScroll, { passive: true });
   //   return () => {
@@ -281,7 +286,36 @@ const LandingHeader: React.FC = () => {
               <MainSearch />
             </Box>
             {/* Currency Change */}
-            <Button title="Select your currency" variant="ghost">XAF</Button>
+            <Button title="Select your currency" variant={wannaChangeCurrency ? 'primaryOutline' : 'ghost'} onClick={() => setWannaChangeCurrency(!wannaChangeCurrency)}>{defaultCur}</Button>
+            <Box
+              display={wannaChangeCurrency ? 'block' : 'none'}
+              onClick={() => setWannaChangeCurrency(false)}
+              onMouseLeave={() => setWannaChangeCurrency(false)}
+              sx={{
+                width: 'auto',
+                padding: '18px',
+                border: '1px solid #bdbdbd',
+                borderRadius: '4px',
+                height: 'fit-content',
+                marginTop: 0,
+                position: 'absolute',
+                top: '4rem',
+                right: '30%',
+                transition: '.2s ease-in-out',
+              }}
+            >
+              <VStack
+                textAlign="left"
+                alignItems="left"
+                justifyContent="left"
+                width="auto"
+                gap="1rem"
+              >
+                {
+                  currenciesAllowed.map((cur) => <Box bgColor={defaultCur === cur ? 'teal' : 'transparent'} onClick={() => setDefaultCur(cur)}><PopItem name={cur} /></Box>)
+                }
+              </VStack>
+            </Box>
             {/* Language change */}
             <Box title="Select your language" h="20px">
               <Image _hover={{ cursor: 'pointer' }} h="100%" src={US} alt="English language" />
@@ -293,7 +327,7 @@ const LandingHeader: React.FC = () => {
               currentUser
                 ? <Button as={RouteLink} to="/userDashboard" variant="primary">Go to profile</Button>
                 : (
-              // {/* Login Options */}
+                  // {/* Login Options */}
                   <Box
                     _hover={{ cursor: 'pointer' }}
                     display={hovered ? 'none' : 'block'}
@@ -313,7 +347,7 @@ const LandingHeader: React.FC = () => {
                     </Flex>
                   </Box>
                 )
-}
+            }
             <Box
               _hover={{ cursor: 'pointer' }}
               display={hovered ? 'block' : 'none'}

@@ -53,9 +53,7 @@ const HallzaBanner = () => (
     textAlign="center"
   >
     {
-      BannerFeatures.map((feature) =>
-        <BannerItem path={feature.path} title={feature.title} subtitle={feature.subtitle} />,
-      )
+      BannerFeatures.map((feature) => <BannerItem path={feature.path} title={feature.title} subtitle={feature.subtitle} />)
     }
   </Flex>
 );

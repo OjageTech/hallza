@@ -36,7 +36,6 @@ const Login = () => {
     const { email, password } = formValue;
     setMessage('');
     setLoading(true);
-
     AuthService.login(email, password).then(
       () => {
         setRedirect('/profile');
